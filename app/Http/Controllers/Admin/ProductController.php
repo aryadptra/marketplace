@@ -145,4 +145,72 @@ class ProductController extends Controller
             'childCategories' => $childCategories
         ]);
     }
+
+    /**
+     * Update the specified resource in storage.
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * $id = Product ID
+     * Method = PUT
+     */
+    public function update(Request $request, $id)
+    {
+        if (!$id) {
+            Alert::error('Error', 'Product ID Not Found!');
+            return redirect()->route('admin.product.index');
+        }
+
+        $data['user_id'] = Auth::user()->id;
+
+        // Product table
+        $data['category_id'] = $request->category_id;
+        $data['name'] = $request->name;
+        $data['description'] = $request->description;
+        $data['price'] = $request->price;
+        $data['stock'] = $request->stock;
+        $data['min_order'] = $request->min_order;
+        $data['status'] = $request->status;
+        $slug_name = Str::slug($request->name);
+        $slug_seller = Str::slug(Auth::user()->name);
+        $data['slug'] = $slug_name . '-' . $slug_seller;
+
+        // Validate Thumbnail
+        // If Thumbnail is not empty
+        if ($request->thumbnail) {
+            $this->validate($request, [
+                'thumbnail' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+
+            if ($request->hasFile('thumbnail')) {
+                $data['thumbnail'] = $request->file('thumbnail')->store('assets/products/thumbnails', 'public');
+            }
+        }
+
+        $updateProduct = Product::where('id', $id)->update($data);
+
+        if ($updateProduct) {
+            // Get Product ID
+            $product = Product::where('slug', $data['slug'])->first();
+
+            $dataDetail['product_id'] = $product->id;
+            $dataDetail['pre_order'] = $request->pre_order ? 'on' : 'off';
+            $dataDetail['pre_order_message'] = $request->pre_order_message;
+            $dataDetail['weight'] = $request->weight;
+            $dataDetail['weight_unit'] = $request->weight_unit;
+            $dataDetail['discount_status'] = $request->discount_status ? 'on' : 'off';
+            $dataDetail['discount_type'] = $request->discount_status == 'on' ? $request->discount_type : null;
+            $dataDetail['discount_start_date'] = $request->discount_start_date;
+            $dataDetail['discount_end_date'] = $request->discount_end_date;
+            $dataDetail['discount_percentage'] = $request->discount_percentage;
+            $dataDetail['discount_value'] = $request->discount_value;
+            $dataDetail['discount_minimum_quantity'] = $request->discount_minimum_quantity;
+            $dataDetail['discount_maximum_quantity'] = $request->discount_maximum_quantity;
+
+            ProductDetails::where('product_id', $id)->update($dataDetail);
+        }
+
+        Alert::success('Success', $request->name . ' Successfully Updated!');
+
+        return redirect()->route('admin.product.index');
+    }
 }

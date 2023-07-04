@@ -15,7 +15,7 @@
                     Edit {{ $item->name }}
                 </p>
             </div>
-            <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.product.update', $item->id) }}" method="post" enctype="multipart/form-data">
                 <div class="dashboard-content">
                     <div class="row">
                         <div class="col-md-7 mb-3">
@@ -60,9 +60,11 @@
                                                     <div class="form-group">
                                                         <label>Category</label>
                                                         <select name="category_id" class="form-control">
+                                                            {{-- Foreach Category and Selected If Select --}}
                                                             @foreach ($categories as $category)
-                                                                <option value="{{ $category->id }}">{{ $category->name }}
-                                                                </option>
+                                                                <option value="{{ $category->id }}"
+                                                                    {{ $category->id == $item->category_id ? 'selected' : '' }}>
+                                                                    {{ $category->name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -70,28 +72,29 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Price</label>
-                                                        <input type="number"class="form-control" name="price" required />
+                                                        <input value="{{ $item->price }}"
+                                                            type="number"class="form-control" name="price" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Stock</label>
-                                                        <input type="number" class="form-control" name="stock"
-                                                            required />
+                                                        <input type="number" value="{{ $item->stock }}"
+                                                            class="form-control" name="stock" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Minimum Order</label>
-                                                        <input type="number" class="form-control" name="min_order"
-                                                            required />
+                                                        <input type="number" value="{{ $item->min_order }}"
+                                                            class="form-control" name="min_order" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Description</label>
                                                         <textarea name="description" id="editor">
-                                                            {{ $item->details->pre_order_message }}
+                                                            {{ $item->description }}
                                                         </textarea>
                                                     </div>
                                                 </div>
@@ -101,7 +104,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Weight</label>
-                                                        <input type="number" class="form-control" name="weight" />
+                                                        <input type="number" value="{{ $item->details->weight }}"
+                                                            class="form-control" name="weight" />
                                                     </div>
                                                 </div>
                                                 {{-- Weight Unit --}}
@@ -109,8 +113,12 @@
                                                     <div class="form-group">
                                                         <label>Weight Unit</label>
                                                         <select name="weight_unit" class="form-control">
-                                                            <option value="gram">Gram</option>
-                                                            <option value="kg">Kilogram</option>
+                                                            <option value="gram"
+                                                                {{ $item->details->weight_unit == 'gram' ? 'selected' : '' }}>
+                                                                gram</option>
+                                                            <option value="kg"
+                                                                {{ $item->details->weight_unit == 'kg' ? 'selected' : '' }}>
+                                                                kg</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -121,10 +129,18 @@
                                                         {{-- Status : DRAFT, PUBLISHED, UNPUBLISHED, BLOCK --}}
                                                         <label>Status</label>
                                                         <select name="status" class="form-control">
-                                                            <option value="draft">Draft</option>
-                                                            <option value="published">Published</option>
-                                                            <option value="unpublished">Unpublished</option>
-                                                            <option value="block">Block</option>
+                                                            <option value="draft"
+                                                                {{ $item->status == 'draft' ? 'selected' : '' }}>
+                                                                DRAFT</option>
+                                                            <option value="published"
+                                                                {{ $item->status == 'published' ? 'selected' : '' }}>
+                                                                PUBLISHED</option>
+                                                            <option value="unpublished"
+                                                                {{ $item->status == 'unpublished' ? 'selected' : '' }}>
+                                                                UNPUBLISHED</option>
+                                                            <option value="block"
+                                                                {{ $item->status == 'block' ? 'selected' : '' }}>
+                                                                BLOCK</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -178,7 +194,7 @@
                                                         {{-- Thumbnail Preview --}}
                                                         <div id="thumbnail-preview">
                                                             <img id="preview-image"
-                                                                src="{{ asset('images/thumbnail-upload.png') }}"
+                                                                src="{{ asset('storage/' . $item->thumbnail) }}"
                                                                 class="img-fluid" alt="Preview Image" />
                                                         </div>
                                                     </div>
