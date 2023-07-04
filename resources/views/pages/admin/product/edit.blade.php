@@ -159,8 +159,9 @@
                                                     <div class="form-group">
                                                         <label>Status</label>
                                                         <div class="custom-control custom-switch">
-                                                            <input name="pre_order" value="off" type="checkbox"
-                                                                class="custom-control-input" id="switchPreOrder">
+                                                            <input name="pre_order" value="{{ $item->details->pre_order }}"
+                                                                type="checkbox" class="custom-control-input"
+                                                                id="switchPreOrder">
                                                             <label class="custom-control-label"
                                                                 for="switchPreOrder">Off</label>
                                                         </div>
@@ -168,7 +169,7 @@
                                                     {{-- <div class="col-md-12" id="preOrderMessage"> --}}
                                                     <div class="form-group" id="pre_order_message">
                                                         <label>Pre Order Message</label>
-                                                        <textarea name="pre_order_message" id="editor2"></textarea>
+                                                        <textarea name="pre_order_message" id="editor2">{{ $item->details->pre_order_message }}</textarea>
                                                     </div>
                                                     {{-- </div> --}}
                                                 </div>
@@ -348,11 +349,6 @@
             </form>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
 @endsection
 
 @push('addon-script')
@@ -383,20 +379,6 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             });
-        });
-
-
-        $('#preOrderMessage').hide();
-        // Show Pre Order Message If Pre Order is On And Set Value Pre Order Message to NULL
-
-        $('select[name="pre_order"]').on('change', function() {
-            if ($(this).val() == 'on') {
-                $('#preOrderMessage').show();
-                $('textarea[name="pre_order_message"]').val('');
-            } else {
-                $('#preOrderMessage').hide();
-                $('textarea[name="pre_order_message"]').val('');
-            }
         });
 
         // Set price to number only
@@ -463,9 +445,36 @@
         // If preorder status value is not checked, hide pre_order_message
 
         // Set input name pre_order value to off
-        $('input[name="pre_order"]').val('off');
+        // $('input[name="pre_order"]').val('off');
 
-        $('#pre_order_message').hide();
+        // $('#pre_order_message').hide();
+        // $('#switchPreOrder').on('change', function() {
+        //     if ($(this).is(':checked')) {
+        //         // Change label to On
+        //         $(this).next().text('On');
+        //         $('input[name="pre_order"]').val('on');
+        //         $('#pre_order_message').show();
+        //     } else {
+        //         // Change label to Off
+        //         $(this).next().text('Off');
+        //         $('input[name="pre_order"]').val('off');
+        //         $('#pre_order_message').hide();
+        //     }
+        // });
+
+        $('input[name="pre_order"]').val();
+
+        // Jika pre_order value = on, maka tampilkan pre_order_message
+        if ($('input[name="pre_order"]').val() == 'on') {
+            $('#switchPreOrder').prop('checked', true);
+            $('#switchPreOrder').next().text('On');
+            $('#pre_order_message').show();
+        } else {
+            $('#switchPreOrder').prop('checked', false);
+            $('#switchPreOrder').next().text('Off');
+            $('#pre_order_message').hide();
+        }
+
         $('#switchPreOrder').on('change', function() {
             if ($(this).is(':checked')) {
                 // Change label to On
