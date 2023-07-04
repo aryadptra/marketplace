@@ -267,8 +267,10 @@
                                                     <div class="form-group">
                                                         <label>Status</label>
                                                         <div class="custom-control custom-switch">
-                                                            <input name="discount_status" value="off" type="checkbox"
-                                                                class="custom-control-input" id="switchDiscount">
+                                                            <input name="discount_status"
+                                                                value="{{ $item->details->discount_status }}"
+                                                                type="checkbox" class="custom-control-input"
+                                                                id="switchDiscount">
                                                             <label class="custom-control-label"
                                                                 for="switchDiscount">Off</label>
                                                         </div>
@@ -385,11 +387,31 @@
         $('input[name="price"]').on('input', function() {});
     </script>
 
+    {{-- Script for discount --}}
     <script>
         // Update for Discount
-        // If discount status value is checked, show discount_row
-        // If discount status value is not checked, hide discount_row
-        $('#discount_row').hide();
+
+        // Get value from discount_status
+        var discount_status = $('input[name="discount_status"]').val();
+
+        // If discount_status value is on, show discount_row
+        // If discount_status value is off, hide discount_row
+        if (discount_status == 'on') {
+            $('#discount_row').show();
+            $('#switchDiscount').next().text('On');
+            // Checked
+            $('#switchDiscount').prop('checked', true);
+        } else {
+            $('#discount_row').hide();
+            // Change label to Off
+            $('#switchDiscount').next().text('Off');
+            // Unchecked
+            $('#switchDiscount').prop('checked', false);
+        }
+
+        // Discount status change event.
+        // If discount status is on, show discount_row
+        // If discount status is off, hide discount_row
         $('#switchDiscount').on('change', function() {
             if ($(this).is(':checked')) {
                 // Change label to On
@@ -442,25 +464,7 @@
     <script>
         // Update for preorder
         // If preorder status value is checked, show pre_order_message
-        // If preorder status value is not checked, hide pre_order_message
-
-        // Set input name pre_order value to off
-        // $('input[name="pre_order"]').val('off');
-
-        // $('#pre_order_message').hide();
-        // $('#switchPreOrder').on('change', function() {
-        //     if ($(this).is(':checked')) {
-        //         // Change label to On
-        //         $(this).next().text('On');
-        //         $('input[name="pre_order"]').val('on');
-        //         $('#pre_order_message').show();
-        //     } else {
-        //         // Change label to Off
-        //         $(this).next().text('Off');
-        //         $('input[name="pre_order"]').val('off');
-        //         $('#pre_order_message').hide();
-        //     }
-        // });
+        // If preorder status value is not checked, hide pre_order_messag
 
         $('input[name="pre_order"]').val();
 
