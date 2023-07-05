@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductGalleryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,4 +33,6 @@ Route::prefix('admin')
         // Route Resource Category
         Route::resource('category', CategoryController::class);
         Route::resource('product', ProductController::class);
+
+        Route::post('/product/{id}/gallery/upload', [ProductGalleryController::class, 'upload'])->name('product.gallery.upload');
     });

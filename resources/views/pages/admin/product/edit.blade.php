@@ -218,39 +218,37 @@
                                             </h4>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    {{-- Thumbnail --}}
                                                     <label for="">Photos</label>
                                                     <div class="row">
-                                                        <div class="col-md-4 mb-3">
-                                                            {{-- Thumbnail Preview --}}
-                                                            <div id="thumbnail-preview">
-                                                                <img id="preview-image"
-                                                                    src="{{ asset('images/thumbnail-upload.png') }}"
-                                                                    class="img-fluid" alt="Preview Image" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4 mb-3">
-                                                            {{-- Thumbnail Preview --}}
-                                                            <div id="thumbnail-preview">
-                                                                <img id="preview-image"
-                                                                    src="{{ asset('images/thumbnail-upload.png') }}"
-                                                                    class="img-fluid" alt="Preview Image" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4 mb-3">
-                                                            {{-- Thumbnail Preview --}}
-                                                            <div id="thumbnail-preview">
-                                                                <img id="preview-image"
-                                                                    src="{{ asset('images/thumbnail-upload.png') }}"
-                                                                    class="img-fluid" alt="Preview Image" />
-                                                            </div>
+                                                        <div class="col-12">
+                                                            @if ($galleries->count() > 0)
+                                                                @foreach ($galleries as $items)
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <div id="thumbnail-preview{{ $loop->iteration }}">
+                                                                            <img id="preview-image{{ $loop->iteration }}"
+                                                                                src="{{ asset('storage/' . $items->image) }}"
+                                                                                class="img-fluid" alt="Preview Image" />
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            @else
+                                                                <div class="col-md-4 mb-3">
+                                                                    <div id="thumbnail-preview">
+                                                                        <img id="preview-image"
+                                                                            src="{{ asset('images/thumbnail-upload.png') }}"
+                                                                            class="img-fluid" alt="Preview Image" />
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                            <input type="file" style="display: none;"
+                                                                id="photo-thumbnail" name="photo"
+                                                                class="form-control" />
+                                                            {{-- Button Add Photo --}}
+                                                            <div data-id="{{ $item->id }}" id="add-photo-btn"
+                                                                class="btn btn-primary btn-block">Add
+                                                                Photo</div>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="form-group">
-                                                    <a id="button-upload" class="form-control btn">Upload Photo</a>
-                                                    <input type="file" style="display: none;" id="photo-file"
-                                                        name="thumbnail" class="form-control" />
-                                                </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -348,6 +346,11 @@
                                     <button type="submit" class="btn btn-success btn-block px-5">
                                         Save Now
                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -491,6 +494,104 @@
                 $('input[name="pre_order"]').val('off');
                 $('#pre_order_message').hide();
             }
+        });
+    </script>
+
+    {{-- Input Image On Click --}}
+    {{-- <script>
+        // Fungsi inputImage On Click
+        $(document).ready(function() {
+            // Fungsi untuk memicu klik pada input file tersembunyi
+            function inputImage(imageNumber) {
+                $('#photo-file' + imageNumber).click();
+            }
+
+            // Mengganti gambar pratinjau saat gambar dipilih
+            function changePreview(imageNumber) {
+                var input = $('#photo-file' + imageNumber)[0];
+                var preview = $('#preview-image' + imageNumber)[0];
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            // Menangani peristiwa saat input file berubah
+            $('[id^=photo-file]').on('change', function() {
+                var imageNumber = $(this).attr('id').match(/\d+/)[0];
+                changePreview(imageNumber);
+            });
+
+            // Menangani peristiwa saat thumbnail pratinjau diklik
+            $('[id^=thumbnail-preview]').on('click', function() {
+                var imageNumber = $(this).attr('id').match(/\d+/)[0];
+                inputImage(imageNumber);
+            });
+        });
+    </script> --}}
+
+    <script>
+        $(document).ready(function() {
+            // Menambahkan event listener pada tombol "Add Photo"
+            $('#add-photo-btn').on('click', function() {
+                // Membuka dialog pilih file saat tombol diklik
+                $('#photo-thumbnail').click();
+            });
+
+            // Menangani peristiwa pemilihan file
+            $('#photo-thumbnail').on('change', function() {
+                var file = $(this)[0].files[0];
+                var formData = new FormData();
+                formData.append('photo', file);
+
+                // Mengirimkan permintaan Ajax ke endpoint Laravel untuk mengunggah gambar
+                $.ajax({
+                    // url: '/upload', //route
+                    url: "{{ route('admin.product.gallery.upload', ['id' => $item->id]) }}",
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader('enctype', 'multipart/form-data');
+                        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                        xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+                    },
+                    // Jika pengunggahan berhasil
+                    success: function(response) {
+                        // Jika pengunggahan berhasil, tambahkan gambar baru ke tampilan
+                        var newImageElement = $(
+                            '<img class="img-fluid" alt="Preview Image" />');
+                        newImageElement.attr('src', '{{ asset('storage/') }}' + '/' + response
+                            .data
+                            .photo);
+
+
+                        var newThumbnailElement = $('<div></div>');
+                        newThumbnailElement.attr('id', 'thumbnail-preview' + response.id);
+                        newThumbnailElement.append(newImageElement);
+
+                        $('.col-12').append($('<div class="col-md-4 mb-3"></div>').append(
+                            newThumbnailElement));
+
+                        // Reset input file untuk memungkinkan unggahan gambar lainnya
+                        $('#photo-thumbnail').val('');
+
+                        // console.log(response);
+                    },
+                    error: function(xhr) {
+                        // Menampilkan pesan kesalahan jika ada masalah dengan pengunggahan gambar
+                        alert('Error uploading image. Please try again.');
+                        console.log(xhr);
+                    }
+                });
+            });
         });
     </script>
 @endpush

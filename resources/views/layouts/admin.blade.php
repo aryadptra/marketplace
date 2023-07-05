@@ -7,6 +7,9 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
+    {{-- csrf --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <title>@yield('title')</title>
 
     @stack('prepend-style')
@@ -14,6 +17,8 @@
     <link href="/style/main.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css" />
     @stack('addon-style')
+
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductDetails;
+use App\Models\ProductGallery;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -132,17 +133,22 @@ class ProductController extends Controller
         $item = Product::findOrFail($id);
 
         $users = User::all();
+
         // Parent Category
         $categories = Category::where('parent_id', 0)->get();
 
         // Child Category
         $childCategories = Category::where('parent_id', '!=', 0)->get();
 
+        // Gallery
+        $galleries = ProductGallery::where('product_id', $id)->get();
+
         return view('pages.admin.product.edit', [
             'item' => $item,
             'users' => $users,
             'categories' => $categories,
-            'childCategories' => $childCategories
+            'childCategories' => $childCategories,
+            'galleries' => $galleries
         ]);
     }
 
@@ -191,6 +197,20 @@ class ProductController extends Controller
         if ($updateProduct) {
             // Get Product ID
             $product = Product::where('slug', $data['slug'])->first();
+
+            // Jika ada gallery
+            // Jika ada galeri
+            if ($request->hasFile('photo')) {
+                foreach ($request->file('photo') as $key => $photo) {
+                    $photoName = $photo->getClientOriginalName();
+                    $photo->storeAs('assets/products/gallery', $photoName, 'public');
+
+                    $dataGallery['product_id'] = $product->id;
+                    $dataGallery['image'] = $photoName;
+
+                    ProductGallery::create($dataGallery);
+                }
+            }
 
             $dataDetail['product_id'] = $product->id;
             $dataDetail['pre_order'] = $request->pre_order ? 'on' : 'off';
