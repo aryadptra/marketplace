@@ -19,6 +19,11 @@ class ProductController extends Controller
 {
     public function index()
     {
+        // Delete alert
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+
         if (request()->ajax()) {
             $query = Product::with(['user', 'category']);
 
@@ -38,12 +43,7 @@ class ProductController extends Controller
                                     <a class="dropdown-item" href="' . route('admin.product.edit', $item->id) . '">
                                         Edit
                                     </a>
-                                    <form action="' . route('admin.product.destroy', $item->id) . '" method="POST">
-                                        ' . method_field('delete') . csrf_field() . '
-                                        <button type="submit" class="dropdown-item text-danger">
-                                            Delete
-                                        </button>
-                                    </form>
+                                    <a href="' . route('admin.product.destroy', $item->id) . '" class="dropdown-item btn" data-confirm-delete="true">Delete</a>
                                 </div>
                             </div>
                     </div>';
@@ -231,6 +231,35 @@ class ProductController extends Controller
 
         Alert::success('Success', $request->name . ' Successfully Updated!');
 
+        return redirect()->route('admin.product.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * $id = Product ID
+     * Method = DELETE
+     */
+    public function destroy($id)
+    {
+        if (!$id) {
+            Alert::error('Error', 'Product ID Not Found!');
+            return redirect()->route('admin.product.index');
+        }
+
+        $product = Product::findOrFail($id);
+
+        // Delete Thumbnail
+        Storage::disk('public')->delete($product->thumbnail);
+
+        // Delete Gallery
+        $galleries = ProductGallery::where('product_id', $id)->get();
+        foreach ($galleries as $gallery) {
+            Storage::disk('public')->delete($gallery->image);
+        }
+
+        // Delete Product
+        $product->delete();
+        Alert::success('Success', $product->name . ' Successfully Deleted!');
         return redirect()->route('admin.product.index');
     }
 }

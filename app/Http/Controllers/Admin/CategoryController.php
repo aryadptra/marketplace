@@ -36,7 +36,6 @@ class CategoryController extends Controller
                                         Edit
                                     </a>
                                     <a href="' . route('admin.category.destroy', $item->id) . '" class="dropdown-item btn" data-confirm-delete="true">Delete</a>
-                                    
                                 </div>
                             </div>
                         </div>
