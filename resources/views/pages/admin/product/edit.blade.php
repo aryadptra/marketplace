@@ -281,9 +281,17 @@
                                                 <div class="col-md-12" id="discountType">
                                                     <div class="form-group">
                                                         <label>Discount Type</label>
-                                                        <select name="discount_type" class="form-control">
-                                                            <option value="percent">Percent</option>
-                                                            <option value="fixed">Fixed</option>
+                                                        {{-- Selected From Value --}}
+                                                        <select name="discount_type" id="discount_type"
+                                                            class="form-control">
+                                                            {{-- If Discount Type = Percentage --}}
+                                                            <option value="percent"
+                                                                {{ $item->details->discount_type == 'percent' ? 'selected' : '' }}>
+                                                                Percentage</option>
+                                                            {{-- If Discount Type = Fixed --}}
+                                                            <option value="fixed"
+                                                                {{ $item->details->discount_type == 'fixed' ? 'selected' : '' }}>
+                                                                Fixed</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -291,16 +299,18 @@
                                                 <div class="col-md-6" id="discountStartDate">
                                                     <div class="form-group">
                                                         <label>Discount Start Date</label>
-                                                        <input type="date" class="form-control"
-                                                            name="discount_start_date" />
+                                                        <input type="date"
+                                                            value="{{ $item->details->discount_start_date }}"
+                                                            class="form-control" name="discount_start_date" />
                                                     </div>
                                                 </div>
                                                 {{-- Discount End Date --}}
                                                 <div class="col-md-6" id="discountEndDate">
                                                     <div class="form-group">
                                                         <label>Discount End Date</label>
-                                                        <input type="date" class="form-control"
-                                                            name="discount_end_date" />
+                                                        <input type="date"
+                                                            value="{{ $item->details->discount_end_date }}"
+                                                            class="form-control" name="discount_end_date" />
                                                     </div>
                                                 </div>
                                                 {{-- Discount Value --}}
@@ -314,7 +324,14 @@
                                                                     id="discount_type_label">%</span>
                                                             </div>
                                                             <input type="number" class="form-control"
-                                                                name="discount_value" aria-describedby="basic-addon1">
+                                                                name="discount_value"
+                                                                @php
+if ($item->details->discount_value != 0 || $item->details->discount_value != null) {
+                                                                        echo 'value="' . $item->details->discount_value . '"';
+                                                                    }else {
+                                                                        echo 'value="0"';
+                                                                    } @endphp
+                                                                aria-describedby="basic-addon1">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -427,6 +444,19 @@
             }
         });
 
+        // Get value from discount_type
+        var discount_type = $('select[name="discount_type"]').val();
+
+        // If discount type is percent, set discount_type_label to % and discount_value max to 100
+        // If discount type is fixed, set discount_type_label to Rp. and discount_value max to 999999999
+        if (discount_type == 'percent') {
+            $('#discount_type_label').text('%');
+            $('input[name="discount_value"]').attr('max', 100);
+        } else {
+            $('#discount_type_label').text('Rp');
+            $('input[name="discount_value"]').attr('max', 999999999);
+        }
+
         // Discount type change event.
         // If discount type is percent, set discount_type_label to % and discount_value max to 100
         // If discount type is fixed, set discount_type_label to Rp. and discount_value max to 999999999
@@ -441,20 +471,47 @@
         });
 
         // Set discount_price value after discount_value change
+        // Set discount_price value after discount_value change
         $('input[name="discount_value"]').on('input', function() {
             var discount_type = $('select[name="discount_type"]').val();
             var discount_value = $(this).val();
             var price = $('input[name="price"]').val();
             var discount_price = 0;
 
-            if (discount_type == 'percent') {
-                discount_price = price - (price * (discount_value / 100));
+            if (discount_value === '' || parseFloat(discount_value) === 0) {
+                discount_price = price;
             } else {
-                discount_price = price - discount_value;
+                if (discount_type === 'percent') {
+                    discount_price = price - (price * (discount_value / 100));
+                } else {
+                    discount_price = price - discount_value;
+                }
             }
 
-            $('input[name="discount_price"]').val(discount_price);
+            // Check if discount_value is greater than price or exceeds 100% for percentage discount
+            if ((parseFloat(discount_value) > parseFloat(price) && discount_type === 'fixed') || (parseFloat(
+                    discount_value) > 100 && discount_type === 'percent')) {
+                alert('Error: Invalid discount value.');
+                $(this).val(0);
+                $('input[name="discount_price"]').val('');
+            } else {
+                $('input[name="discount_price"]').val(discount_price);
+            }
         });
+
+        $('#save').on('click', function() {
+            var discount_value = $('input[name="discount_value"]').val();
+
+            if (discount_value === "" || parseFloat(discount_value) === 0) {
+                alert('Discount value cannot be empty or 0.');
+                return;
+            }
+
+            // Lanjutkan dengan pengiriman data ke server melalui Ajax
+            // ...
+        });
+
+
 
         // If discount value is empty, set discount_price to 0
         $('input[name="discount_value"]').on('change', function() {
