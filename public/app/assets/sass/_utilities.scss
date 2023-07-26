@@ -1,0 +1,936 @@
+/*-----------------------------------------------------------------------------------
+
+	Utilities.scss
+
+-----------------------------------------------------------------------------------*/
+
+/* ----------------------------------------------------------------
+	Helper Classes
+-----------------------------------------------------------------*/
+
+.line,
+.double-line {
+	clear: both;
+	position: relative;
+	width: 100%;
+	margin: var(--#{$cnvs-prefix}section-margin) 0;
+	border-top: $line-size solid $line-color;
+}
+
+.line.line-sm {
+	margin: calc(var(--#{$cnvs-prefix}section-margin) * 0.5) 0;
+}
+
+span.middot {
+	display: inline-block;
+	margin: 0 5px;
+}
+
+.double-line {
+	border-top: ($line-size * 3) double $line-color;
+}
+
+.header-stick {
+	margin-top: (-var(--#{$cnvs-prefix}margin-base)) !important;
+	.content-wrap & {
+		margin-top: calc(-1 * var(--#{$cnvs-prefix}margin-lg)) !important;
+	}
+}
+
+.footer-stick {
+	margin-bottom: (-var(--#{$cnvs-prefix}margin-base)) !important;
+	.content-wrap & {
+		margin-bottom: calc(-1 * var(--#{$cnvs-prefix}margin-lg)) !important;
+	}
+}
+
+.border-f5 {
+	border-color: #f5f5f5 !important;
+}
+
+.col-padding {
+	padding: $col-padding;
+}
+
+.text-shadow-none {
+	text-shadow: none !important;
+}
+
+.inline-block {
+	float: none !important;
+	display: inline-block !important;
+}
+
+.center {
+	text-align: center !important;
+}
+
+.mx-auto {
+	position: relative !important;
+	float: none !important;
+}
+
+
+/* ----------------------------------------------------------------
+	Text Contrast Color Utility Classes
+-----------------------------------------------------------------*/
+@each $color, $value in $contrasts {
+	.text-contrast-#{$color},
+	.h-text-contrast-#{$color}:hover {
+		color: var(--#{$cnvs-prefix}contrast-#{$color}) !important;
+	}
+}
+
+/* ----------------------------------------------------------------
+	BG Contrast Color Utility Classes
+-----------------------------------------------------------------*/
+@each $color, $value in $contrasts {
+	.bg-contrast-#{$color},
+	.h-bg-contrast-#{$color}:hover {
+		background-color: var(--#{$cnvs-prefix}contrast-#{$color}) !important;
+	}
+}
+
+/* ----------------------------------------------------------------
+	Border Contrast Color Utility Classes
+-----------------------------------------------------------------*/
+@each $color, $value in $contrasts {
+	.border-contrast-#{$color},
+	.h-border-contrast-#{$color}:hover {
+		border-color: var(--#{$cnvs-prefix}contrast-#{$color}) !important;
+	}
+}
+
+.bg-color,
+.bg-color #header-wrap {
+	background-color: rgba(var(--#{$cnvs-prefix}themecolor-rgb), var(--#{$prefix}bg-opacity, 1)) !important;
+}
+
+.bg-color[class*=bg-opacity-] {
+	background-color: rgba(var(--#{$cnvs-prefix}themecolor-rgb),var(--#{$prefix}bg-opacity, 1)) !important;
+}
+
+.color {
+	color: rgba(var(--#{$cnvs-prefix}themecolor-rgb), var(--#{$prefix}text-opacity, 1)) !important;
+}
+
+.border-color {
+	border-color: var(--#{$cnvs-prefix}themecolor) !important;
+}
+
+.text-transform-none {
+	text-transform: none !important;
+}
+
+.overflow-visible {
+	overflow: visible !important;
+}
+
+/* ----------------------------------------------------------------
+	Font Weight Utility Classes
+-----------------------------------------------------------------*/
+.fw-extralight {
+	font-weight: $font-weight-extralight !important;
+}
+.fw-medium {
+	font-weight: $font-weight-medium !important;
+}
+.fw-semibold {
+	font-weight: $font-weight-semibold !important;
+}
+.fst-normal {
+	font-style: normal !important;
+}
+
+/* ----------------------------------------------------------------
+	Letter Spacing Utility Classes
+-----------------------------------------------------------------*/
+@if variable-exists(letter-spacing) {
+	@for $l-spacing-element from 0 through $letter-spacing {
+		.ls-#{$l-spacing-element} {
+			letter-spacing: 1px * $l-spacing-element !important;
+		}
+	}
+}
+
+.font-body {
+	font-family: #{inspect(var(--#{$cnvs-prefix}body-font))};
+}
+
+.font-primary {
+	font-family: #{inspect(var(--#{$cnvs-prefix}primary-font))};
+}
+
+.font-secondary {
+	font-family: #{inspect(var(--#{$cnvs-prefix}secondary-font))};
+}
+.bg-icon {
+	display: block;
+	position: absolute;
+	bottom: -60px;
+	right: -50px;
+	font-size: 210px;
+	color: rgba(var(--#{$cnvs-prefix}contrast-rgb), 0.1);
+}
+
+
+
+/* ----------------------------------------------------------------
+	Text Underline Offset
+-----------------------------------------------------------------*/
+@if variable-exists(text-underline-offset) {
+	@for $text-underline-offset-element from 0 through $text-underline-offset {
+		.text-underline-offset-#{$text-underline-offset-element} {
+			text-underline-offset: #{$text-underline-offset-element}px !important;
+		}
+	}
+	.text-underline-offset-auto {
+		text-underline-offset: auto !important;
+	}
+}
+
+
+/* ----------------------------------------------------------------
+	Image fit Objects
+-----------------------------------------------------------------*/
+@if variable-exists(objects) {
+	@each $object in $objects {
+		.object-#{$object} {
+			object-fit: #{$object} !important;
+		}
+	}
+}
+
+/* ----------------------------------------------------------------
+	Image Object & Background Positions
+-----------------------------------------------------------------*/
+@if variable-exists(objects-postion) {
+	@each $name, $value in $objects-postion {
+		.object-#{$name} {
+			object-position: #{$value} !important;
+		}
+		@each $breakpoint in map-keys($grid-breakpoints) {
+			@include media-breakpoint-up($breakpoint) {
+				$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+				.bg#{$infix}-#{$name} {
+					background-position: #{$value} !important;
+				}
+			}
+		}
+	}
+}
+
+/* ----------------------------------------------------------------
+	Background Sizes
+-----------------------------------------------------------------*/
+@if variable-exists(background-sizes) {
+	@each $size in $background-sizes {
+		.bg-#{$size} {
+			background-size: #{$size} !important;
+		}
+	}
+}
+
+/* ----------------------------------------------------------------
+	Image Scale Utility Classes
+-----------------------------------------------------------------*/
+.imagescale,
+.imagescalein {
+	--#{$cnvs-prefix}img-scale-default: 100%;
+	--#{$cnvs-prefix}img-scale-ratio: 110%;
+	--#{$cnvs-prefix}img-scale-position: center center;
+	display: block;
+	overflow: hidden;
+	img {
+		-webkit-transform: scale(var(--#{$cnvs-prefix}img-scale-ratio));
+		transform: scale(var(--#{$cnvs-prefix}img-scale-ratio));
+		transform-origin: var(--#{$cnvs-prefix}img-scale-position);
+		@include transition(all 1s ease);
+	}
+	&:hover {
+		--#{$cnvs-prefix}img-scale-ratio: var(--#{$cnvs-prefix}img-scale-default);
+	}
+}
+
+.imagescalein {
+	--#{$cnvs-prefix}img-scale-ratio: var(--#{$cnvs-prefix}img-scale-default);
+	&:hover {
+		--#{$cnvs-prefix}img-scale-ratio: var(--#{$cnvs-prefix}img-scale-ratio);
+	}
+}
+
+.grayscale,
+.grayscale-out:hover {
+	--#{$cnvs-prefix}gray-filter: brightness(80%) grayscale(1);
+	filter: var(--#{$cnvs-prefix}gray-filter);
+	-webkit-filter: var(--#{$cnvs-prefix}gray-filter);
+	-moz-filter: var(--#{$cnvs-prefix}gray-filter);
+	-o-filter: var(--#{$cnvs-prefix}gray-filter);
+	-ms-filter: var(--#{$cnvs-prefix}gray-filter);
+	@include transition(1s filter ease);
+}
+
+.grayscale-out,
+.grayscale:hover {
+	--#{$cnvs-prefix}gray-filter: brightness(100%) grayscale(0);
+	@include transition(1s filter ease);
+}
+
+// /* MOVING BG -  TESTIMONIALS */
+
+.bganimate {
+	@include animate(BgAnimated 30s infinite linear);
+}
+
+@include keyframes(BgAnimated) {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 0 400px;
+	}
+}
+
+.input-block-level {
+	display: block;
+	width: 100% !important;
+	min-height: 30px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.vertical-middle {
+	z-index: 3;
+	position: relative;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+	min-height: 100%;
+	justify-content: center;
+	flex-flow: column;
+	&-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	+ .video-wrap {
+		z-index: 2 !important;
+	}
+}
+
+.magnific-max-width .mfp-content {
+	max-width: 800px;
+}
+
+/* ----------------------------------------------------------------
+	Opacity Utility Classes
+-----------------------------------------------------------------*/
+@mixin opacity($op) {
+	@if variable-exists(op-classes) {
+		@for $op-element from 1 through $op {
+			.op-0#{$op-element},
+			.h-op-0#{$op-element}:hover {
+				opacity: #{$op-element * 0.1} !important;
+			}
+		}
+	}
+}
+@if variable-exists(op-classes) {
+	.op-ts {
+		@include transition(opacity var(--#{$cnvs-prefix}transitions));
+	}
+
+	.op-0,
+	.h-op-0:hover {
+		opacity: 0 !important;
+	}
+	.op-1,
+	.h-op-1:hover {
+		opacity: 1 !important;
+	}
+
+	@include opacity($op-classes);
+}
+
+/* ----------------------------------------------------------------
+	Text Sizing Utility
+-----------------------------------------------------------------*/
+.text {
+	&-smaller {
+		font-size: 80% !important;
+		small {
+			font-size: 90% !important;
+		}
+	}
+	&-medium {
+		font-size: 112.5% !important;
+	}
+	&-larger {
+		font-size: 120% !important;
+	}
+}
+
+/* ----------------------------------------------------------------
+	Text Color Utility Classes
+-----------------------------------------------------------------*/
+.text-ts {
+	@include transition(color var(--#{$cnvs-prefix}transitions));
+}
+
+.h-text-color:hover,
+a.h-text-color:hover {
+	color: var(--#{$cnvs-prefix}themecolor) !important;
+}
+
+/* ----------------------------------------------------------------
+	BG Color Utility Classes
+-----------------------------------------------------------------*/
+.bg-ts {
+	@include transition(background-color var(--#{$cnvs-prefix}transitions));
+}
+
+.h-bg-color:hover {
+	background-color: var(--#{$cnvs-prefix}themecolor) !important;
+}
+
+.h-nobg:hover {
+	background-color: transparent !important;
+}
+
+@if variable-exists(theme-colors) {
+	@each $name, $hex in $theme-colors {
+		.h-text-#{$name}:hover,
+		a.h-text-#{$name}:hover {
+			color: var(--#{$prefix}#{$name}) !important;
+		}
+
+		.h-bg-#{$name}:hover {
+			background-color: var(--#{$prefix}#{$name}) !important;
+		}
+	}
+}
+
+.bg-clip {
+	border: $bgclips-border solid transparent;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding;
+	background-clip: padding-box;
+	transform: translate3d(0, 0, 0);
+}
+
+.bg-clip-sm {
+	border-width: $bgclips-border-sm;
+}
+.bg-clip-lg {
+	border-width: $bgclips-border-lg;
+}
+
+/* ----------------------------------------------------------------
+	Gradient Utility Classes
+-----------------------------------------------------------------*/
+
+@if variable-exists(gradients-classes) {
+	@each $key, $value in $gradient-colors {
+		@at-root .gradient-#{$key},
+			.h-gradient-#{$key}:hover {
+			background-image: -webkit-#{$value} !important;
+			background-image: $value !important;
+		}
+	}
+
+	.gradient-text {
+		text-shadow: none !important;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.gradient-underline {
+		background-repeat: no-repeat;
+		background-size: 100% 8px;
+		background-position: 0 88%;
+	}
+}
+
+/* ----------------------------------------------------------------
+	Bootstrap Utility Classes: Extended
+-----------------------------------------------------------------*/
+@if variable-exists(gutter-classes) {
+	/*	Gutters */
+	[class*="gutter-"] {
+		--#{$cnvs-prefix}custom-gutter: var(--#{$prefix}gutter-x);
+		margin-right: calc(var(--#{$cnvs-prefix}custom-gutter) * -0.5);
+		margin-left: calc(var(--#{$cnvs-prefix}custom-gutter) * -0.5);
+		margin-top: calc(var(--#{$cnvs-prefix}custom-gutter) * -1);
+	}
+
+	[class*="gutter-"] > .col,
+	[class*="gutter-"] > [class*="col-"] {
+		padding-right: calc(var(--#{$cnvs-prefix}custom-gutter) * 0.5);
+		padding-left: calc(var(--#{$cnvs-prefix}custom-gutter) * 0.5);
+		margin-top: var(--#{$cnvs-prefix}custom-gutter);
+	}
+	@each $breakpoint in map-keys($grid-breakpoints) {
+		@include media-breakpoint-up($breakpoint) {
+			$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+			@for $gutter-element from 1 through $gutter-classes {
+				@if $gutter-element % 10 == 0 {
+					.gutter#{$infix}-#{$gutter-element} {
+						--#{$cnvs-prefix}custom-gutter: #{$gutter-element}px;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* ----------------------------------------------------------------
+	col-mb-classes & Bootstrap Utility Classes: Extended
+-----------------------------------------------------------------*/
+@if variable-exists(col-mb-classes) {
+	[class*="col-mb-"] {
+		margin-bottom: calc(var(--#{$cnvs-prefix}col-mb) * -1);
+	}
+
+	[class*="col-mb-"] > .col,
+	[class*="col-mb-"] > [class*="col-"] {
+		padding-bottom: var(--#{$cnvs-prefix}col-mb);
+	}
+	@each $breakpoint in map-keys($grid-breakpoints) {
+		@include media-breakpoint-up($breakpoint) {
+			$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+			@each $value in $col-mb-classes {
+				.col-mb#{$infix}-#{$value} {
+					--#{$cnvs-prefix}col-mb: #{$value}px;
+				}
+			}
+		}
+	}
+}
+
+/* ----------------------------------------------------------------
+	Height Utility Classes
+-----------------------------------------------------------------*/
+@if variable-exists(vh-elements) {
+	@each $breakpoint in map-keys($grid-breakpoints) {
+		@include media-breakpoint-up($breakpoint) {
+			$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+			@each $value in $vh-elements {
+				.min-vh#{$infix}-#{$value} {
+					min-height: #{$value}vh !important;
+				}
+				.vh#{$infix}-#{$value} {
+					height: #{$value}vh !important;
+				}
+				.max-vh#{$infix}-#{$value} {
+					max-height: #{$value}vh !important;
+				}
+				.h#{$infix}-#{$value} {
+					height: #{$value * 1%} !important;
+				}
+			}
+
+			.max-vh#{$infix}-none {
+				max-height: none !important;
+			}
+
+			.h#{$infix}-auto {
+				height: auto !important;
+			}
+		}
+	}
+}
+
+/* ----------------------------------------------------------------
+	Position Utility Classes: Extended
+-----------------------------------------------------------------*/
+@if variable-exists(positions) {
+	@each $breakpoint in map-keys($grid-breakpoints) {
+		@include media-breakpoint-up($breakpoint) {
+			$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+			@each $pos in $positions {
+				.position#{$infix}-#{$pos} {
+					position: #{$pos} !important;
+				}
+			}
+		}
+	}
+}
+
+/* ----------------------------------------------------------------
+	Lazy Loading
+-----------------------------------------------------------------*/
+
+.lazy {
+	opacity: 0;
+	&:not(.initial) {
+		@include transition(opacity 1s);
+	}
+	&.initial,
+	&-loaded,
+	&-error {
+		opacity: 1;
+	}
+
+	@at-root img#{&} {
+		max-width: 100%;
+		height: auto;
+		&:not([src]) {
+			visibility: hidden;
+		}
+	}
+}
+
+/* ----------------------------------------------------------------
+	Borders
+-----------------------------------------------------------------*/
+@mixin border-width($cnvs-border-width) {
+	@for $cnvs-border-width-element from 0 through $cnvs-border-width {
+		.border-width-#{$cnvs-border-width-element},
+		.h-border-width-#{$cnvs-border-width-element}:hover {
+			border-width: #{$cnvs-border-width-element}px !important;
+		}
+	}
+}
+@if variable-exists(cnvs-border-width) {
+	@include border-width($cnvs-border-width);
+}
+
+@if variable-exists(border-styles) {
+	@each $styles in $border-styles {
+		.border-#{$styles} {
+			border-style: #{$styles} !important;
+		}
+	}
+}
+
+@each $color, $value in $theme-colors {
+	.h-border-#{$color}:hover {
+		border-color: var(--#{$prefix}#{$color}) !important;
+	}
+}
+
+.border-transparent,
+.h-border-transparent:hover {
+	border-color: transparent !important;
+}
+
+.border-default,
+.h-border-default:hover {
+	border-color: rgba(var(--#{$cnvs-prefix}contrast-rgb), .1) !important;
+}
+
+.border-ts {
+	@include transition(border var(--#{$cnvs-prefix}transitions));
+}
+
+.rounded {
+	&-4 {
+		border-radius: $border-radius-xl !important;
+	}
+
+	&-5 {
+		border-radius: $border-radius-xxl !important;
+	}
+
+	&-6 {
+		border-radius: $border-radius-xxxl !important;
+	}
+}
+
+.rounded-top-left-0 {
+	border-top-left-radius: 0 !important;
+}
+.rounded-top-right-0 {
+	border-top-right-radius: 0 !important;
+}
+.rounded-bottom-right-0 {
+	border-bottom-right-radius: 0 !important;
+}
+.rounded-bottom-left-0 {
+	border-bottom-left-radius: 0 !important;
+}
+
+/* ----------------------------------------------------------------
+	Max-width Utility Classes:
+-----------------------------------------------------------------*/
+@if variable-exists(max-widths) {
+	@each $name, $widths in $max-widths {
+		.mw-#{$name} {
+			max-width: #{$widths} !important;
+		}
+	}
+}
+
+/* ----------------------------------------------------------------
+	Text Sizes Utility Classes:
+-----------------------------------------------------------------*/
+@if variable-exists(text-sizes) {
+	@each $name, $size in $text-sizes {
+		.text-size-#{$name} {
+			font-size: #{$size} !important;
+		}
+	}
+}
+
+/* ----------------------------------------------------------------
+	X/Y Positioning Classes
+-----------------------------------------------------------------*/
+
+.pos {
+	&-x {
+		&-start {
+			left: 0 !important;
+			right: auto !important;
+		}
+		&-end {
+			left: auto !important;
+			right: 0 !important;
+		}
+		&-center {
+			left: 50% !important;
+			right: auto !important;
+			transform: translateX(-50%) !important;
+		}
+	}
+
+	&-y {
+		&-start {
+			top: 0 !important;
+			bottom: auto !important;
+		}
+
+		&-end {
+			top: auto !important;
+			bottom: 0 !important;
+		}
+
+		&-center {
+			top: 50% !important;
+			bottom: auto !important;
+			transform: translateY(-50%) !important;
+		}
+	}
+
+	&-x-center.pos-y-center {
+		top: 50% !important;
+		left: 50% !important;
+		transform: translate(-50%, -50%) !important;
+	}
+}
+
+/* ----------------------------------------------------------------
+	Square Sizes Utility Classes:
+-----------------------------------------------------------------*/
+@if variable-exists(square-sizes) {
+	.square {
+		--#{$cnvs-prefix}square-size: 3rem;
+		width: var(--#{$cnvs-prefix}square-size) !important;
+		height: var(--#{$cnvs-prefix}square-size) !important;
+	}
+	@each $name, $size in $square-sizes {
+		.square-#{$name} {
+			--#{$cnvs-prefix}square-size: #{$size};
+		}
+	}
+}
+
+/* ----------------------------------------------------------------
+	Max-width Utility Classes:
+-----------------------------------------------------------------*/
+.align-wide-lg {
+	margin-left: subtract(
+		50%,
+		(map-get($container-max-widths, "lg") * 0.5)
+	) !important;
+	margin-right: subtract(
+		50%,
+		(map-get($container-max-widths, "lg") * 0.5)
+	) !important;
+	max-width: map-get($container-max-widths, "lg") !important;
+	width: map-get($container-max-widths, "lg") !important;
+}
+
+.align-wide-xl {
+	margin-left: subtract(
+		50%,
+		(map-get($container-max-widths, "xl") * 0.5)
+	) !important;
+	margin-right: subtract(
+		50%,
+		(map-get($container-max-widths, "xl") * 0.5)
+	) !important;
+	max-width: map-get($container-max-widths, "xl") !important;
+	width: map-get($container-max-widths, "xl") !important;
+}
+
+.align-wide-xxl {
+	margin-left: subtract(
+		50%,
+		(map-get($container-max-widths, "xxl") * 0.5)
+	) !important;
+	margin-right: subtract(
+		50%,
+		(map-get($container-max-widths, "xxl") * 0.5)
+	) !important;
+	max-width: map-get($container-max-widths, "xxl") !important;
+	width: map-get($container-max-widths, "xxl") !important;
+}
+
+@include media-breakpoint-down(sm) {
+	.align-wide-lg,
+	.align-wide-xl,
+	.align-wide-xxl {
+		margin-left: subtract(50%, 50vw) !important;
+		margin-right: subtract(50%, 50vw) !important;
+		max-width: 100vw !important;
+		width: 100vw !important;
+	}
+}
+
+@mixin align-full() {
+	margin-left: subtract(50%, 50vw) !important;
+	margin-right: subtract(50%, 50vw) !important;
+	max-width: 100vw !important;
+	width: 100vw !important;
+}
+.align-full {
+	@include align-full();
+}
+@include media-breakpoint-down(sm) {
+	.align-wide-lg,
+	.align-wide-xl,
+	.align-wide-xxl {
+		@include align-full();
+	}
+}
+
+/* ----------------------------------------------------------------
+	Shadow
+-----------------------------------------------------------------*/
+.shadow-sm,
+.h-shadow-sm:hover {
+	box-shadow: var(--#{$cnvs-prefix}box-shadow-sm) !important;
+}
+
+.shadow,
+.h-shadow:hover {
+	box-shadow: var(--#{$cnvs-prefix}box-shadow) !important;
+}
+
+.shadow-lg,
+.h-shadow-lg:hover {
+	box-shadow: var(--#{$cnvs-prefix}box-shadow-lg) !important;
+}
+
+.h-shadow-none:hover {
+	box-shadow: none !important;
+}
+
+.shadow-ts {
+	@include transition(box-shadow var(--#{$cnvs-prefix}transitions));
+}
+
+.all-ts {
+	@include transition(all var(--#{$cnvs-prefix}transitions));
+}
+
+/* ----------------------------------------------------------------
+	translate
+-----------------------------------------------------------------*/
+
+.translate-y-sm,
+.h-translate-y-sm:hover {
+	transform: translateY(-$translate-sm) !important;
+}
+
+.translate-y,
+.h-translate-y:hover {
+	transform: translateY(-$translate) !important;
+}
+
+.translate-y-lg,
+.h-translate-y-lg:hover {
+	transform: translateY(-$translate-lg) !important;
+}
+
+.translate-x-sm,
+.h-translate-x-sm:hover {
+	transform: translateX(-$translate-sm) !important;
+}
+
+.translate-x,
+.h-translate-x:hover {
+	transform: translateX(-$translate) !important;
+}
+
+.translate-x-lg,
+.h-translate-x-lg:hover {
+	transform: translateX(-$translate-lg) !important;
+}
+
+.translate-x-n-sm,
+.h-translate-x-n-sm:hover {
+	transform: translateX($translate-sm) !important;
+}
+
+.translate-x-n,
+.h-translate-x-n:hover {
+	transform: translateX($translate) !important;
+}
+
+.translate-x-n-lg,
+.h-translate-x-n-lg:hover {
+	transform: translateX($translate-lg) !important;
+}
+
+.scale-sm,
+.h-scale-sm:hover {
+	transform: scale(1 + $scale-sm) !important;
+}
+
+.scale,
+.h-scale:hover {
+	transform: scale(1 + $scale) !important;
+}
+
+.scale-lg,
+.h-scale-lg:hover {
+	transform: scale(1 + $scale-lg) !important;
+}
+
+.scale-n-sm,
+.h-scale-n-sm:hover {
+	transform: scale(1 - $scale-sm) !important;
+}
+
+.scale-n,
+.h-scale-n:hover {
+	transform: scale(1 - $scale) !important;
+}
+
+.scale-n-lg,
+.h-scale-n-lg:hover {
+	transform: scale(1 - $scale-lg) !important;
+}
+
+.transform-ts {
+	@include transition(transform $a-transition);
+}
+
+/* ----------------------------------------------------------------
+	translate
+-----------------------------------------------------------------*/
+
+@mixin zindex($zindex) {
+	@for $zindex-element from 0 through $zindex {
+		.z-#{$zindex-element} {
+			z-index: $zindex-element !important;
+		}
+	}
+	.z-auto {
+		z-index: auto !important;
+	}
+}
+@include zindex($zindex);

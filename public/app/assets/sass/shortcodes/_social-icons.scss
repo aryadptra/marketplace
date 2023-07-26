@@ -1,0 +1,183 @@
+
+/*-----------------------------------------------------------------------------------
+
+	Shortcodes: social-icons.scss
+
+-----------------------------------------------------------------------------------*/
+
+/* ----------------------------------------------------------------
+	Social Icons
+-----------------------------------------------------------------*/
+@mixin gradient-bg($color, $imp:0) {
+	@if $imp == 1 {
+		@if $enable-gradients {
+			background-color: $color !important;
+			background-image: linear-gradient(180deg, mix($body-bg, $color, 15%), $color) !important;
+			background-repeat: repeat-x;
+		}
+		@else {
+			background-color: $color !important;
+		}
+	} @else {
+		@if $enable-gradients {
+			background-color: $color;
+			background-image: linear-gradient(180deg, mix($body-bg, $color, 15%), $color);
+			background-repeat: repeat-x;
+		}
+		@else {
+			background-color: $color;
+		}
+	}
+}
+
+$sicon-prefix: social-icon;
+
+.#{$sicon-prefix} {
+
+	--#{$cnvs-prefix}socialicon-size: #{$social-icon-size};
+	--#{$cnvs-prefix}socialicon-gap: #{$social-margins};
+	--#{$cnvs-prefix}socialicon-fontsize: calc( var(--#{$cnvs-prefix}socialicon-size) / 2.5);
+	--#{$cnvs-prefix}socialicon-border: #{$social-icon-border};
+	--#{$cnvs-prefix}socialicon-border-color: #{$social-icon-border-color};
+	--#{$cnvs-prefix}socialicon-lineheight: calc(var(--#{$cnvs-prefix}socialicon-size) - calc(var(--#{$cnvs-prefix}socialicon-border) * 2));
+	--#{$cnvs-prefix}socialicon-rounded: #{$social-icon-rounded};
+	--#{$cnvs-prefix}socialicon-color: #{$social-icon-color};
+
+	float: left;
+	display: block;
+	margin: 0 var(--#{$cnvs-prefix}socialicon-gap) var(--#{$cnvs-prefix}socialicon-gap) 0;
+	width: var(--#{$cnvs-prefix}socialicon-size);
+	height: var(--#{$cnvs-prefix}socialicon-size);
+	font-size: var(--#{$cnvs-prefix}socialicon-fontsize);
+	line-height: var(--#{$cnvs-prefix}socialicon-lineheight) !important;
+	color: var(--#{$cnvs-prefix}socialicon-color);
+	text-shadow: none;
+	border: var(--#{$cnvs-prefix}socialicon-border) solid var(--#{$cnvs-prefix}socialicon-border-color);
+	border-radius: var(--#{$cnvs-prefix}socialicon-rounded);
+	overflow: hidden;
+
+	[class*=-flex] > &,
+	[class*=row] > & {
+		float: none;
+		margin-right: var(--#{$cnvs-prefix}socialicon-gap-x);
+		margin-bottom: var(--#{$cnvs-prefix}socialicon-gap-y);
+		flex: 0 0 auto;
+	}
+
+
+	/* Social Icons - Large
+	-----------------------------------------------------------------*/
+
+	&.si-large {
+		--#{$cnvs-prefix}socialicon-size: 3.5rem;
+	}
+
+	/* Social Icons - Small
+	-----------------------------------------------------------------*/
+
+	&.si-small {
+		--#{$cnvs-prefix}socialicon-size: 2rem;
+		--#{$cnvs-prefix}socialicon-fontsize: 0.875rem;
+	}
+
+	i {
+		display: block;
+		position: relative;
+		line-height: inherit;
+		@include transition(all .3s ease);
+		&:last-child {
+			color: #FFF;
+		}
+	}
+
+	&:hover i:first-child {
+		margin-top: calc(var(--#{$cnvs-prefix}socialicon-lineheight) * -1);
+	}
+
+	&:hover {
+		color: var(--#{$cnvs-prefix}socialicon-color);
+		border-color: transparent;
+	}
+
+	&.bg-dark,
+	&.bg-dark:hover {
+		color: var(--#{$prefix}gray-200);
+	}
+
+	&.bg-light {
+		--#{$cnvs-prefix}socialicon-color: var(--#{$prefix}gray-900);
+		background-color: var(--#{$prefix}gray-200) !important;
+	}
+
+	&[class*=" bg-"] {
+		border-color: transparent;
+	}
+
+	&.no-transition:hover i:first-child {
+		display: none;
+		margin-top: 0;
+	}
+}
+
+/* Social Icons - Group
+-----------------------------------------------------------------*/
+
+[class*=-flex],
+[class*=row]{
+	--#{$cnvs-prefix}socialicon-gap: 5px;
+	--#{$cnvs-prefix}socialicon-gap-x: var(--#{$cnvs-prefix}socialicon-gap);
+	--#{$cnvs-prefix}socialicon-gap-y: 0px;
+}
+
+/* Social Icons - Sticky
+-----------------------------------------------------------------*/
+
+.si-sticky {
+	position: fixed;
+	top: 50%;
+	left: 5px;
+	width: 36px;
+	z-index: 499;
+	transform: translateY(-50%);
+
+	/* Social Icons - Sticky Right
+	-----------------------------------------------------------------*/
+
+	&.si-sticky-right {
+		left: auto;
+		right: 8px;
+	}
+}
+
+// Social Icons With Classes - Mixin
+@mixin si-color($bg-active:false, $color-active:false, $border-active:false) {
+  @each $name, $hex in $si-colors {
+		@if $bg-active == true {
+			.bg-#{$name},
+			.h-bg-#{$name}:hover {
+				background-color: var(--#{$cnvs-prefix}color-#{$name}) !important;
+			}
+		}
+		@if $color-active == true {
+			.color-#{$name},
+			.h-color-#{$name}:hover {
+				color: var(--#{$cnvs-prefix}color-#{$name}) !important;
+			}
+		}
+		@if $border-active == true {
+			.border-#{$name},
+			.h-border-#{$name}:hover {
+				border-color: var(--#{$cnvs-prefix}color-#{$name}) !important;
+			}
+		}
+  }
+}
+
+/* Social Icons - colors
+-----------------------------------------------------------------*/
+@include si-color($bg-active:$social-icon-enable-bg-classes);
+
+@include si-color($border-active:$social-icon-enable-border-classes);
+
+@include si-color($color-active: $social-icon-enable-color-classes);
+

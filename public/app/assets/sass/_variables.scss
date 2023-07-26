@@ -1,0 +1,1230 @@
+@import "bootstrap/_functions";
+@import "bootstrap/_variables";
+@import "bootstrap/_mixins";
+
+//-------------------- Base Colors --------------------//
+
+// Prefix for :root CSS variables
+$cnvs-prefix: cnvs- !default;
+
+$theme-color     :          #1abc9c;
+$theme-color-rgb :          to-rgb($theme-color);
+
+$contrast-0: 		$white;
+$contrast-100: 		$gray-100;
+$contrast-200: 		$gray-200;
+$contrast-300: 		$gray-300;
+$contrast-400: 		$gray-400;
+$contrast-500: 		$gray-500;
+$contrast-600: 		$gray-600;
+$contrast-700: 		$gray-700;
+$contrast-800: 		$gray-800;
+$contrast-900: 		$gray-900;
+$contrast-1000: 	$black;
+$contrast-rgb:		to-rgb($black);
+
+$contrasts: (
+	"0":	$contrast-0,
+	"100": $contrast-100,
+	"200": $contrast-200,
+	"300": $contrast-300,
+	"400": $contrast-400,
+	"500": $contrast-500,
+	"600": $contrast-600,
+	"700": $contrast-700,
+	"800": $contrast-800,
+	"900": $contrast-900,
+	"1000": $contrast-1000
+) !default;
+
+$contrast-bg: $contrast-0;
+$contrast-bg-offset: $contrast-100;
+
+$invert-contrast-0: $contrast-1000;
+$invert-contrast-100: $contrast-900;
+$invert-contrast-200: $contrast-800;
+$invert-contrast-300: $contrast-700;
+$invert-contrast-400: $contrast-600;
+$invert-contrast-500: $contrast-500;
+$invert-contrast-600: $contrast-400;
+$invert-contrast-700: $contrast-300;
+$invert-contrast-800: $contrast-200;
+$invert-contrast-900: $contrast-100;
+$invert-contrast-1000: $contrast-0;
+$invert-contrast-rgb: to-rgb($white);
+
+$invert-contrasts: (
+	"0": 	$invert-contrast-0,
+	"100": $invert-contrast-100,
+	"200": $invert-contrast-200,
+	"300": $invert-contrast-300,
+	"400": $invert-contrast-400,
+	"500": $invert-contrast-500,
+	"600": $invert-contrast-600,
+	"700": $invert-contrast-700,
+	"800": $invert-contrast-800,
+	"900": $invert-contrast-900,
+	"1000": $invert-contrast-1000
+) !default;
+
+$invert-contrast-bg: $invert-contrast-100;
+$invert-contrast-bg-offset: $invert-contrast-200;
+
+$heading-color: 			var(--#{$cnvs-prefix}contrast-900);
+
+$body-bg        :			$contrast-0;     // White
+$body-bg-boxed :			var(--#{$cnvs-prefix}contrast-0);
+$section-bg      :			var(--#{$cnvs-prefix}contrast-bg-offset);        // #f9f9f9
+
+
+
+// Quickly modify global styling by enabling or disabling optional features.
+//-------------------- RTL --------------------//
+$RTL-template 				:	false !default;  // if true then CSS will be generated for RTL Direction.
+
+//-------------------- Dark --------------------//
+$enable-dark 				: 	true !default; // if False then CSS will be Remove all .dark Classes.
+
+//-------------------- Patterns --------------------//
+$patterns-template 			:	true !default;  // False to Disable all Patterns related CSS.
+
+//-------------------- Sticky Footer --------------------//
+$footer-sticky-global 		:	false !default; // False to Disable sticky Footer.
+
+//-------------------- Sticky Footer --------------------//
+$gradients-classes 			: 	true !default; // If true the we will generate the gradient classes.
+
+//-------------------- Font Families --------------------//
+
+$body-font      :			"Inter", sans-serif;
+$primary-font   :			$body-font;
+$secondary-font :			"Playfair Display", serif;
+
+//-------------------- Line Height Variables --------------------//
+
+$line-height-base    :		1.5;
+$line-height-content :		1.65;
+
+//-------------------- Utilities --------------------//
+
+$margin-base  :				3rem;
+$margin-small :				2rem;
+$margin-big   :				5rem;
+
+$content-padding :			5rem;  // Top and Bottom 80px
+
+// Heper Classes Values
+$positions         :		static, relative, absolute, fixed, sticky;         // Set False for Disabled
+$vh-elements       :		100,    90,       75,       60,    50, 40, 25, 0;  // Set False for Disabled
+$letter-spacing    :		5;                                                 //ls-* value Until
+$text-underline-offset    : 8;                                                 //$text-underline-offset-* value Until
+$op-classes        :		9;                                                 //op-* value Until 0 - 1
+$cnvs-border-width :		6;                                                 //border-width-* value Until 0 - 6
+$border-styles     :		dotted, dashed, solid, double;  	              // border-styles values
+$background-sizes  :		auto, contain, cover;						 	  // background Sizes Values
+$objects     	   :		fill, contain, cover, none, scale-down;			   // Object-fit Values
+$objects-postion: (
+	bottom: 		bottom,
+	center: 		center,
+	left: 			left,
+	left-bottom: 	left bottom,
+	left-top: 		left top,
+	right: 			right,
+	right-bottom: 	right bottom,
+	right-top: 		right top,
+	top: 			top,
+); // Object & Background Position Values
+
+// Font weights
+$font-weight-extralight :	100;
+$font-weight-medium     :	500;
+$font-weight-semibold   :	600;
+$font-normal            :	normal;
+
+// Transitions
+$transitions :				0.5s ease;
+
+// Gutters
+$gutter-classes :			50;          //Gutter Classes Until Step by 10
+$col-mb-classes :			30, 50, 80;
+
+// line
+$line-size  :				1px;
+$line-color :				rgba(var(--#{$cnvs-prefix}contrast-rgb), .1);
+
+$text-sizes: (
+	xs  :					0.875rem,
+	sm  :					1rem,
+	md  :					1.5rem,
+	lg  :					2rem,
+	xl  :					calc(1rem + 2.25vw),
+	xxl :					calc(1rem + 3.5vw),
+);
+
+$header-sizes: (
+	sm :					60px,
+	md :					80px,
+	lg :					120px,
+);
+
+// Bg clips
+$enable-bgclips    :		true !default;
+$bgclips-border    :		1rem;
+$bgclips-border-sm :		$bgclips-border * 0.5;
+$bgclips-border-lg :		$bgclips-border * 2;
+
+$max-widths: (
+	xs  :			38rem,
+	sm  :			48rem,
+	md  :			64rem,
+	lg  :			80rem,
+	xl  :			90rem,
+	xxl :			100rem,
+);
+
+$square-sizes: (
+	xs :			1rem,
+	sm :			2rem,
+	md :			4rem,
+	lg :			6rem,
+	xl :			8rem,
+);
+
+$translate-sm :		3px;
+$translate    :		6px;
+$translate-lg :		10px;
+
+$scale-sm     :		0.025;
+$scale        :		0.05;
+$scale-lg     :		0.1;
+$a-transition :		0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+$border-radius-xl   :			0.4rem;
+$border-radius-xxl  :			0.5rem;
+$border-radius-xxxl :			0.6rem;
+
+$zindex :			10;
+
+//-------------------- Bootstrap-Adjustment --------------------//
+
+$grid-columns      :			12 !default;
+$grid-gutter-width :			1.5rem !default;
+$grid-row-columns  :			6 !default;
+
+$spacer  :			1rem !default;
+$spacers :			() !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge(
+	(
+		0 :	0,
+		1 :	(
+			$spacer * 0.25,
+		),
+		2: (
+			$spacer * 0.5,
+		),
+		3 :	$spacer,
+		4 :			(
+			$spacer * 1.5,
+		),
+		5: (
+			$spacer * 3,
+		),
+		6: (
+			$spacer * 5,
+			// Added New
+		),
+	),
+	$spacers
+);
+
+//-------------------- Text Opacity --------------------//
+$utilities: ();
+$utilities: map-merge($utilities,
+	( "extende-bg-opacity": (
+		css-var: true,
+		class: bg-opacity,
+		values: (
+			20: .2,
+			40: .4,
+			60: .6,
+			90: .9
+		)
+	),
+));
+
+//-------------------- Font Sizes --------------------//
+
+$font-size-base :			1rem;
+$font-size-body : 			$font-size-base;
+
+$cnvs-font-sizes: (
+	h1 : $font-size-base * 2.25,
+	h2 : $font-size-base * 1.875,
+	h3 : $font-size-base * 1.5,
+	h4 : $font-size-base * 1.125,
+	h5 : $font-size-base * 0.875,
+	h6 : $font-size-base * 0.75
+);
+
+
+	//-------------------- Layouts --------------------//
+
+$section-margin  :			4rem;
+$section-padding :			$section-margin;
+$col-padding     :			$section-padding;
+
+// Top Bar
+
+$topbar-bg                 :			var(--#{$cnvs-prefix}contrast-0);
+$topbar-icon-height        :			45px;
+$topbar-font-size          :			0.875rem;
+$topbar-font-weight        :			500;
+$topbar-font-transform     :			none;
+$topbar-color	      		:			var(--#{$cnvs-prefix}contrast-700);
+$topbar-border-size        :			1px;
+$topbar-border-color       :			$line-color;
+
+//-------------------- Header --------------------//
+
+$header-height        :			100px;
+$header-height-sm     :			60px;
+$header-height-md     :			80px;
+$header-height-lg     :			120px;
+$header-height-shrink :			60px;
+
+$header-bg           :			var(--#{$cnvs-prefix}contrast-0);
+$header-border-color :			var(--#{$cnvs-prefix}contrast-200);
+
+// Sticky Header
+$header-sticky-bg :				$header-bg;
+
+// Floating Header
+$header-floating-top-offset :			60px;
+$header-floating-padding :			30px;
+
+// Side Header
+$side-header-width           :			260px;
+$side-header-padding-gutters :			30px;
+$side-header-bg              :			$header-bg;
+
+// Header Search
+$top-search-font-size 		 :			2rem;
+
+// From sm
+$one-page-arrow-hidden-down-sm :			true;
+
+// Side Panel
+$side-panel-bg             :			var(--#{$cnvs-prefix}contrast-100);
+$side-panel-size           :			300px;
+$side-panel-padding        :			50px 70px 50px 40px;
+$side-panel-overlay        :			rgba(black, 0.6);
+$side-panel-widget-padding :			40px;
+$side-panel-close-icon     :			url("images/icons/close.png");
+
+// Preloader
+$preloader-image-path         :			"images";
+$preloader-image              :			"preloader";
+$preloader-fallback-extension :			"gif";
+
+//-------------------- Primary Menu --------------------//
+
+$primary-menu-font        :			var(--#{$cnvs-prefix}primary-font);
+$primary-menu-font-weight :			500;
+$primary-menu-font-size   :			1rem;
+$primary-menu-color  :			$heading-color;
+$primary-menu-padding-x :				15px;  //Default
+$primary-menu-icon-size :			1rem;
+
+// Primary Menu Sub Menu
+$primary-menu-submenu-bg           :			$header-bg;
+$primary-menu-submenu-width        :			240px;
+$primary-menu-submenu-font         :			var(--#{$cnvs-prefix}body-font);
+$primary-menu-submenu-font-size    :			0.875rem;
+$primary-menu-submenu-font-weight  :			400;
+$primary-menu-submenu-color   :			$primary-menu-color;
+$primary-menu-submenu-font-spacing :			0;
+$primary-menu-submenu-border       :			1px solid $line-color;
+$primary-menu-submenu-hover-bg :			rgba(var(--#{$cnvs-prefix}contrast-rgb), .025);
+
+// Primary Mega menu
+$mega-menu-title 				  :			var(--#{$cnvs-prefix}primary-font);
+$mega-menu-width-sm				  :			400px;
+
+$mobile-menu-off-canvas-width :			280px;
+
+$header-misc-icons-size  :			1.125rem;
+$header-misc-icons-color :			$primary-menu-submenu-color;
+
+
+$page-dotsmenu-position				: left auto right 20px;
+
+//-------------------- Page Title -------------------- //
+
+$page-title-padding          :			4rem;
+$page-title-parallax-padding :			$page-title-padding * 1.5625;
+$page-title-mini-padding     :			1.5rem;
+
+$page-title-bg      :					var(--#{$cnvs-prefix}contrast-bg-offset);
+$page-title-color   :					var(--#{$cnvs-prefix}contrast-900);
+
+$page-title-font-size     :				2.25rem;
+$page-title-font-weight     :				500;
+$page-title-spacing     :				0;
+$page-title-subtitle-size :				1.125rem;
+
+$page-title-parallax-font-size     :	calc(2rem + 1vw);
+$page-title-parallax-subtitle-size :	1.25rem;
+$page-title-mini-size :					1.25rem;
+
+$page-title-border-color :				$line-color;
+
+$page-title-center-mx-width : 			48rem;
+
+//-------------------- Sliders --------------------//
+// Flex Slider
+$fslider-dots-position-top   :			14px;
+$fslider-dots-position-right :			10px;
+$fslider-dots-size           :			0.625rem;
+$fslider-dots-border-color	 :			$white;
+$fslider-dots-border-radius  :			50%;
+$fslider-dots-transition     :			0.3s ease-in-out;
+
+$fslider-thumbs-gutters :          2px;
+$fslider-thumbs-width   :          100px;  // for .flex-thumb-grid
+
+// Canvas Slider
+$swiper-dots-position-bottom : 			20px;
+$canvas-slider-dots-size     :          $fslider-dots-size;
+$slider-pagination-gutters	 :			4px;
+$slider-pagination-rounded	 : 			50%;
+
+$slider-caption-width       :          550px;
+$slider-caption-font-size   :          1.375rem;                                           //h3  (h2*3)
+$slider-caption-font-weight :          300;
+$slider-caption-font-color  :          var(--#{$cnvs-prefix}contrast-800);
+$slider-caption-transition  :          top 0.3s ease;
+$slider-caption-p-size   	:          1.5rem;
+$slider-caption-offset      :          50px;
+$slider-caption-bg-light    :          rgba($white, 0.8);
+$slider-caption-bg-dark     :          rgba($black, 0.6);
+$slider-caption-bg-radius   :          2px;
+$slider-caption-bg-padding  :          5px 12px;
+
+// Slider Arrows
+
+$slider-arrows-size    :          52px;
+$slider-arrows-sm-size :          $slider-arrows-size - 20px;
+
+$slider-arrows-bg-color       :          rgba($black, 0.3);
+$slider-arrows-bg-hover-color :          rgba($black, 0.6);
+$slider-arrows-border-radius  :          3px;
+$slider-arrow-sm-offset       :          20px;
+
+$slider-arrow-color :          var(--#{$prefix}gray-100);
+
+$video-overlay-bg :          "images/grid.png";
+
+// Owl Dots
+$owl-dots-slider-color    :          $white;
+$owl-dots-slider-position :          top auto bottom 15px;
+
+//-------------------- Button --------------------//
+
+$button-theme-color :          var(--#{$cnvs-prefix}themecolor);
+$button-light       :          $gray-200;
+$button-dark        :          var(--#{$cnvs-prefix}btn-color-dark);
+$button-padding-x   :          1.375rem;
+$button-padding-y   :          0.5rem;
+$button-font-size   :          1rem;
+$button-l-height    :          ($button-font-size * 1.6);
+$button-icon-margin :          10px;
+
+// Button Mini
+$button-mini-padding-x :          0.875rem;
+$button-mini-padding-y :          0.25rem;
+$button-mini-font-size :          0.75rem;
+
+// Button Small
+$button-sm-padding-x :          1.125rem;
+$button-sm-padding-y :          0.5rem;
+$button-sm-font-size :          0.875rem;
+
+// Button Large
+$button-lg-padding-x :          1.625rem;
+$button-lg-padding-y :          0.5rem;
+$button-lg-font-size :          1.125rem;
+
+// Button xLarge
+$button-xl-padding-x :          2.25rem;
+$button-xl-padding-y :          0.625rem;
+$button-xl-font-size :          1.25rem;
+
+// Button xLarge
+$button-desc-padding-x :          2.25rem;
+$button-desc-padding-y :          1.5rem;
+$button-desc-font-size :          1.25rem;
+$button-desc-l-height  :          1;
+
+// Button Border
+$button-border-width :          1px;
+
+// Button 3D / Radius
+$button-3d-border :          3px;
+$button-rounded   :          0.25rem;
+
+$button-full-padding   :          30px;
+$button-full-font-size :          $button-font-size * 2.14;
+
+// Button Reveal Icon
+$button-reveal-padding-x :          28px;
+$button-reveal-icon      :          32px;
+
+$button-transition-speed        :          0.2s ease-in-out;
+$button-reveal-transition-speed :          0.3s ease;
+$button-fill-transition-speed   :          0.4s ease;
+
+// Button Desc in Device-sm
+
+$buttons-color         :          true;   // colors are inside of $button_colors . eg: button-red;
+$buttons-social-colors :          false;  // Ex:button-facebook - Find below of this page( $si-colors ). class name eg: button-facebook;
+
+// Colors - Button
+$button_colors: (
+	"red"        :          #c02942,
+	"teal"       :          #53777a,
+	"yellow"     :          #ecd078,
+	"purple"     :          #5d4157,
+	"pink"       :          #f89fa1,
+	"blue"       :          #1265a8,
+	"green"      :          #59ba41,
+	"brown"      :          #774f38,
+	"aqua"       :          #40c0cb,
+	"lime"       :          #aee239,
+	"leaf"       :          #a8caba,
+	"dirtygreen" :          #1693a5,
+	"amber"      :          #eb9c4d,
+	"black"      :          #111,
+	// Just add variables and color-codes and it will be create a button class of that variables name;
+);
+
+//-------------------- Countdown -------------------- //
+
+$countdown-size    :          1.25rem;
+$countdown-section :          11px;
+
+$countdown-md-size    :          30px;
+$countdown-md-section :          0.875rem;
+
+$countdown-lg-size    :          44px;
+$countdown-lg-section :          18px;
+
+$countdown-border :          1px dotted var(--#{$cnvs-prefix}contrast-500);
+
+$countdown-inline-space :          7px;
+
+$countdown-large :          140px;
+
+//-------------------- Styled Icons -------------------- //
+
+$styled-icons-bg-color :          transparent;
+$styled-icons-color    :          $heading-color;
+
+$styled-icons-light-color : 	var(--#{$cnvs-prefix}contrast-200);
+
+$styled-icons-size         :          3.25rem;
+$styled-icons-border-width :          1px;
+$styled-icons-border-color :          rgba(var(--#{$cnvs-prefix}contrast-rgb), .5);
+
+$styled-icons-plain-size      :          3rem;
+$styled-icons-plain-font-size :          1.625rem;
+
+$i-overlay: linear-gradient(
+	135deg,
+	rgba(white, 0.1) 50%,
+	rgba(white, 0) 50%
+);
+
+//-------------------- Social Icons -------------------- //
+
+$social-margins   :			         5px;
+$social-icon-size :         		 2.5rem;
+
+$social-icon-lg-size      :          56px;
+$social-icon-lg-font-size :          30px;
+
+$social-icon-sm-size      :          32px;
+$social-icon-sm-font-size :          14px;
+
+$social-icon-color        :          var(--#{$prefix}contrast-900);
+$social-icon-border       :          1px;
+$social-icon-border-color :          var(--#{$cnvs-prefix}contrast-600);
+$social-icon-rounded 	  :			 $border-radius;
+
+$social-icon-dark-color  :          var(--#{$cnvs-prefix}heading-color);
+$social-icon-light-color :          var(--#{$cnvs-prefix}contrast-200);
+
+$social-icon-enable-bg-classes     :          true;
+$social-icon-enable-color-classes  :          true;
+$social-icon-enable-border-classes :          true;
+
+//-------------------- Icon Lists -------------------- //
+
+$iconlist-size       	:          1rem;
+$iconlist-margin     	:          0.5rem;
+$iconlist-gutter     	:          0.75rem;
+$iconlist-offset     	:          0;
+
+$iconlist-size-lg   	:          1.125rem;
+$iconlist-margin-lg 	:          0.75rem;
+$iconlist-gutter-lg 	:          0.75rem;
+
+$iconlist-size-xl       :          1.5rem;
+$iconlist-margin-xl     :          0.75rem;
+$iconlist-gutter-xl     :          0.875rem;
+
+
+
+//-------------------- Promo Box -------------------- //
+
+$promo-span-font-size           :          1.125rem;
+$promo-uppercase                :          true;
+$promo-uppercase-font-size      :          1.25rem;
+$promo-uppercase-span-font-size :          1rem;
+$promo-border                   :          1px solid var(--#{$cnvs-prefix}contrast-200);
+$promo-light                    :          rgba(var(--#{$cnvs-prefix}contrast-rgb),0.05);
+$promo-light-text-color         :          var(--#{$cnvs-prefix}heading-color);
+$promo-dark                     :          $invert-contrast-bg-offset;
+$promo-dark-text-color          :          $white;
+
+$promo-parallax-padding 		:          5rem;
+
+//-------------------- Featured Box -------------------- //
+
+$featured-box-icon        :          4rem;
+$featured-box-padding-x   :          0.75rem;
+$featured-box-icon-size   :          1.75rem;
+$featured-box-font-size   :          1.125rem;
+$featured-box-font-color  :          var(--#{$cnvs-prefix}heading-color);
+$featured-box-font-weight :          500;
+$featured-box-font-tt     :          none;
+
+$featured-box-outline-border  :          1px;
+$featured-box-outline-padding :          0.25rem;
+
+$featured-box-rounded :          3px;
+
+$featured-box-bg-light :          var(--#{$cnvs-prefix}contrast-200);
+$featured-box-bg-dark  :          $invert-contrast-bg-offset;
+
+$featured-box-plain-font-size :          3rem;
+$featured-box-plain-icon-size :          3rem;
+
+//-------------------- Toggles - Accordions -------------------- //
+
+$toggle-base-color :          var(--#{$cnvs-prefix}heading-color);
+$toggle-font-size  :          $font-size-base;
+
+$toggle-border-size   :          1px;
+$toggle-border-color  :          var(--#{$cnvs-prefix}contrast-400);
+$toggle-border-radius :          4px;        // Same Accordion Radius
+
+$toggle-bg-color    :          var(--#{$cnvs-prefix}contrast-100);           // Same Accordion Color
+$toggle-title-color :          $toggle-base-color;  // Same Accordion Title Color
+
+// // Accordion
+$accordion-border-size  :          1px;
+$accordion-border-color :          var(--#{$cnvs-prefix}contrast-300);
+
+$toggle-content-padding    :          0.75rem;
+$accordion-content-padding :          1.5rem;
+
+//-------------------- Tabs -------------------- //
+
+$tab-base-color        :          var(--#{$cnvs-prefix}heading-color);  //Text
+$tab-height            :          40px;
+$tab-padding-width     :          15px;
+$tabs-font-size        :          $font-size-base;                               //Rem
+$tabs-border-width     :          1px;
+$tabs-border-bottom    :          $tabs-border-width;
+$tabs-border-color     :          rgba(var(--#{$cnvs-prefix}contrast-rgb), .075);
+$tabs-bg-color         :          var(--#{$cnvs-prefix}contrast-bg-offset);
+$tabs-active-bg-color  :          var(--#{$cnvs-prefix}contrast-bg);
+$tab-container-padding :          20px;
+
+$tabs-tb-border-width :          2px;
+
+$side-tab-width        :          200px;
+$side-tab-padding-left :          20px;
+
+$sidenav-font-size      :          $tabs-font-size;
+$sidenav-border         :          1px;
+$sidenav-radius         :          4px;
+$sidenav-icon-margin    :          6px;
+$sidenav-padding-height :          11px;
+$sidenav-padding-width  :          20px;
+
+$sidenav-border-color :          $line-color;
+$sidenav-font-color   :          var(--#{$cnvs-prefix}heading-color);
+
+//-------------------- Alerts -------------------- //
+
+$alert-left-border       :          4px;
+$alert-left-border-color :          rgba(var(--#{$cnvs-prefix}contrast-rgb), 0.1);
+$alert-padding           :          1rem;
+$alert-title             :          0.875rem;
+$alert-title-bg          :          rgba(black, 0.15);
+
+//-------------------- Clients -------------------- //
+
+$clients-grid-padding       :          20px;
+$clients-grid-deafult-grid  :          5;
+$clients-grid-border-size   :          1px;
+$clients-grid-border-style  :          dashed;
+$clients-grid-border-color  :          rgba(var(--#{$cnvs-prefix}contrast-rgb), .15);
+$clients-img-opacity        :          0.6;
+$clients-grid-total-columns :          6;          // grid added upto 6
+
+//-------------------- Testimonials - Twitter --------------------//
+
+$testimonials-grid-padding :          2rem;
+
+$testimonials-bubble-radius    :          0.75rem;
+$testimonials-bubble-bgcolor   :          var(--#{$cnvs-prefix}contrast-200);
+$testimonials-bubble-padding   :          1.25rem;
+$testimonials-bubble-font-size :          1rem;
+
+$testimonials-carousel-dots         :          0.5rem;
+$testimonials-carousel-dots-color   :          var(--#{$cnvs-prefix}themecolor);
+$testimonials-carousel-dots-opacity :          0.5;
+
+//-------------------- Team --------------------//
+
+$team-base-color      :          var(--#{$cnvs-prefix}heading-color);
+$team-desc-align      :          center;
+$team-desc-background :          var(--#{$cnvs-prefix}contrast-0);
+$team-desc-padding    :          10px 0 30px;
+$team-title-font-size :          1.25rem;
+
+$team-title-designation-font-size   :          1rem;
+$team-title-designation-font-color  :          var(--#{$cnvs-prefix}themecolor);
+$team-title-designation-font-family :          var(--#{$cnvs-prefix}secondary-font);
+$team-title-designation-font-weight :          400;
+$team-title-designation-font-style  :          italic;
+
+$team-title-designation-icon-width :          $social-icon-sm-size;
+$team-title-designation-icon-size  :          $social-icon-sm-font-size;
+
+$team-overlay-color   :          $white;
+$team-overlay-opacity :          0.75;
+
+$team-list-image-width :          250px;
+
+$team-content-font-size  :          map-get($cnvs-font-sizes, "body");
+$team-content-font-color :          var(--#{$cnvs-prefix}contrast-600);
+
+//-------------------- Pricing --------------------//
+
+$pricing-base-color :          var(--#{$cnvs-prefix}heading-color);
+$pricing-background :          var(--#{$cnvs-prefix}contrast-100);
+
+$pricing-border-size   :          1px;
+$pricing-border-color  :          rgba(var(--#{$cnvs-prefix}contrast-rgb), 0.075);
+$pricing-border-radius :          3px;
+
+$pricing-title-padding        :          1rem;
+$pricing-title-bg             :          var(--#{$cnvs-prefix}contrast-100);
+$pricing-title-border         :          $pricing-border-size solid rgba(var(--#{$cnvs-prefix}contrast-rgb), 0.075);
+$pricing-title-font-size      :          1.5rem;
+$pricing-title-font-weight    :          bold;
+$pricing-title-font-spacing   :          1px;
+$pricing-title-font-transform :          uppercase;
+$pricing-title-font-color     :          var(--#{$cnvs-prefix}heading-color);
+
+$pricing-price-padding             :          $pricing-title-padding * 1.5;
+$pricing-price-color               :          var(--#{$cnvs-prefix}contrast-900);
+$pricing-price-font-size           :          4rem;
+$pricing-price-bottom-border-width :          100px;
+$pricing-price-bottom-border-size  :          $pricing-border-size solid rgba(var(--#{$cnvs-prefix}contrast-rgb), 0.1);
+$pricing-price-currency-icon       :          $pricing-price-font-size * 0.435;
+$pricing-price-month               :          $pricing-price-currency-icon * 0.571;
+
+$pricing-features-padding      :          $pricing-title-padding * 2;
+$pricing-features-font-padding :          0.375rem;
+$pricing-features-font-size    :          0.875rem;
+
+$pricing-popular-bg                :          var(--#{$cnvs-prefix}contrast-100);
+$pricing-popular-title-padding     :          $pricing-title-padding * 1.25;
+$pricing-popular-font-color        :          var(--#{$cnvs-prefix}themecolor);
+$pricing-popular-title-font-size   :          $pricing-title-font-size;
+$pricing-popular-pricing-font-size :          $pricing-price-font-size * 1.125;
+$pricing-popular-box-shadow        :          0 0 8px rgba(var(--#{$cnvs-prefix}contrast-rgb), 0.1);
+
+$pricing-minimal-bg :          var(--#{$cnvs-prefix}contrast-0);
+$pricing-5-lg-col   :          5;                  // Default
+$pricing-5-md-col   :          $pricing-5-lg-col;  //col
+$pricing-5-sm-col   :          6;                  //col
+$pricing-5-xs-col   :          12;                 //col
+
+$pricing-extended-padding :          30px;
+
+//-------------------- Counter Skills --------------------//
+
+$counter-font-size    :          42px;
+$counter-font-weight  :          700;
+$counter-font-family  :          var(--#{$cnvs-prefix}primary-font);
+$counter-caption-size :          map-get($cnvs-font-sizes, "h5");
+
+$counter-sm-font-size :          round($counter-font-size * 0.6666666667);
+$counter-lg-font-size :          round($counter-font-size * 1.33);
+$counter-xl-font-size :          round($counter-font-size * 1.52);
+$counter-lined-size   :          2px solid var(--#{$cnvs-prefix}heading-color);
+$counter-lined-width  :          15%;
+
+// Rounded Skills
+
+$rounded-skills-font-size  :          1.25rem;
+$rounded-skills-font-color :          var(--#{$cnvs-prefix}heading-color);
+$rounded-skills-icon-size  :          42px;
+
+// Progress Skills
+$progress-skills-height         :          10px;
+$progress-skills-track-color    :          var(--#{$cnvs-prefix}contrast-100);
+$progress-skills-radius         :          0.25rem;
+$progress-skills-progress-color :          var(--#{$cnvs-prefix}themecolor);
+$progress-skills-transition     :          1.1s;
+
+$progress-skills-vertical-width  :          50px;
+$progress-skills-vertical-height :          300px;
+
+//-------------------- Owl Carousel --------------------//
+
+$carousel-animation-transition :          1000ms;  // For animate.css
+
+$owl-video-play-icon-size  :          64px;
+$owl-video-play-icon       :          url("images/icons/play.png");
+$owl-video-play-icon-hover :          scale(1.3);
+
+// auto-height Transitio
+$owl-autoHeight-transition :          500ms ease-in-out;
+// Owl Na
+$owl-nav-hidden        :          true;
+$owl-nav-size          :          36px;
+$owl-nav-border        :          1px solid rgba(var(--#{$cnvs-prefix}contrast-rgb), 0.2);
+$owl-nav-background    :          var(--#{$cnvs-prefix}body-bg);
+$owl-nav-color         :          var(--#{$cnvs-prefix}contrast-600);
+$owl-nav-border-radius :          50%;
+
+// Owl Full Na
+$owl-full-nav-size          :          28px;
+$owl-full-nav-border-radius :          3px;
+$owl-full-nav-bgcolor       :          rgba(var(--#{$cnvs-prefix}contrast-rgb), 0.4);
+$owl-full-nav-color         :          var(--#{$cnvs-prefix}contrast-100);
+$owl-full-nav-hover-bgcolor :          var(--#{$cnvs-prefix}themecolor);
+$owl-full-nav-hover-color   :          var(--#{$cnvs-prefix}body-bg);
+
+// Owl Dots
+$owl-dots-size       :          0.625rem;
+$owl-dots-gutters	:			$owl-dots-size * .35;
+$owl-dots-background :          var(--#{$cnvs-prefix}themecolor);
+$owl-dots-opacity    :          0.5;
+
+//-------------------- Flip Card --------------------//
+
+$flipcard-transition    :          0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+$flipcard-height        :          280px;
+$flipcard-border-radius :          6px;
+$flipcard-color         :          $white;
+$flipcard-font-size     :          1.5rem;
+$flipcard-bg-overlay    :          $black;
+$flipcard-bg-overlay-op :          0.6;
+
+$flipcard-inner-tranform :          translateY(-50%) translateZ(60px) scale(0.94);
+$flipcard-inner-padding  :          2rem;
+
+//-------------------- Title/Heading Bloks --------------------//
+
+// Titular Title Block
+$titular-title-font-size-h1       :          3.25rem;
+$titular-title-font-size-h2       :          2.75rem;
+$titular-title-font-size-h3       :          2rem;
+$titular-title-font-size-subtitle :          1rem;
+
+// Heading Title Block
+$heading-block-font-size-h1     :          2.5rem;
+$heading-block-font-size-h2     :          2.125rem;
+$heading-block-font-size-h3     :          1.875rem;
+$heading-block-font-size-h4     :          1.375rem;
+$heading-block-font-weight      :          600;
+$heading-block-font-spacing     :          0;
+$heading-block-font-color       :          var(--#{$cnvs-prefix}heading-color);
+$heading-block-font-transform   :          none;
+$heading-block-center-container :          700px;
+$title-block-border-size        :          40px;
+$heading-block-border           :          2px solid $heading-block-font-color;
+$heading-block-span-color       :          var(--#{$cnvs-prefix}contrast-600);
+
+// Title Block
+$title-block-padding      :          20px;
+$title-block-color        :          var(--#{$cnvs-prefix}heading-color);
+$title-block-border       :          7px;
+$title-block-border-color :          var(--#{$cnvs-prefix}themecolor);
+
+$title-block-subtitle-color :          var(--#{$cnvs-prefix}contrast-700);
+
+// Emphasis Title Block
+$emphasis-title-font-size :          64px;
+
+// Fancy Title Block
+$fancy-title-bg            :          $body-bg;
+$fancy-title-padding       :          0.75rem;
+$fancy-title-border-size   :          1px;
+$fancy-title-border-color  :          $line-color;
+$fancy-title-dotted-border :          "images/icons/dotted.png";
+
+$before-heading-font :          normal 400 1.0625rem var(--#{$cnvs-prefix}secondary-font);
+
+//-------------------- Dividers --------------------//
+
+$divider-colors       :          var(--#{$cnvs-prefix}contrast-200);
+$divider-margins      :          3rem;
+$divider-border-size  :          1px;
+$divider-border-color :          var(--#{$cnvs-prefix}contrast-300);
+
+$divider-thick-height :          3px;
+
+$divider-icon-size        :          18px;
+$divider-icon-gutter      :          0.5rem;
+$divider-icon-color       :          0.5rem;
+$divider-icon-hover-color :          var(--#{$cnvs-prefix}contrast-600);
+
+$divider-width          :          100%;
+$divider-short-width-sm :          55%;
+$divider-short-width-xs :          35%;
+
+$divider-rounded-size       :          round($divider-icon-size * 2.22);
+$divider-rounded-color      :          var(--#{$cnvs-prefix}contrast-600);
+$divider-rounded-background :          var(--#{$cnvs-prefix}contrast-200);
+
+//-------------------- INPUT-Form Control --------------------//
+
+
+$input-form-label-mb        :          0.5rem;
+
+$input-form-label-error      :          var(--#{$prefix}danger);
+$input-form-disabled         :          var(--#{$cnvs-prefix}contrast-200);
+$input-form-disabled-opacity :          $btn-disabled-opacity;
+
+$form-group-margin :				 1.25rem;
+
+$form-processor-bg    :          $body-bg;
+$form-processor-bg-op :          0.7;
+
+//-------------------- Goto Top --------------------//
+$gotoTop-size                  :          2.5rem;
+$gotoTop-bg                    :          rgba($black, 0.3);
+$gotoTop-icon-size             :          1.5rem;
+$gotoTop-icon-color            :          $white;
+$gotoTop-position-boxed-right  :          30px;
+$gotoTop-position-boxed-bottom :          50px;
+$gotoTop-position-botom        :          30px;
+$gotoTop-border-radius         :          2px;
+$gotoTop-hover-color           :          var(--#{$cnvs-prefix}themecolor);
+
+$gotoTop-hidden-sm :          true;
+
+//-------------------- Portfolio --------------------//
+
+//Grid Filter
+$grid-filter-mb             :          3.5rem;
+$grid-filter-border         :          1px;
+$grid-filter-border-color   :          rgba(var(--#{$cnvs-prefix}contrast-rgb), .1);
+$grid-filter-border-radius  :          4px;
+$grid-filter-item-padding-x :          20px;
+$grid-filter-item-padding-y :          10px;
+$grid-filter-item-font-size :          0.9375rem;
+$grid-filter-col-sm         :          3;
+$grid-filter-col-xs         :          2;
+
+$grid-filter-styles-m     :          0.75rem;
+$grid-filter-styles-radius :          22px;
+
+// grid-shuffle: 	;
+$grid-shuffle-size :          			42px;
+
+// Portfolio: 	;
+$portfolio-desc-padding-x    :          5px;
+$portfolio-desc-padding-y 	: 20px;
+$portfolio-desc-title-size :          1.25rem;
+
+// Masonry Thumbs: 	;
+$masonry_thumbs-gutter :          1px;
+$portfolio-grid-upto   :          12;
+
+// Modal. AJAX
+$portfolio-modal-width   :          1000px;
+$portfolio-modal-padding :          40px;
+$portfolio-ajax-height    :          1500px;
+
+// Portfolio Meta
+$portfolio-meta-font-size   :          0.875rem;
+$portfolio-meta-color       :          var(--#{$cnvs-prefix}contrast-600);
+$portfolio-meta-row-1       :          150px;
+$portfolio-meta-row-1-color :          var(--#{$cnvs-prefix}heading-color);
+$portfolio-meta-icon        :          14px;
+
+$portfolio-navigation-size :          24px;
+//-------------------- Shop --------------------//
+
+//Columns Margin
+$shop-desc-padding    :          15px;
+$shop-title-font-size :          1.25rem;
+$shop-title-color     :          var(--#{$cnvs-prefix}heading-color);
+
+$shop-product-price             :          1.125rem;
+$shop-product-price-color       :          var(--#{$cnvs-prefix}heading-color);
+$shop-product-price-font-weight :          700;
+
+$shop-product-price-del :          var(--#{$cnvs-prefix}contrast-500);
+
+// Shop Single
+$shop-single-title-size :          1.75rem;
+$shop-single-price-size :          1.5rem;
+
+$shop-quick-view :          800px;  //Same as Shop Ajax
+
+$quantity-box-width        :          50px;
+$quantity-box-height       :          44px;
+$quantity-box-bg           :          var(--#{$cnvs-prefix}contrast-200);
+$quantity-box-border-color :          var(--#{$cnvs-prefix}contrast-400);
+$quantity-box-font-size    :          $font-size-base;
+$quantity-border			: 			1px;
+
+// Cart
+$cart-remove-color       :          var(--#{$prefix}danger);
+$cart-padding            :          12px 15px;
+$cart-heading-font-size  :          0.875rem;
+$cart-heading-font-color :          var(--#{$cnvs-prefix}contrast-700);
+$cart-thumbnail-size     :          68px;
+$cart-product-title-size :          0.8125rem;
+
+//-------------------- Blog --------------------//
+
+$post-item-margin :          50px;
+
+// Post Image
+$post-image-rounded :          3px;
+$post-image-mb      :          1.5rem;
+$post-sm-image      :          64px;
+
+// Post Title
+$post-title-font-size       :          1.75rem;
+$post-title-font-weight     :          600;
+$post-title-font-spacing    :          0;
+$post-title-text-transform :          none;
+$post-title-font-color      :          var(--#{$cnvs-prefix}heading-color);
+
+// Post Meta
+$post-meta-seperator :          "\205E";
+$post-meta-margin    :          1rem;
+$post-meta-color     :          var(--#{$cnvs-prefix}contrast-600);
+
+// Post Content
+$post-content-margin :          2rem;
+
+// Post Entry Link
+$post-entry-link-bg             :          var(--#{$cnvs-prefix}contrast-100);
+$post-entry-link-padding        :          2rem 0;
+$post-entry-link-color          :          var(--#{$cnvs-prefix}heading-color);
+$post-entry-link-font-family    :          var(--#{$cnvs-prefix}primary-font);
+$post-entry-link-text-transform :          none;
+$post-entry-link-letter-spacing :          0;
+$post-entry-link-font-size      :          map-get($cnvs-font-sizes, "h3");
+$post-entry-link-font-weight    :          600;
+$post-entry-link-border-radius  :          $post-image-rounded;
+
+// Post Grid
+$post-grid-margin :          1.5rem;
+
+// Post Timeline
+$post-timeline-border-size       :          1px;
+$post-timeline-border-style      :          dashed;
+$post-timeline-border-color      :          var(--#{$cnvs-prefix}contrast-400);
+$post-timeline-date-size         :          0.75rem;
+$post-timeline-date-border       :          2px;
+$post-timeline-date-border-color :          $post-timeline-border-color;
+
+//-------------------- Event --------------------//
+
+$event-entry-date             :          1.75rem;
+$event-overlay-meta-bg        :          rgba(black, 0.85);
+$event-overlay-meta-font      :          1.25rem;
+$event-overlay-position       :          top auto bottom 0 left 0;
+$event-parallax-overlay-width :          368px;
+
+//-------------------- Cascading Images--------------------//
+
+$cascading-images-padding :          20%;
+
+//-------------------- Widget --------------------//
+
+$widget-border 				:          1px solid $line-color;
+$widget-margin 				:          3rem;
+
+$widget-title-margin         :          1.5rem;
+$widget-title-font-size      :          1.25rem;
+$widget-title-font-weight    :          500;
+$widget-title-letter-spacing :          0;
+$widget-title-text-transform :          none;
+
+$widget-icon             :          "\e7a5";
+$widget-comment-icon     :          "\e9b8";
+$widget-icon-font-family :          "font-icons";
+
+//-------------------- Navtree --------------------//
+
+$nav-tree-font-size    :          1rem;
+$nav-tree-padding-left :          20px;
+
+//-------------------- Switch Toggle --------------------//
+
+$switch-toggle-bg :       		   var(--#{$cnvs-prefix}contrast-100);
+
+$switch-width			 :			60px;
+$switch-spacing			 :			1px;
+$switch-bg			 	 :			var(--#{$cnvs-prefix}contrast-300);
+$switch-active-bg		 :			var(--#{$cnvs-prefix}themecolor);
+
+//-------------------- Footers --------------------//
+
+$footer-bg      :          var(--#{$cnvs-prefix}contrast-bg-offset);
+
+$copyrights-font-size :          map-get($cnvs-font-sizes, "h5");
+
+$footer-top-border :          5px solid rgba(var(--#{$cnvs-prefix}contrast-rgb), 0.15);
+
+
+//-------------------- Social Icons Colors --------------------//
+
+$si-colors: (
+	facebook          :          #3b5998,
+	whatsapp          :          #25d366,
+	delicious         :          #205cc0,
+	paypal            :          #00588b,
+	waze              :          #05c8f7,
+	android           :          #a4c639,
+	googledrive       :          #1FA463,
+	wikipedia         :          #333,
+	stumbleupon       :          #f74425,
+	foursquare        :          #25a0ca,
+	call              :          #444,
+	ninetyninedesigns :          #f26739,
+	forrst            :          #5b9a68,
+	digg              :          #191919,
+	spotify           :          #1DB954,
+	reddit            :          #c6c6c6,
+	blogger           :          #fc4f08,
+	cc                :          #688527,
+	dribbble          :          #ea4c89,
+	evernote          :          #5ba525,
+	flickr            :          #ff0084,
+	google            :          #4885ed,
+	salesforce        :          #1798c1,
+	cloudflare        :          #f38020,
+	linkedin          :          #0e76a8,
+	vk                :          #2b587a,
+	rss               :          #ee802f,
+	skype             :          #00aff0,
+	twitter           :          #00acee,
+	youtube           :          #c4302b,
+	vimeo             :          #86c9ef,
+	slack             :          #ECB22E,
+	yahoo             :          #720e9e,
+	email3            :          #6567a5,
+	macstore          :          #333333,
+	figma             :          #ab7c63,
+	podcast           :          #e4b21b,
+	meetup            :          #e51937,
+	dropbox           :          #3d9ae8,
+	ebay              :          #89c507,
+	github            :          #171515,
+	googleplay        :          #3bccff,
+	itunes            :          #222,
+	periscope         :          #52677b,
+	meta          	  :          #0668E1,
+	soundcloud        :          #ff7700,
+	tumblr            :          #34526f,
+	wordpress         :          #1e8cbe,
+	yelp              :          #c41200,
+	microsoft         :          #f65314,
+	trello            :          #0079bf,
+	scribd            :          #666666,
+	stripe            :          #008cdd,
+	print             :          #111,
+	btc               :          #f2a900,
+	weibo             :          #DF2029,
+	acrobat           :          #d3222a,
+	drupal            :          #27537a,
+	buffer            :          #333333,
+	pocket            :          #ee4056,
+	bitbucket         :          #0e4984,
+	stackoverflow     :          #ef8236,
+	hackernews        :          #ff6600,
+	xing              :          #126567,
+	instagram         :          #8a3ab9,
+	quora             :          #a82400,
+	openid            :          #e16309,
+	steam             :          #111,
+	amazon            :          #e47911,
+	line              :          #00b900,
+	kickstarter       :          #87c442,
+	appstore          :          #000,
+	pinterest         :          #c8232c,
+	fivehundredpx     :          #111,
+	tiktok            :          #000,
+	airbnb       	  :          #FF5A5F,
+	gpay              :          #6877df,
+	unsplash          :          #111,
+	snapchat          :          #fffc00,
+	discord			  :			 #7289da,
+	twitch			  :			 #6441a5
+);
+$si-text-hover-color :          $white;
+
+//-------------------- Gradient Colors --------------------//
+
+$gradient-colors: (
+	light-grey  :          linear-gradient(to right, #2c3e50, #bdc3c7),
+	green-dark  :          linear-gradient(to right, #99f2c8, #1f4037),
+	grey-brown  :          linear-gradient(to right, #c06c84, #6c5b7b, #355c7d),
+	light-pink  :          linear-gradient(to right, #ffdde1, #ee9ca7),
+	blue-purple :          linear-gradient(to right, #4a00e0, #8e2de2),
+	multiples   :
+		linear-gradient(
+			to right,
+			#eea2a2 0%,
+			#bbc1bf 19%,
+			#57c6e1 42%,
+			#b49fda 79%,
+			#7ac5d8 100%
+		),
+	blue-green  :          linear-gradient(to right, #2af598 0%, #009efd 100%),
+	light       :          linear-gradient(to top, #ddd 0%, #fff 100%),
+	grey-orange :          linear-gradient(to right, #3b4371, #f3904f),
+	sunset      :          linear-gradient(to top, #a8edea 0%, #fed6e3 100%),
+	dark        :          linear-gradient(to right, #535353, #000),
+	lemon       :          linear-gradient(to right, #cac531, #f3f9a7),
+	earth       :          linear-gradient(to right, #649173, #dbd5a4),
+	sky         :          linear-gradient(to right, #2980b9, #6dd5fa, #f5f5f5),
+	ocean       :          linear-gradient(to right, #000046, #1cb5e0),
+	horizon     :
+		linear-gradient(
+			90deg,
+			rgba(131, 58, 180, 1) 0%,
+			rgba(253, 29, 29, 1) 50%,
+			rgba(252, 176, 69, 1) 100%
+		),
+	green-blue  :          linear-gradient(to right, #43cea2, #185a9d),
+	purple-blue :
+		linear-gradient(19deg, rgb(33, 212, 253) 0%, rgb(183, 33, 255) 100%),
+);

@@ -1,0 +1,113 @@
+
+/*-----------------------------------------------------------------------------------
+
+	Shortcodes: team.scss
+
+-----------------------------------------------------------------------------------*/
+
+/* ----------------------------------------------------------------
+	Team
+-----------------------------------------------------------------*/
+$team-prefix: team;
+
+.#{$team-prefix} {
+
+	--#{$cnvs-prefix}team-base-color: #{$team-base-color};
+	--#{$cnvs-prefix}team-desc-align: #{$team-desc-align};
+	--#{$cnvs-prefix}team-desc-background: #{$team-desc-background};
+	--#{$cnvs-prefix}team-desc-padding: #{$team-desc-padding};
+	--#{$cnvs-prefix}team-title-font-size: #{$team-title-font-size};
+
+	--#{$cnvs-prefix}team-title-designation-font-size: #{$team-title-designation-font-size};
+	--#{$cnvs-prefix}team-title-designation-font-color: #{$team-title-designation-font-color};
+	--#{$cnvs-prefix}team-title-designation-font-family: #{$team-title-designation-font-family};
+	--#{$cnvs-prefix}team-title-designation-font-weight: #{$team-title-designation-font-weight};
+	--#{$cnvs-prefix}team-title-designation-font-style: #{$team-title-designation-font-style};
+
+	--#{$cnvs-prefix}team-title-designation-icon-width: #{$team-title-designation-icon-width};
+	--#{$cnvs-prefix}team-title-designation-icon-size: #{$team-title-designation-icon-size};
+
+	--#{$cnvs-prefix}team-overlay-color: #{$team-overlay-color};
+	--#{$cnvs-prefix}team-overlay-opacity: #{$team-overlay-opacity};
+
+	--#{$cnvs-prefix}team-list-image-width: #{$team-list-image-width};
+
+	--#{$cnvs-prefix}team-content-font-size: #{$team-content-font-size};
+	--#{$cnvs-prefix}team-content-font-color: #{$team-content-font-color};
+
+
+	position: relative;
+	&-image {
+		position: relative;
+		> a,
+		img {
+			display: block;
+			width: 100%;
+		}
+	}
+	&-desc { text-align: var(--#{$cnvs-prefix}team-desc-align);
+		&-bg {
+			background-color: var(--#{$cnvs-prefix}team-desc-background);
+			padding: var(--#{$cnvs-prefix}team-desc-padding);
+		}
+	}
+	.si-share {
+		margin-top: 30px;
+		text-align: left;
+		.social-icon {
+			font-size: var(--#{$cnvs-prefix}team-title-designation-icon-size);
+			width: var(--#{$cnvs-prefix}team-title-designation-icon-width);
+		}
+	}
+	&-title {
+		position: relative;
+		padding-top: 20px;
+		h4 {
+			display: block;
+			margin-bottom: 0;
+			font-size: var(--#{$cnvs-prefix}team-title-font-size);
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			font-weight: 700;
+		}
+		span {
+			display: block;
+			color: var(--#{$cnvs-prefix}team-title-designation-font-color);
+			font-weight: var(--#{$cnvs-prefix}team-title-designation-font-weight);
+			font-family: var(--#{$cnvs-prefix}team-title-designation-font-family);
+			font-style: var(--#{$cnvs-prefix}team-title-designation-font-style);
+			font-size: var(--#{$cnvs-prefix}team-title-designation-font-size);
+			margin-top: 5px;
+		}
+	}
+	&-content {
+		margin-top: 1rem;
+		color: var(--#{$cnvs-prefix}team-content-font-color);
+		p:last-child { margin-bottom: 0; }
+	}
+	/* Team Center
+	-----------------------------------------------------------------*/
+	&.center {
+		.#{$team-prefix}-title::after {
+			left: 50%;
+			margin-left: -40px;
+		}
+	}
+	/* Team List
+	-----------------------------------------------------------------*/
+	@at-root .#{$team-prefix}-list {
+		.#{$team-prefix}-desc {
+			text-align: left;
+		}
+		.#{$team-prefix}-title { padding-top: 0; }
+	}
+	& &-desc > .social-icon { margin-top: 20px; }
+	& &-content ~ .social-icon { margin-top: 30px; }
+	&:not(.#{$team-prefix}-list) .social-icon {
+		display: inline-block !important;
+		vertical-align: middle;
+		float: none;
+		margin-left: 4px;
+		margin-right: 4px;
+	}
+}

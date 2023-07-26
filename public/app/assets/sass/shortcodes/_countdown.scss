@@ -1,0 +1,144 @@
+
+/*-----------------------------------------------------------------------------------
+
+	Shortcodes: countdown.scss
+
+-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------
+
+	Countdown
+
+-----------------------------------------------------------------*/
+
+$cd-prefix: countdown;
+
+.#{$cd-prefix} {
+
+	--#{$cnvs-prefix}countdown-size:					#{$countdown-size};
+	--#{$cnvs-prefix}countdown-section:					#{$countdown-section};
+	--#{$cnvs-prefix}countdown-md-size:					#{$countdown-md-size};
+	--#{$cnvs-prefix}countdown-md-section:				#{$countdown-md-section};
+	--#{$cnvs-prefix}countdown-lg-size:					#{$countdown-lg-size};
+	--#{$cnvs-prefix}countdown-lg-section:				#{$countdown-lg-section};
+	--#{$cnvs-prefix}countdown-border:					#{$countdown-border};
+	--#{$cnvs-prefix}countdown-inline-space:			#{$countdown-inline-space};
+	--#{$cnvs-prefix}countdown-large:					#{$countdown-large};
+
+
+	position: relative;
+	display: block;
+	&-row {
+		position: relative;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-align: center;
+		align-items: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+		text-align: center;
+	}
+
+	&-section {
+		-ms-flex-preferred-size: 0;
+		flex-basis: 0;
+		-ms-flex-positive: 1;
+		flex-grow: 1;
+		max-width: 100%;
+		font-size: var(--#{$cnvs-prefix}countdown-section);
+		line-height: 1;
+		text-align: center;
+		border-left: var(--#{$cnvs-prefix}countdown-border);
+		color: var(--#{$cnvs-prefix}contrast-600);
+		text-transform: capitalize;
+		/* Countdown - Medium */
+
+		.#{$cd-prefix}-medium & {
+			--#{$cnvs-prefix}countdown-section: 0.875rem;
+		}
+		/* Countdown - large */
+
+		.#{$cd-prefix}-large & {
+			--#{$cnvs-prefix}countdown-section: 1.125rem;
+		}
+	}
+
+	&-section:first-child { border-left: 0; }
+
+	&-amount {
+		display: block;
+		font-size: var(--#{$cnvs-prefix}countdown-size);
+		color: var(--#{$cnvs-prefix}contrast-800);
+		margin-bottom: 5px;
+		/* Countdown - Medium */
+		.#{$cd-prefix}-medium & {
+			--#{$cnvs-prefix}countdown-size: var(--#{$cnvs-prefix}countdown-md-size);
+			margin-bottom: 7px;
+		}
+		/* Countdown - large */
+		.#{$cd-prefix}-large & {
+			--#{$cnvs-prefix}countdown-size: var(--#{$cnvs-prefix}countdown-lg-size);
+			font-weight: 700;
+			margin-bottom: 8px;
+		}
+	}
+
+	&-descr {
+		display: block;
+		width: 100%;
+	}
+
+	/* Countdown - Inline
+	-----------------------------------------------------------------*/
+	&#{&}-inline {
+		display: inline-block;
+		.#{$cd-prefix}-row {
+			display: inline-block;
+			text-align: center;
+		}
+		.#{$cd-prefix}-section {
+			display: inline-block;
+			font-size: inherit;
+			line-height: inherit;
+			width: auto;
+			border: none;
+			color: inherit;
+			margin-left: var(--#{$cnvs-prefix}countdown-inline-space);
+			text-transform: inherit;
+			&:first-child { margin-left: 0; }
+		}
+		.#{$cd-prefix}-amount {
+			display: inline-block;
+			font-size: inherit;
+			color: inherit;
+			font-weight: bold;
+			margin: 0 3px 0 0;
+		}
+		.#{$cd-prefix}-descr {
+			display: inline-block;
+			width: auto;
+		}
+	}
+}
+
+
+
+/* Countdown - Coming Soon
+-----------------------------------------------------------------*/
+@include media-breakpoint-up(md) {
+	.#{$cd-prefix}-large.coming-soon {
+		.#{$cd-prefix}-section {
+			border: none;
+			padding: 15px;
+		}
+		.#{$cd-prefix}-amount {
+			width: var(--#{$cnvs-prefix}countdown-large);
+			height: var(--#{$cnvs-prefix}countdown-large);
+			line-height: var(--#{$cnvs-prefix}countdown-large);
+			margin-left: auto;
+			margin-right: auto;
+			border-radius: 50%;
+			background-color: rgba(black,0.2);
+			margin-bottom: 15px !important;
+		}
+	}
+}

@@ -1,0 +1,76 @@
+/* ----------------------------------------------------------------
+
+	event.scss
+
+-----------------------------------------------------------------*/
+/* ----------------------------------------------------------------
+	Events
+-----------------------------------------------------------------*/
+
+.single-event .entry-overlay,
+.parallax .entry-overlay-meta {
+	position: absolute;
+	top: auto;
+	@include align-position($event-overlay-position);
+	width: 100%;
+	background-color: $event-overlay-meta-bg;
+	text-align: center;
+	font-size: $event-overlay-meta-font;
+	color: var(--#{$cnvs-prefix}white);
+	z-index: 5;
+}
+
+.parallax {
+	.entry-overlay,
+	.entry-overlay-meta {
+		background: transparent;
+		width: auto;
+		text-align: right;
+		left: auto;
+		right: 30px;
+		bottom: 30px;
+		@include media-breakpoint-down(xs) {
+			left: 0 !important;
+			right: 0 !important;
+			width: 90%;
+			margin: 0 auto;
+		}
+	}
+
+	.entry-overlay-meta {
+		padding: 20px;
+		font-size: 0.875rem;
+		text-align: left;
+		right: 38px;
+		bottom: 130px;
+		width: $event-parallax-overlay-width;
+		height: auto;
+		line-height: inherit;
+		background-color: rgba(0, 0, 0, 0.7);
+		border-radius: 3px;
+	}
+
+	&.overlay-left .entry-overlay,
+	&.overlay-left .entry-overlay-meta {
+		right: auto;
+		left: 30px;
+	}
+
+	&.overlay-left .entry-overlay-meta {
+		left: 38px;
+	}
+
+	&.overlay-center .entry-overlay,
+	&.overlay-center .entry-overlay-meta {
+		bottom: 100px;
+		right: auto;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	&.overlay-center .entry-overlay-meta {
+		top: 100px;
+		bottom: auto;
+		margin-left: divide($event-parallax-overlay-width, -2);
+	}
+}

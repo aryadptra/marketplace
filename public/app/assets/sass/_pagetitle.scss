@@ -1,0 +1,227 @@
+/* ----------------------------------------------------------------
+	pagetitle.scss
+-----------------------------------------------------------------*/
+
+/* ----------------------------------------------------------------
+	Page Title
+-----------------------------------------------------------------*/
+$page_title-prefix: page-title;
+
+:root,
+.not-dark {
+	--#{$cnvs-prefix}page-title-bg			      		:          #{$page-title-bg};
+	--#{$cnvs-prefix}page-title-color					:          #{$page-title-color};
+	--#{$cnvs-prefix}page-title-border-color 			:         #{$page-title-border-color};
+}
+
+##{$page_title-prefix},
+.#{$page_title-prefix} {
+	--#{$cnvs-prefix}page-title-padding          		:          #{$page-title-padding};
+	--#{$cnvs-prefix}page-title-parallax-padding 		:          #{$page-title-parallax-padding};
+	--#{$cnvs-prefix}page-title-mini-padding     		:          #{$page-title-mini-padding};
+	--#{$cnvs-prefix}page-title-bg			      		:          #{$page-title-bg};
+	--#{$cnvs-prefix}page-title-color					:          #{$page-title-color};
+	--#{$cnvs-prefix}page-title-font-size     			:          #{$page-title-font-size};
+	--#{$cnvs-prefix}page-title-font-weight     		:          #{$page-title-font-weight};
+	--#{$cnvs-prefix}page-title-spacing     			:          #{$page-title-spacing};
+	--#{$cnvs-prefix}page-title-subtitle-size			:          #{$page-title-subtitle-size};
+	--#{$cnvs-prefix}page-title-parallax-font-size     :          #{$page-title-parallax-font-size};
+	--#{$cnvs-prefix}page-title-parallax-subtitle-size :          #{$page-title-parallax-subtitle-size};
+	--#{$cnvs-prefix}page-title-mini-size 				:          #{$page-title-mini-size};
+	--#{$cnvs-prefix}page-title-border-color 			:         #{$page-title-border-color};
+	--#{$cnvs-prefix}page-title-center-mx-width 		:          #{$page-title-center-mx-width};
+	position: relative;
+	padding: var(--#{$cnvs-prefix}page-title-padding) 0;
+	background-color: var(--#{$cnvs-prefix}page-title-bg);
+	border-bottom: 1px solid var(--#{$cnvs-prefix}page-title-border-color);
+	@include media-breakpoint-down(md) {
+		--#{$cnvs-prefix}page-title-padding: 3rem;
+		text-align: center;
+	}
+}
+.#{$page_title-prefix}-row {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	@include media-breakpoint-up(md) {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: end;
+	}
+}
+.#{$page_title-prefix}-content {
+	text-align: center;
+	@include media-breakpoint-up(md) {
+		text-align: left;
+	}
+	h1 {
+		padding: 0;
+		margin: 0;
+		line-height: 1;
+		font-weight: var(--#{$cnvs-prefix}page-title-font-weight);
+		color: var(--#{$cnvs-prefix}page-title-color);
+		font-size: var(--#{$cnvs-prefix}page-title-font-size);
+		letter-spacing: var(--#{$cnvs-prefix}page-title-spacing);
+		@include media-breakpoint-down(md) {
+			font-size: calc(1.5rem + 1.25vw);
+			line-height: 1.5;
+		}
+	}
+	span {
+		display: block;
+		margin-top: 1rem;
+		color: var(--#{$cnvs-prefix}contrast-600);
+		font-size: var(--#{$cnvs-prefix}page-title-subtitle-size);
+	}
+}
+
+
+.breadcrumb {
+	position: relative;
+	margin: 1.5rem 0 0;
+	justify-content: center;
+	font-size: 90%;
+	a {
+		color: var(--#{$cnvs-prefix}contrast-700);
+		&:hover {
+			color: var(--#{$cnvs-prefix}themecolor);
+		}
+	}
+
+	i {
+		width: auto !important;
+	}
+
+	@include media-breakpoint-up(md) {
+		margin: 0;
+		justify-content: flex-start;
+	}
+}
+
+
+.#{$page_title-prefix} {
+	/* Page Title - Right Aligned
+	-----------------------------------------------------------------*/
+	&-right {
+		@include media-breakpoint-up(md) {
+			.#{$page_title-prefix}-row {
+				flex-direction: row-reverse;
+			}
+			.#{$page_title-prefix}-content {
+				text-align: right;
+			}
+		}
+	}
+
+	/* Page Title - Center Aligned
+-	----------------------------------------------------------------*/
+	&-center {
+		.#{$page_title-prefix}-row {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.#{$page_title-prefix}-content {
+			text-align: center;
+		}
+
+		.breadcrumb {
+			margin-top: 2rem;
+		}
+	}
+
+	/* Page Title - Background Pattern
+	-----------------------------------------------------------------*/
+
+	&-pattern {
+		background-image: url('images/pattern.png');
+		background-repeat: repeat;
+		background-attachment: fixed;
+	}
+
+	/* Page Title - Parallax Background
+	-----------------------------------------------------------------*/
+
+	&-parallax {
+		--#{$cnvs-prefix}page-title-padding: var(--#{$cnvs-prefix}page-title-parallax-padding);
+		--#{$cnvs-prefix}page-title-font-size: var(--#{$cnvs-prefix}page-title-parallax-font-size);
+		--#{$cnvs-prefix}page-title-font-weight: 500;
+
+		.container {
+			position: relative;
+			z-index: 2;
+		}
+
+		span {
+			font-size: var(--#{$cnvs-prefix}page-title-parallax-subtitle-size);
+			@include media-breakpoint-down(md) {
+				font-size: 1rem;
+			}
+		}
+
+		.breadcrumb {
+			font-size: 0.875rem;
+		}
+	}
+
+
+	/* Page Title - Mini
+	-----------------------------------------------------------------*/
+
+	&-mini {
+		--#{$cnvs-prefix}page-title-color: var(--#{$cnvs-prefix}contrast-900);
+		--#{$cnvs-prefix}page-title-padding: var(--#{$cnvs-prefix}page-title-mini-padding);
+		--#{$cnvs-prefix}page-title-font-size: var(--#{$cnvs-prefix}page-title-mini-size);
+		--#{$cnvs-prefix}page-title-font-weight: 600;
+		@include media-breakpoint-down(md) {
+			h1 {
+				font-size: var(--#{$cnvs-prefix}page-title-mini-size);
+			}
+			--#{$cnvs-prefix}page-title-padding: 2rem;
+			.breadcrumb {
+				margin-top: 1rem;
+			}
+		}
+		span {
+			display: none;
+		}
+	}
+
+
+	/* Page Title - Video
+	-----------------------------------------------------------------*/
+
+	&-video {
+		background: none;
+		position: relative;
+		overflow: hidden;
+		.container {
+			position: relative;
+			z-index: 3;
+		}
+
+		.video-wrap {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			video {
+				width: 100%;
+			}
+		}
+	}
+}
+
+
+@include media-breakpoint-down(md) {
+	#page-title #portfolio-navigation,
+	#portfolio-ajax-title #portfolio-navigation {
+		position: relative;
+		top: 0;
+		left: 0;
+		margin: 1rem auto 0;
+	}
+}

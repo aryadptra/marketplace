@@ -1,0 +1,68 @@
+
+/*-----------------------------------------------------------------------------------
+
+	Shortcodes: process-steps.scss
+
+-----------------------------------------------------------------------------------*/
+
+/* ----------------------------------------------------------------
+	Process Steps
+-----------------------------------------------------------------*/
+$psteps-prefix: process; //child
+
+.#{$psteps-prefix}-steps {
+	margin: 0 0 40px;
+	list-style: none;
+	li {
+		position: relative;
+		text-align: center;
+		overflow: hidden;
+		.i-style {
+			position: relative;
+			z-index: 1;
+		}
+		.i-circled {display: block; margin-bottom: 0 !important; }
+		.i-bordered {
+			--#{$cnvs-prefix}i-bg-color: var(--#{$cnvs-prefix}body-bg) !important;
+			display: block;
+			z-index: 1;
+			&:hover {
+				--#{$cnvs-prefix}i-bg-color: var(--#{$cnvs-prefix}contrast-900) !important;
+			}
+			&.active {
+				--#{$cnvs-prefix}i-bg-color: var(--#{$cnvs-prefix}themecolor) !important;
+				--#{$cnvs-prefix}i-color: var(--#{$cnvs-prefix}contrast-100);
+				text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+				border-color: var(--#{$cnvs-prefix}themecolor) !important;
+				+ h5 {
+					font-weight: 600;
+					color: var(--#{$cnvs-prefix}themecolor);
+				}
+			}
+		}
+		@include media-breakpoint-up(lg) {
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				top: 30px;
+				left: 0;
+				margin-left: calc(var(--#{$cnvs-prefix}i-size) / -2);
+				width: 50%;
+				border-top: 1px dashed var(--#{$cnvs-prefix}contrast-300);
+			}
+			&::after {
+				left: auto;
+				right: 0;
+				margin: 0 calc(var(--#{$cnvs-prefix}i-size) / -2) 0 0;
+			}
+			&:first-child::before,
+			&:last-child::after { display: none; }
+			h5 {
+				margin: 15px 0 0 0;
+				font-size: 1rem;
+				font-weight: 300;
+			}
+		}
+	}
+}

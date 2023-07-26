@@ -1,0 +1,176 @@
+/*-----------------------------------------------------------------------------------
+
+	Shortcodes: counter-skills.scss
+
+-----------------------------------------------------------------------------------*/
+$counter-prefix: counter;
+$rounded-prefix: rounded-skill;
+$skills-prefix: skill;
+
+/* ----------------------------------------------------------------
+	Counter
+-----------------------------------------------------------------*/
+.#{$counter-prefix} {
+
+	--#{$cnvs-prefix}counter-font-size: #{$counter-font-size};
+	--#{$cnvs-prefix}counter-font-weight: #{$counter-font-weight};
+	--#{$cnvs-prefix}counter-font-family: var(--#{$cnvs-prefix}primary-font);
+	--#{$cnvs-prefix}counter-caption-size: #{map-get($cnvs-font-sizes, "h5")};
+
+	--#{$cnvs-prefix}counter-sm-font-size: #{$counter-sm-font-size};
+	--#{$cnvs-prefix}counter-lg-font-size: #{$counter-lg-font-size};
+	--#{$cnvs-prefix}counter-xl-font-size: #{$counter-xl-font-size};
+
+	--#{$cnvs-prefix}counter-lined-size: #{$counter-lined-size};
+	--#{$cnvs-prefix}counter-lined-width: #{$counter-lined-width};
+
+	font-size: var(--#{$cnvs-prefix}counter-font-size);
+	font-weight: var(--#{$cnvs-prefix}counter-font-weight);
+	font-family: var(--#{$cnvs-prefix}counter-font-family);
+
+	&#{&}-small {
+		--#{$cnvs-prefix}counter-font-size: var(--#{$cnvs-prefix}counter-sm-font-size);
+	}
+
+	&#{&}-large {
+		--#{$cnvs-prefix}counter-font-size: var(--#{$cnvs-prefix}counter-lg-font-size);
+	}
+
+	&#{&}-xlarge {
+		--#{$cnvs-prefix}counter-font-size: var(--#{$cnvs-prefix}counter-xl-font-size);
+		font-weight: 400;
+	}
+
+	&#{&}-inherit {
+		font-size: inherit;
+		font-weight: inherit;
+	}
+	+ h5 {
+		font-weight: 400;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		.widget & { opacity: 0.7; }
+	}
+	&#{&}-lined + h5::before {
+		display: block;
+		position: relative;
+		margin: 20px auto 25px auto;
+		content: '';
+		width: var(--#{$cnvs-prefix}counter-lined-width);
+		border-top: var(--#{$cnvs-prefix}counter-lined-size);
+		opacity: 0.9;
+	}
+
+	&#{&}-small + h5 { font-size: 0.875rem; }
+
+	&#{&}-large + h5,
+	&#{&}-xlarge + h5 {
+		font-size: 15px;
+		font-weight: 300;
+	}
+}
+
+
+/* ----------------------------------------------------------------
+	Animated Rounded Skills
+-----------------------------------------------------------------*/
+
+.#{$rounded-prefix} {
+
+	--#{$cnvs-prefix}rounded-skills-font-size: #{$rounded-skills-font-size};
+	--#{$cnvs-prefix}rounded-skills-font-color: var(--#{$cnvs-prefix}heading-color);
+	--#{$cnvs-prefix}rounded-skills-icon-size: #{$rounded-skills-icon-size};
+
+
+	display: inline-block;
+	margin: 0 15px 15px;
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	font-size: var(--#{$cnvs-prefix}rounded-skills-font-size);
+	font-weight: bold;
+	color: var(--#{$cnvs-prefix}rounded-skills-font-color);
+	@include transition(opacity .4s ease);
+	+ h5 { margin-bottom: 0; }
+	i { font-size: var(--#{$cnvs-prefix}rounded-skills-icon-size); }
+	canvas {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	/* News Carousel Overlays
+	-----------------------------------------------------------------*/
+	.news-carousel & {
+		position: absolute;
+		margin: 0 !important;
+		top: 30px;
+		right: 30px;
+		color: #FFF;
+		font-weight: 700;
+	}
+}
+
+/* ----------------------------------------------------------------
+	Skills Bar
+-----------------------------------------------------------------*/
+/* ----------------------------------------------------------------
+	Skills Bar
+-----------------------------------------------------------------*/
+
+.#{$skills-prefix}-progress {
+	--#{$cnvs-prefix}progress-height: #{$progress-skills-height};
+	--#{$cnvs-prefix}progress-color: #{$progress-skills-progress-color};
+	--#{$cnvs-prefix}progress-trackcolor: #{$progress-skills-track-color};
+	--#{$cnvs-prefix}progress-rounded: #{$progress-skills-radius};
+	--#{$cnvs-prefix}progress-speed: #{$progress-skills-transition};
+
+	& + & {
+		margin-top: 1rem;
+	}
+
+	&-bar {
+		position: relative;
+		height: var(--#{$cnvs-prefix}progress-height);
+		background-color: var(--#{$cnvs-prefix}progress-trackcolor);
+		border-radius: var(--#{$cnvs-prefix}progress-rounded);
+	}
+	&-percent {
+		position: absolute;
+		width: 0;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-color: var(--#{$cnvs-prefix}progress-color);
+		border-radius: var(--#{$cnvs-prefix}progress-rounded);
+		transition-property: width, height;
+		transition-duration: var(--#{$cnvs-prefix}progress-speed);
+		transition-timing-function: ease;
+	}
+	&-vertical {
+		--#{$cnvs-prefix}progress-width: #{$progress-skills-vertical-width};
+		--#{$cnvs-prefix}progress-height: #{$progress-skills-vertical-height};
+		.#{$skills-prefix}-progress-bar {
+			width: var(--#{$cnvs-prefix}progress-width);
+			height: var(--#{$cnvs-prefix}progress-height);
+		}
+		.#{$skills-prefix}-progress-percent {
+			width: 100%;
+			height: 0;
+			top: auto;
+			bottom: 0;
+		}
+	}
+
+	&-title {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 0.5rem;
+		.skill-progress-vertical & {
+			display: block;
+		}
+		h5 {
+			margin-bottom: 0;
+		}
+	}
+}

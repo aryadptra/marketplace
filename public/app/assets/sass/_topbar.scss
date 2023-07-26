@@ -1,0 +1,243 @@
+/* ----------------------------------------------------------------
+
+	topbar.scss
+
+-----------------------------------------------------------------*/
+
+/* ----------------------------------------------------------------
+	Top Bar
+-----------------------------------------------------------------*/
+
+#top-bar {
+	--#{$cnvs-prefix}topbar-height		        :          #{$topbar-icon-height};
+	--#{$cnvs-prefix}topbar-font-size          :          #{$topbar-font-size};
+	--#{$cnvs-prefix}topbar-font-weight        :          #{$topbar-font-weight};
+	--#{$cnvs-prefix}topbar-font-transform     :          #{$topbar-font-transform};
+	--#{$cnvs-prefix}topbar-color         		:          #{$topbar-color};
+	--#{$cnvs-prefix}topbar-border-size        :          #{$topbar-border-size};
+	--#{$cnvs-prefix}topbar-border-color       :          #{$topbar-border-color};
+
+	--#{$cnvs-prefix}topbar-social-icon-color  :          var(--#{$cnvs-prefix}contrast-600);
+
+	--#{$cnvs-prefix}topbar-submenu-padding	: 			0.625rem;
+	--#{$cnvs-prefix}topbar-submenu-font-size	:			0.75rem;
+	position: relative;
+	border-bottom: var(--#{$cnvs-prefix}topbar-border-size) solid var(--#{$cnvs-prefix}topbar-border-color);
+	font-size: var(--#{$cnvs-prefix}topbar-font-size);
+	background-color: var(--#{$cnvs-prefix}topbar-bg);
+}
+
+/* Top Links
+---------------------------------*/
+
+.top-links {
+	position: relative;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	-ms-flex-positive: 0;
+	flex-grow: 0;
+	border-bottom: var(--#{$cnvs-prefix}topbar-border-size) solid var(--#{$cnvs-prefix}topbar-border-color);
+	@include media-breakpoint-up(md) {
+		border-bottom: 0;
+	}
+	&-container {
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		-ms-flex-align: center;
+		align-items: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+		list-style: none;
+		margin-bottom: 0;
+	}
+
+	&-item {
+		position: relative;
+		border-left: var(--#{$cnvs-prefix}topbar-border-size) solid var(--#{$cnvs-prefix}topbar-border-color);
+
+		&:first-child,
+		.top-links-sub-menu & {
+			border-left: 0 !important;
+		}
+
+		> a {
+			display: block;
+			padding: 12px;
+			line-height: calc(var(--#{$cnvs-prefix}topbar-height) - 24px);
+			font-weight: var(--#{$cnvs-prefix}topbar-font-weight);
+			text-transform: var(--#{$cnvs-prefix}topbar-font-transform);
+			color: var(--#{$cnvs-prefix}topbar-color);
+
+			> i {
+				vertical-align: top;
+				&.sub-menu-indicator {
+					margin: 0 0 0 5px !important;
+				}
+				&:first-child {
+					margin-right: 3px;
+				}
+			}
+		}
+
+		&.full-icon > a > i {
+			top: 2px;
+			font-size: 0.875rem;
+			margin: 0;
+		}
+
+		&:hover {
+			background-color: var(--#{$cnvs-prefix}contrast-200);
+		}
+	}
+
+	&-sub-menu,
+	&-section {
+		position: absolute;
+		visibility: hidden;
+		pointer-events: none;
+		opacity: 0;
+		list-style: none;
+		z-index: -1;
+		line-height: 1.5;
+		background: var(--#{$cnvs-prefix}topbar-bg);
+		border: 0;
+		top: 100%;
+		left: -1px;
+		width: 140px;
+		margin-top: 10px;
+		border: var(--#{$cnvs-prefix}topbar-border-size) solid var(--#{$cnvs-prefix}topbar-border-color);
+		border-top: 1px solid var(--#{$cnvs-prefix}themecolor);
+		box-shadow: 0px 13px 42px 11px rgba(0, 0, 0, 0.05);
+		@include transition(opacity 0.25s ease, margin 0.2s ease);
+	}
+
+	&:not(.on-click) .top-links-item:hover > .top-links-sub-menu,
+	&:not(.on-click) .top-links-item:hover > .top-links-section,
+	&.on-click .top-links-sub-menu,
+	&.on-click .top-links-section {
+		opacity: 1;
+		visibility: visible;
+		margin-top: 0;
+		pointer-events: auto;
+		z-index: 499;
+	}
+
+	&.on-click .top-links-sub-menu,
+	&.on-click .top-links-section {
+		display: none;
+	}
+
+	&-sub-menu {
+		.top-links-sub-menu {
+			top: calc(-1 * var(--#{$cnvs-prefix}topbar-border-size));
+			left: 100%;
+		}
+		.top-links-item {
+			&:not(:first-child) {
+				border-top: var(--#{$cnvs-prefix}topbar-border-size) solid #{$topbar-border-color};
+			}
+			&:hover {
+				background-color: var(--#{$cnvs-prefix}contrast-100);
+			}
+			> a {
+				display: flex;
+				align-items: center;
+				padding-top: var(--#{$cnvs-prefix}topbar-submenu-padding);
+				padding-bottom: var(--#{$cnvs-prefix}topbar-submenu-padding);
+				font-size: var(--#{$cnvs-prefix}topbar-submenu-font-size);
+				line-height: 20px;
+				> img {
+					position: relative;
+					width: 16px;
+					height: 16px;
+					margin-right: 0.5rem;
+				}
+
+				i.sub-menu-indicator {
+					margin: 0 !important;
+					position: absolute;
+					top: 50%;
+					left: auto;
+					right: 10px;
+					transform: translateY(-50%) rotate(-90deg);
+				}
+			}
+		}
+		&.top-demo-lang .top-links-item > a > img {
+			top: 4px;
+			width: 16px;
+			height: 16px;
+		}
+	}
+	&-section {
+		padding: 25px;
+		left: 0;
+		width: 280px;
+		&.menu-pos-invert {
+			left: auto;
+			right: 0;
+		}
+	}
+}
+
+/* Top Social
+-----------------------------------------------------------------*/
+
+#top-social {
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	margin: 0;
+	li {
+		position: relative;
+		list-style: none;
+		border-left: var(--#{$cnvs-prefix}topbar-border-size) solid var(--#{$cnvs-prefix}topbar-border-color);
+		&:first-child {
+			border-left: 0 !important;
+		}
+		.ts-icon,
+		.ts-text {
+			display: block;
+			-ms-flex-preferred-size: 0;
+			flex-basis: 0;
+			-ms-flex-positive: 1;
+			flex-grow: 1;
+			height: var(--#{$cnvs-prefix}topbar-height);
+			line-height: calc(var(--#{$cnvs-prefix}topbar-height) - 1px);
+		}
+		.ts-icon {
+			width: 40px;
+			text-align: center;
+			font-size: 0.875rem;
+		}
+		.ts-text {
+			max-width: 0;
+			white-space: nowrap;
+			@include transition(all 0.2s ease);
+		}
+		a:hover .ts-text {
+			max-width: 200px;
+			padding-right: 12px;
+			@include transition(all 0.4s ease);
+		}
+	}
+	a {
+		display: -ms-flexbox;
+		display: flex;
+		width: auto;
+		overflow: hidden;
+		font-weight: bold;
+		color: var(--#{$cnvs-prefix}topbar-social-icon-color);
+		&:hover {
+			color: var(--#{$prefix}gray-100);
+		}
+	}
+}
+
+/* Top Login
+-----------------------------------------------------------------*/
+#top-login {
+	margin-bottom: 0;
+}

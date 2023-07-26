@@ -1,0 +1,95 @@
+
+/*-----------------------------------------------------------------------------------
+
+	Shortcodes: promo.scss
+
+-----------------------------------------------------------------------------------*/
+
+/* ----------------------------------------------------------------
+	Promo Boxes
+-----------------------------------------------------------------*/
+
+$promo-prefix: promo;
+
+.#{$promo-prefix} {
+	--#{$cnvs-prefix}promo-span-font-size           :          #{$promo-span-font-size};
+	--#{$cnvs-prefix}promo-uppercase-font-size      :          #{$promo-uppercase-font-size};
+	--#{$cnvs-prefix}promo-uppercase-span-font-size :          #{$promo-uppercase-span-font-size};
+	--#{$cnvs-prefix}promo-border                   :          #{$promo-border};
+	--#{$cnvs-prefix}promo-light                    :          #{$promo-light};
+	--#{$cnvs-prefix}promo-light-text-color         :          #{$promo-light-text-color};
+	--#{$cnvs-prefix}promo-dark                     :          #{$promo-dark};
+	--#{$cnvs-prefix}promo-dark-text-color          :          #{$promo-dark-text-color};
+	--#{$cnvs-prefix}promo-parallax-padding 		 :			#{$promo-parallax-padding};
+	position: relative;
+	h3 {
+		font-weight: bold;
+		margin-bottom: 0;
+		+ span {
+			display: block;
+			color: var(--#{$cnvs-prefix}promo-light-text-color);
+			font-weight: 300;
+			font-size: var(--#{$cnvs-prefix}promo-span-font-size);
+			margin-top: 6px;
+		}
+	}
+	@if $promo-uppercase == true {
+		&-uppercase { text-transform: uppercase;
+			h3 {
+				font-size: var(--#{$cnvs-prefix}promo-uppercase-span-font-size);
+				+ span {
+					font-size: var(--#{$cnvs-prefix}promo-span-font-size);
+				}
+			}
+		}
+	}
+	&-border {
+		border: var(--#{$cnvs-prefix}promo-border);
+		border-radius: 3px;
+	}
+
+	/* Promo - Light
+	-----------------------------------------------------------------*/
+	&-light {
+		background-color: var(--#{$cnvs-prefix}promo-light);
+		border-radius: 3px;
+	}
+
+	/* Promo - Dark
+	-----------------------------------------------------------------*/
+	&-dark {
+		border: 0 !important;
+		background-color: var(--#{$cnvs-prefix}promo-dark);
+		border-radius: 3px;
+		h3 {
+			color: var(--#{$cnvs-prefix}promo-dark-text-color);
+			+ span {
+				color: var(--#{$prefix}gray-100);
+				font-weight: 400;
+			}
+		}
+	}
+	/* Promo - 100% Full Width
+	-----------------------------------------------------------------*/
+	&-full {
+		border-radius: 0 !important;
+		border-left: 0 !important;
+		border-right: 0 !important;
+	}
+	/* Promo - Parallax
+	-----------------------------------------------------------------*/
+	&.parallax {
+		padding: var(--#{$cnvs-prefix}promo-parallax-padding) 0 !important;
+	}
+
+	/* Promo - Mini
+	-----------------------------------------------------------------*/
+
+	&-mini {
+		text-align: left;
+		h3 {
+			font-size: var(--#{$cnvs-prefix}promo-uppercase-span-font-size);
+		}
+		&.#{$promo-prefix}-uppercase h3 { font-size: var(--#{$cnvs-prefix}promo-span-font-size); }
+	}
+}

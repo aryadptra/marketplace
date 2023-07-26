@@ -1,0 +1,45 @@
+/* ----------------------------------------------------------------
+
+	content.scss
+
+-----------------------------------------------------------------*/
+
+
+/* ----------------------------------------------------------------
+	Content
+-----------------------------------------------------------------*/
+
+#content {
+	position: relative;
+	background-color: var(--#{$cnvs-prefix}body-bg);
+}
+
+.content-wrap {
+	position: relative;
+	padding: var(--#{$cnvs-prefix}content-padding) 0;
+	overflow: hidden;
+	.container {
+		position: relative;
+	}
+	p {
+		line-height: var(--#{$cnvs-prefix}line-height-content);
+	}
+}
+
+.grid-container,
+.grid-inner {
+	position: relative;
+	overflow: hidden;
+	will-change: transform;
+}
+
+.grid-inner {
+	width: 100%;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.grid-container {
+	@include transition(height .4s ease);
+}

@@ -1,0 +1,143 @@
+/* ----------------------------------------------------------------
+	Clients
+-----------------------------------------------------------------*/
+/* ----------------------------------------------------------------
+	Testimonials
+-----------------------------------------------------------------*/
+$testimonial-prefix: testimonial;
+
+/* Testimonials - Grid
+-----------------------------------------------------------------*/
+.#{$testimonial-prefix}s-grid {
+	.col {
+		padding: $testimonials-grid-padding;
+		/* Testimonials - Item
+		-----------------------------------------------------------------*/
+		.#{$testimonial-prefix} {
+			padding: 0;
+			background-color: transparent !important;
+			border: 0 !important;
+			box-shadow: none !important;
+		}
+	}
+}
+
+.quote-bubble {
+	--#{$cnvs-prefix}bubble-radius: #{$testimonials-bubble-radius};
+	--#{$cnvs-prefix}bubble-color: #{$testimonials-bubble-bgcolor};
+	position: relative;
+	padding: $testimonials-bubble-padding;
+	border-radius: var(--#{$cnvs-prefix}bubble-radius);
+	color: var(--#{$cnvs-prefix}heading-color);
+	background-color: var(--#{$cnvs-prefix}bubble-color);
+	font-size: $testimonials-bubble-font-size;
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-left: var(--#{$cnvs-prefix}bubble-radius) solid
+			var(--#{$cnvs-prefix}bubble-color);
+		border-right: var(--#{$cnvs-prefix}bubble-radius) solid
+			transparent;
+		border-top: var(--#{$cnvs-prefix}bubble-radius) solid
+			var(--#{$cnvs-prefix}bubble-color);
+		border-bottom: var(--#{$cnvs-prefix}bubble-radius) solid
+			transparent;
+		right: calc(
+			calc(var(--#{$cnvs-prefix}bubble-radius) + 1px) * -1
+		);
+		top: 0;
+	}
+
+	&.quote-bubble-left::before {
+		border-left: var(--#{$cnvs-prefix}bubble-radius) solid
+			transparent;
+		border-right: var(--#{$cnvs-prefix}bubble-radius) solid
+			var(--#{$cnvs-prefix}bubble-color);
+		left: calc(
+			calc(var(--#{$cnvs-prefix}bubble-radius) + 1px) * -1
+		);
+		right: auto;
+	}
+
+	> p {
+		margin-bottom: 0;
+	}
+
+	&.bg-primary {
+		--#{$cnvs-prefix}bubble-color: var(
+			--#{$prefix}primary
+		);
+	}
+
+	&.bg-danger {
+		--#{$cnvs-prefix}bubble-color: var(
+			--#{$prefix}danger
+		);
+	}
+
+	&.bg-success {
+		--#{$cnvs-prefix}bubble-color: var(
+			--#{$prefix}success
+		);
+	}
+
+	&.bg-warning {
+		--#{$cnvs-prefix}bubble-color: var(
+			--#{$prefix}warning
+		);
+	}
+
+	&.bg-info {
+		--#{$cnvs-prefix}bubble-color: var(--#{$prefix}info);
+	}
+
+	&.bg-dark {
+		--#{$cnvs-prefix}bubble-color: var(--#{$prefix}dark);
+	}
+}
+
+/* Testimonial - Pagination
+-----------------------------------------------------------------*/
+
+.#{$testimonial-prefix} {
+	--#{$cnvs-prefix}fslider-dots-size: #{$testimonials-carousel-dots};
+	--#{$cnvs-prefix}slider-pagination-gutters: calc(var(--#{$cnvs-prefix}fslider-dots-size) * .5);
+	.flex-control-nav {
+		top: auto;
+		bottom: $testimonials-carousel-dots;
+		right: 0;
+		li {
+			a {
+				border: none;
+				background-color: $testimonials-carousel-dots-color;
+				opacity: $testimonials-carousel-dots-opacity;
+			}
+			&:hover a {
+				opacity: 0.75;
+			}
+			a.flex-active {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+/* Testimonial - Full Scroller
+-----------------------------------------------------------------*/
+
+.testimonial.testimonial-full .flex-control-nav {
+	position: relative;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	height: $testimonials-carousel-dots;
+	margin-top: 20px;
+	li {
+		display: inline-block;
+		float: none;
+	}
+}

@@ -1,0 +1,111 @@
+/* ----------------------------------------------------------------
+
+	footer.scss
+
+-----------------------------------------------------------------*/
+
+/* ----------------------------------------------------------------
+	Footer
+-----------------------------------------------------------------*/
+#footer {
+	--#{$cnvs-prefix}footer-top-border: #{$footer-top-border};
+	--#{$cnvs-prefix}copyrights-link-color: var(--#{$cnvs-prefix}contrast-500);
+	position: relative;
+	background-color: var(--#{$cnvs-prefix}footer-bg);
+	border-top: var(--#{$cnvs-prefix}footer-top-border);
+}
+
+@if $footer-sticky-global {
+	@include media-breakpoint-up(lg) {
+		#footer {
+			position: sticky;
+			top: auto;
+			bottom: 0;
+			left: 0;
+		}
+
+		#slider:not(.slider-parallax-invisible),
+		#page-submenu,
+		#page-title,
+		#content {
+			z-index: 2;
+		}
+	}
+}
+
+@include media-breakpoint-up(lg) {
+	.sticky-footer #slider:not(.slider-parallax-invisible),
+	.sticky-footer #page-submenu,
+	.sticky-footer #page-title,
+	.sticky-footer #content {
+		z-index: 2;
+	}
+
+	.sticky-footer #footer {
+		position: sticky;
+		top: auto;
+		bottom: 0;
+		left: 0;
+	}
+}
+
+#footer {
+	.footer-widgets-wrap {
+		position: relative;
+		padding: var(--#{$cnvs-prefix}content-padding) 0;
+	}
+}
+
+#copyrights {
+	padding: calc(var(--#{$cnvs-prefix}content-padding) * 0.5) 0;
+	background-color: var(--#{$cnvs-prefix}contrast-300);
+	font-size: var(--#{$cnvs-prefix}copyrights-font-size);
+	line-height: var(--#{$cnvs-prefix}line-height-content);
+
+	i.footer-icon {
+		position: relative;
+		top: 1px;
+		font-size: var(--#{$cnvs-prefix}copyrights-font-size);
+		width: var(--#{$cnvs-prefix}copyrights-font-size);
+		text-align: center;
+		margin-right: 3px;
+	}
+
+	.text-end a:last-child {
+		margin-right: 0;
+	}
+}
+
+.copyright-links {
+	margin-top: 0.5rem;
+	color: var(--#{$cnvs-prefix}copyrights-link-color);
+	a {
+		display: inline-block;
+		margin: 0 0.25rem;
+		color: var(--#{$cnvs-prefix}copyrights-link-color);
+		border-bottom: 1px dotted var(--#{$cnvs-prefix}copyrights-link-color);
+		&:hover {
+			opacity: .91;
+		}
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+}
+
+.copyrights-menu {
+	margin-bottom: 10px;
+	a {
+		font-size: var(--#{$cnvs-prefix}copyrights-font-size);
+		margin: 0 10px;
+		border-bottom: 0 !important;
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+}
+
+.footer-logo {
+	display: block;
+	margin-bottom: 30px;
+}

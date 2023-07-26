@@ -1,0 +1,253 @@
+
+/*-----------------------------------------------------------------------------------
+
+	Shortcodes: styled-icons.scss
+
+-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------
+	Styled Icons
+-----------------------------------------------------------------*/
+
+[class^="i-"] {
+	--#{$cnvs-prefix}i-size: #{$styled-icons-size};
+	--#{$cnvs-prefix}i-border: #{$styled-icons-border-width};
+	--#{$cnvs-prefix}i-fontsize: calc( var(--#{$cnvs-prefix}i-size) / 2.666666 );
+	--#{$cnvs-prefix}i-color: #{$styled-icons-color};
+	--#{$cnvs-prefix}i-bg-color: #{$styled-icons-bg-color};
+}
+
+@mixin cnvs-gradient-bg($color, $imp:0) {
+	@if $imp == 1 {
+		@if $enable-gradients {
+			background-color: $color !important;
+			background-image: linear-gradient(180deg, mix($body-bg, $color, 15%), $color) !important;
+			background-repeat: repeat-x;
+		}
+		@else {
+			background-color: $color !important;
+		}
+	} @else {
+		@if $enable-gradients {
+			background-color: $color;
+			background-image: linear-gradient(180deg, mix($body-bg, $color, 15%), $color);
+			background-repeat: repeat-x;
+		}
+		@else {
+			background-color: $color;
+		}
+	}
+}
+
+
+.i-style,
+.i-plain,
+.i-bordered,
+.social-icon {
+	--#{$cnvs-prefix}i-color: var(--#{$cnvs-prefix}white);
+	text-align: center !important;
+	font-size: var(--#{$cnvs-prefix}i-fontsize);
+	color: var(--#{$cnvs-prefix}i-color);
+	cursor: pointer;
+	font-style: normal;
+	@include transition(all .3s ease);
+}
+
+
+.i-style,
+.i-bordered,
+.i-plain {
+	--#{$cnvs-prefix}i-size: #{$styled-icons-size};
+	--#{$cnvs-prefix}i-border: #{$styled-icons-border-width};
+	--#{$cnvs-prefix}i-fontsize: calc( var(--#{$cnvs-prefix}i-size) / 2.666666 );
+	--#{$cnvs-prefix}i-bg-color: var(--#{$prefix}gray-800);
+	display: inline-block;
+	width: var(--#{$cnvs-prefix}i-size) !important;
+	height: var(--#{$cnvs-prefix}i-size) !important;
+	line-height: var(--#{$cnvs-prefix}i-size) !important;
+	background-color: var(--#{$cnvs-prefix}i-bg-color);
+}
+
+.i-bordered {
+	--#{$cnvs-prefix}i-color: var(--#{$cnvs-prefix}contrast-900);
+	border: var(--#{$cnvs-prefix}i-border) solid $styled-icons-border-color;
+	line-height: calc(var(--#{$cnvs-prefix}i-size) - calc(var(--#{$cnvs-prefix}i-border) * 2) ) !important;
+}
+
+.i-plain {
+	--#{$cnvs-prefix}i-size: #{$styled-icons-plain-size};
+	--#{$cnvs-prefix}i-fontsize: #{$styled-icons-plain-font-size};
+	--#{$cnvs-prefix}i-color: var(--#{$prefix}contrast-900);
+}
+
+.i-bordered,
+.i-plain {
+	--#{$cnvs-prefix}i-bg-color: transparent !important;
+}
+
+.i-light {
+	--#{$cnvs-prefix}i-bg-color: var(--#{$prefix}gray-100) !important;
+	--#{$cnvs-prefix}i-color: var(--#{$prefix}gray-900);
+}
+
+.i-alt {
+	background-image: $i-overlay;
+}
+
+.i-style:hover {
+	--#{$cnvs-prefix}i-bg-color: var(--#{$cnvs-prefix}themecolor) !important;
+	--#{$cnvs-prefix}i-color: var(--#{$prefix}gray-100);
+}
+
+.i-bordered:hover {
+	--#{$cnvs-prefix}i-bg-color: var(--#{$cnvs-prefix}contrast-800) !important;
+	--#{$cnvs-prefix}i-color: var(--#{$cnvs-prefix}contrast-0) !important;
+	border-color: var(--#{$cnvs-prefix}i-color);
+}
+
+.i-plain:hover {
+	--#{$cnvs-prefix}i-bg-color: transparent !important;
+	--#{$cnvs-prefix}i-color: var(--#{$cnvs-prefix}themecolor);
+}
+
+
+/* Icon Size - Small
+-----------------------------------------------------------------*/
+
+.i-small {
+	&.i-style {
+		--#{$cnvs-prefix}i-size: 1.75rem;
+	}
+
+	&.i-plain {
+		--#{$cnvs-prefix}i-size: 1.5rem;
+		--#{$cnvs-prefix}i-fontsize: 1rem;
+	}
+}
+
+
+/* Icon Size - Small
+-----------------------------------------------------------------*/
+
+.i-medium {
+	&.i-style {
+		--#{$cnvs-prefix}i-size: 2.25rem;
+	}
+
+	&.i-plain {
+		--#{$cnvs-prefix}i-fontsize: 1.25rem;
+	}
+}
+
+
+/* Icon Size - Large
+-----------------------------------------------------------------*/
+
+.i-large {
+	&.i-style {
+		--#{$cnvs-prefix}i-size: 4rem;
+	}
+
+	&.i-plain {
+		--#{$cnvs-prefix}i-size: 3.75rem;
+		--#{$cnvs-prefix}i-fontsize: 2.5rem;
+	}
+}
+
+/* Icon Size - Extra Large
+-----------------------------------------------------------------*/
+
+.i-xlarge {
+	&.i-style {
+		--#{$cnvs-prefix}i-size: 5.25rem;
+	}
+
+	&.i-plain {
+		--#{$cnvs-prefix}i-size: 4.5rem;
+		--#{$cnvs-prefix}i-fontsize: 3rem;
+	}
+}
+
+
+/* Icon Size - Extra Extra Large
+-----------------------------------------------------------------*/
+
+.i-xxlarge.i-style {
+	--#{$cnvs-prefix}i-size: 6.5rem;
+}
+
+.i-xxlarge.i-plain {
+	--#{$cnvs-prefix}i-size: 5.25rem;
+	--#{$cnvs-prefix}i-fontsize: 3.5rem;
+}
+
+
+/* Icon Lists
+-----------------------------------------------------------------*/
+
+.iconlist {
+	--#{$cnvs-prefix}iconlist-size: #{$iconlist-size};
+	--#{$cnvs-prefix}iconlist-color: var(--#{$cnvs-prefix}themecolor);
+	--#{$cnvs-prefix}iconlist-margin: #{$iconlist-margin};
+	--#{$cnvs-prefix}iconlist-gutter: #{$iconlist-gutter};
+	--#{$cnvs-prefix}iconlist-offset: #{$iconlist-offset};
+	padding-left: 0;
+	margin-left: 0;
+	list-style-type: none;
+
+	li {
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		font-size: var(--#{$cnvs-prefix}iconlist-size);
+
+		+ li {
+			margin-top: var(--#{$cnvs-prefix}iconlist-margin);
+		}
+
+		> * {
+			flex: 1 0 0%;
+		}
+	}
+
+	>li i:first-child,
+	>li img:first-child {
+		position: relative;
+		top: var(--#{$cnvs-prefix}iconlist-offset);
+		text-align: center;
+		width: var(--#{$cnvs-prefix}iconlist-size);
+		height: var(--#{$cnvs-prefix}iconlist-size);
+		margin-right: var(--#{$cnvs-prefix}iconlist-gutter);
+		flex: 0 0 auto;
+		color: var(--#{$cnvs-prefix}iconlist-color);
+		.rtl & {
+			margin-left: var(--#{$cnvs-prefix}iconlist-gutter);
+			margin-right: 0;
+		}
+	}
+
+	ul {
+		flex: 0 0 auto;
+		width: 100%;
+		list-style-type: none;
+		padding: var(--#{$cnvs-prefix}iconlist-margin) 0 var(--#{$cnvs-prefix}iconlist-margin) calc(var(--#{$cnvs-prefix}iconlist-margin)*4);
+
+		li {
+			margin-top: var(--#{$cnvs-prefix}iconlist-margin);
+		}
+	}
+
+	&.iconlist-lg {
+		--#{$cnvs-prefix}iconlist-size: #{$iconlist-size-lg};
+		--#{$cnvs-prefix}iconlist-margin: #{$iconlist-margin-lg};
+		--#{$cnvs-prefix}iconlist-gutter: #{$iconlist-gutter-lg};
+	}
+
+
+	&.iconlist-xl {
+		--#{$cnvs-prefix}iconlist-size: #{$iconlist-size-xl};
+		--#{$cnvs-prefix}iconlist-margin: #{$iconlist-margin-xl};
+		--#{$cnvs-prefix}iconlist-gutter: #{$iconlist-gutter-xl};
+	}
+
+}

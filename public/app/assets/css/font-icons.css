@@ -1,0 +1,410 @@
+@import url("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css"); /* Ref: https://fontawesome.com/search?o=r&m=free */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"); /* Ref: https://icons.getbootstrap.com/#icons */
+@import url("https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/css/line.css"); /* Ref: https://iconscout.com/unicons/explore/line */
+
+@font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-0.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-0.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-0.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-0.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-0.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+E800-E83B;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-1.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-1.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-1.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-1.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-1.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+E83C-E877;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-10.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-10.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-10.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-10.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-10.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+EA5B-EA96;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-11.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-11.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-11.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-11.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-11.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+EA97-EAD4;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-12.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-12.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-12.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-12.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-12.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+EAD5-EB11;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-13.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-13.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-13.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-13.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-13.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+EB12-EB4D;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-14.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-14.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-14.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-14.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-14.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+EB4E-EB89;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-15.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-15.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-15.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-15.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-15.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+EB8A-EBC5;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-16.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-16.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-16.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-16.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-16.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+EBC6-EC01;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-17.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-17.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-17.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-17.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-17.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+EC02-EC3D;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-18.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-18.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-18.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-18.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-18.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+EC3E-EC79;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-19.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-19.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-19.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-19.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-19.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+EC7A-ECB5;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-2.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-2.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-2.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-2.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-2.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+E878-E8B3;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-20.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-20.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-20.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-20.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-20.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+ECB6-ECB9;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-3.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-3.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-3.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-3.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-3.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+E8B4-E8EF;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-4.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-4.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-4.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-4.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-4.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+E8F0-E92B;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-5.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-5.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-5.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-5.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-5.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+E92C-E967;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-6.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-6.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-6.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-6.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-6.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+E968-E9A4;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-7.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-7.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-7.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-7.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-7.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+E9A5-E9E1;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-8.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-8.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-8.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-8.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-8.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+E9E2-EA1D;
+  }
+  @font-face {
+	font-family: 'unicons-line';
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-9.eot');
+	src: url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-9.eot#iefix') format('embedded-opentype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-9.woff') format('woff'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-9.ttf') format('truetype'),
+		  url('https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.1/fonts/line/unicons-9.svg#unicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	unicode-range: U+EA1E-EA5A;
+  }[class^="uil-"]::before,
+  [class*=" uil-"]::before {
+	font-family: "unicons-line";
+  }
+
+[class*="fa-"],
+[class*=" fa-"],
+[class*="bi-"],
+[class*=" bi-"],
+[class*="uil-"],
+[class*=" uil-"] {
+	display: inline-block;
+	line-height: inherit;
+	font-display: swap;
+}
+
+[class*="fa-"]::before,
+[class*=" fa-"]::before,
+[class*="bi-"]::before,
+[class*=" bi-"]::before,
+[class*="uil-"]::before,
+[class*=" uil-"]::before {
+	display: inline-flex;
+	align-self: center;
+	justify-self: center;
+	line-height: inherit;
+}
+
+.icon-lg {
+	font-size: 1.3333333333333333em;
+	line-height: 0.75em;
+	vertical-align: -15%;
+}
+.icon-2x {
+	font-size: 2em;
+}
+.icon-3x {
+	font-size: 3em;
+}
+.icon-4x {
+	font-size: 4em;
+}
+.icon-5x {
+	font-size: 5em;
+}
+.icon-fw {
+	width: 1.2857142857142858em;
+	text-align: center;
+}
+
+.icon-border {
+	padding: 0.2em 0.25em 0.15em;
+	border: solid 0.08em #eeeeee;
+	border-radius: 0.1em;
+}
+.icon.pull-left {
+	margin-right: 0.3em;
+}
+.icon.pull-right {
+	margin-left: 0.3em;
+}
+.icon-spin {
+	-webkit-animation: spin 2s infinite linear;
+	-moz-animation: spin 2s infinite linear;
+	-o-animation: spin 2s infinite linear;
+	animation: spin 2s infinite linear;
+}
+@-moz-keyframes spin {
+	0% {
+		-moz-transform: rotate(0deg);
+	}
+	100% {
+		-moz-transform: rotate(359deg);
+	}
+}
+@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(359deg);
+	}
+}
+@-o-keyframes spin {
+	0% {
+		-o-transform: rotate(0deg);
+	}
+	100% {
+		-o-transform: rotate(359deg);
+	}
+}
+@-ms-keyframes spin {
+	0% {
+		-ms-transform: rotate(0deg);
+	}
+	100% {
+		-ms-transform: rotate(359deg);
+	}
+}
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(359deg);
+	}
+}
+.icon-rotate-90 {
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+.icon-rotate-180 {
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+.icon-rotate-270 {
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	-webkit-transform: rotate(270deg);
+	-moz-transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	-o-transform: rotate(270deg);
+	transform: rotate(270deg);
+}
+.icon-flip-horizontal {
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+	-webkit-transform: scale(-1, 1);
+	-moz-transform: scale(-1, 1);
+	-ms-transform: scale(-1, 1);
+	-o-transform: scale(-1, 1);
+	transform: scale(-1, 1);
+}
+.icon-flip-vertical {
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
+	-webkit-transform: scale(1, -1);
+	-moz-transform: scale(1, -1);
+	-ms-transform: scale(1, -1);
+	-o-transform: scale(1, -1);
+	transform: scale(1, -1);
+}
+.icon-stacked {
+	position: relative;
+	display: inline-block;
+	width: 2em;
+	height: 2em;
+	line-height: 2em;
+	vertical-align: middle;
+}
+.icon-stacked-1x,
+.icon-stacked-2x {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+.rtl .icon-stacked-1x,
+.rtl .icon-stacked-2x {
+	left: auto;
+	right: 0;
+}
+.icon-stacked-1x {
+	line-height: inherit;
+}
+.icon-stacked-2x {
+	font-size: 2em;
+}
+.icon-inverse {
+	color: #ffffff;
+}

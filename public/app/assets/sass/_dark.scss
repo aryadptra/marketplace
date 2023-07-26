@@ -1,0 +1,72 @@
+/*-----------------------------------------------------------------------------------
+	Dark Scheme - sass/dark.scss
+-----------------------------------------------------------------------------------*/
+
+@import "variables";
+@import "mixins";
+
+@if $enable-dark == true {
+
+	.dark {
+		// --#{$cnvs-prefix}link-color: var(--#{$prefix}gray-200);
+		// --#{$cnvs-prefix}link-hover-color: var(--#{$prefix}white);
+		--#{$cnvs-prefix}contrast-bg: #{$invert-contrast-bg};
+		--#{$cnvs-prefix}contrast-bg-offset: #{$invert-contrast-bg-offset};
+
+		// Contrast-colors
+		@each $color, $value in $invert-contrasts {
+			--#{$cnvs-prefix}contrast-#{$color}: #{$value};
+		}
+
+		--#{$prefix}link-color: var(--#{$cnvs-prefix}contrast-900);
+
+		// Dark - Contrast-colors
+		@each $color, $value in $contrasts {
+			--#{$cnvs-prefix}invert-contrast-#{$color}: #{$value};
+		}
+
+		--#{$cnvs-prefix}contrast-rgb: #{$invert-contrast-rgb};
+		--#{$cnvs-prefix}invert-contrast-rgb: #{$contrast-rgb};
+
+		--#{$cnvs-prefix}heading-color: var(--#{$cnvs-prefix}contrast-900);
+
+		--#{$cnvs-prefix}topbar-bg: var(--#{$cnvs-prefix}contrast-bg-offset);
+		--#{$cnvs-prefix}header-bg: var(--#{$cnvs-prefix}contrast-bg);
+		--#{$cnvs-prefix}header-sticky-bg: var(--#{$cnvs-prefix}contrast-bg);
+		--#{$cnvs-prefix}side-header-bg: var(--#{$cnvs-prefix}contrast-bg);
+		--#{$cnvs-prefix}header-floating-bg: var(--#{$cnvs-prefix}contrast-bg);
+		--#{$cnvs-prefix}primary-menu-submenu-bg: var(--#{$cnvs-prefix}contrast-bg);
+		--#{$cnvs-prefix}section-bg: var(--#{$cnvs-prefix}contrast-bg-offset);
+		--#{$cnvs-prefix}footer-bg: var(--#{$cnvs-prefix}contrast-bg-offset);
+
+		color: var(--#{$cnvs-prefix}contrast-800);
+
+		@at-root body#{&} {
+			--#{$cnvs-prefix}body-bg: var(--#{$cnvs-prefix}contrast-bg); // try: #1a1d20
+		}
+	}
+
+	#footer {
+		.footer-widgets-wrap {
+			@at-root .dark#{&},
+			.dark & {
+				color: var(--#{$cnvs-prefix}contrast-800);
+				a {
+					color: rgba(255,255,255,0.75);
+					&:hover {
+						color: var(--#{$cnvs-prefix}contrast-1000);
+					}
+				}
+			}
+		}
+	}
+
+	#copyrights {
+		.dark &,
+		&.dark {
+			color: rgba(255, 255, 255, 0.4);
+			background-color: rgba(0, 0, 0, 0.2);
+		}
+	}
+
+}

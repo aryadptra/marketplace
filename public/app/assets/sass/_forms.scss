@@ -1,0 +1,184 @@
+/*-----------------------------------------------------------------------------------
+
+	Shortcodes: Forms.scss
+
+-----------------------------------------------------------------------------------*/
+
+/* ----------------------------------------------------------------
+	Forms
+-----------------------------------------------------------------*/
+
+:root,
+.not-dark {
+	--#{$cnvs-prefix}form-processor-bg : #{$form-processor-bg};
+	--#{$cnvs-prefix}input-btn-input-color : #{$input-color};
+	--#{$cnvs-prefix}input-btn-input-bg : #{$input-bg};
+	--#{$cnvs-prefix}input-btn-border-color:      #{$input-border-color};
+}
+
+form {
+	--#{$cnvs-prefix}input-label-mb : #{$input-form-label-mb};
+	--#{$cnvs-prefix}form-label-font-weight: 500;
+	--#{$cnvs-prefix}form-label-error : #{$input-form-label-error};
+
+	--#{$cnvs-prefix}form-processor-bg : #{$form-processor-bg};
+	--#{$cnvs-prefix}form-processor-bg-op : #{$form-processor-bg-op};
+	--#{$cnvs-prefix}form-group-margin : #{$form-group-margin};
+
+	.form-group {
+		margin-bottom: var(--#{$cnvs-prefix}form-group-margin);
+	}
+}
+
+.form-control {
+	--#{$cnvs-prefix}input-btn-padding-y : #{$input-btn-padding-y};
+	--#{$cnvs-prefix}input-btn-padding-x : #{$input-btn-padding-x};
+	--#{$cnvs-prefix}input-btn-font-size : #{$input-btn-font-size};
+	--#{$cnvs-prefix}input-font-family	  : #{$input-btn-font-family};
+	--#{$cnvs-prefix}input-btn-font-weight : #{$input-font-weight};
+	--#{$cnvs-prefix}input-btn-line-height : #{$input-btn-line-height};
+	--#{$cnvs-prefix}input-btn-input-color : #{$input-color};
+	--#{$cnvs-prefix}input-btn-input-bg : #{$input-bg};
+	--#{$cnvs-prefix}form-control-radius : #{$input-border-radius};
+
+	--#{$cnvs-prefix}input-btn-border-width:      #{$input-border-width};
+	--#{$cnvs-prefix}input-btn-border-color:      #{$input-border-color};
+
+	--#{$cnvs-prefix}input-btn-padding-y-sm : #{$input-btn-padding-y-sm};
+	--#{$cnvs-prefix}input-btn-padding-x-sm : #{$input-btn-padding-x-sm};
+	--#{$cnvs-prefix}input-btn-font-size-sm : #{$input-btn-font-size-sm};
+
+	--#{$cnvs-prefix}input-btn-padding-y-lg : #{$input-btn-padding-y-lg};
+	--#{$cnvs-prefix}input-btn-padding-x-lg : #{$input-btn-padding-x-lg};
+	--#{$cnvs-prefix}input-btn-font-size-lg : #{$input-btn-font-size-lg};
+
+	--#{$cnvs-prefix}input-focus-color: #{$input-focus-color};
+	--#{$cnvs-prefix}input-focus-bg: #{$input-focus-bg};
+	--#{$cnvs-prefix}input-focus-border-color: #{$input-focus-border-color};
+	--#{$cnvs-prefix}input-focus-box-shadow: #{$input-focus-box-shadow};
+
+	padding: var(--#{$cnvs-prefix}input-btn-padding-y) var(--#{$cnvs-prefix}input-btn-padding-x);
+	font-size: var(--#{$cnvs-prefix}input-btn-font-size);
+	font-family: var(--#{$cnvs-prefix}input-font-family);
+	font-weight: var(--#{$cnvs-prefix}input-btn-font-weight);
+	line-height: var(--#{$cnvs-prefix}input-btn-line-height);
+	color: var(--#{$cnvs-prefix}input-btn-input-color);
+	background-color: var(--#{$cnvs-prefix}input-btn-input-bg);
+	border: var(--#{$cnvs-prefix}input-btn-border-width) solid var(--#{$cnvs-prefix}input-btn-border-color);
+	border-radius: var(--#{$cnvs-prefix}form-control-radius);
+
+	&.error {
+		border-color: var(--#{$cnvs-prefix}form-label-error);
+	}
+
+	&-sm {
+		--#{$cnvs-prefix}input-btn-padding-y: var(--#{$cnvs-prefix}input-btn-padding-y-sm);
+		--#{$cnvs-prefix}input-btn-padding-x: var(--#{$cnvs-prefix}input-btn-padding-x-sm);
+		--#{$cnvs-prefix}input-btn-font-size: var(--#{$cnvs-prefix}input-btn-font-size-sm);
+	}
+
+	&-lg {
+		--#{$cnvs-prefix}input-btn-padding-y: var(--#{$cnvs-prefix}input-btn-padding-y-lg);
+		--#{$cnvs-prefix}input-btn-padding-x: var(--#{$cnvs-prefix}input-btn-padding-x-lg);
+		--#{$cnvs-prefix}input-btn-font-size: var(--#{$cnvs-prefix}input-btn-font-size-lg);
+	}
+
+	&:focus {
+		color: var(--#{$cnvs-prefix}input-focus-color);
+		background-color: var(--#{$cnvs-prefix}input-focus-bg);
+		border-color: var(--#{$cnvs-prefix}input-focus-border-color);
+		box-shadow: var(--#{$cnvs-prefix}input-focus-box-shadow);
+	}
+
+	/* ----------------------------------------------------------------
+		Border Form Control
+	-----------------------------------------------------------------*/
+	&.border-form-control {
+		--#{$cnvs-prefix}input-btn-padding-x: 0;
+		--#{$cnvs-prefix}form-control-radius: 0;
+		--#{$cnvs-prefix}input-focus-box-shadow: none;
+		background-color: transparent;
+		border-top: transparent;
+		border-right: transparent;
+		border-left: transparent;
+		border-bottom-width: var(--#{$cnvs-prefix}input-btn-border-width);
+	}
+}
+
+label {
+	margin-bottom: var(--#{$cnvs-prefix}input-label-mb);
+	font-weight: var(--#{$cnvs-prefix}form-label-font-weight);
+	&.label-muted {
+		color: $input-btn-focus-color;
+		font-weight: normal;
+		margin-right: 5px;
+	}
+
+	&.error {
+		display: none !important;
+		margin-top: 5px;
+		color: var(--#{$cnvs-prefix}form-label-error);
+		font-weight: 400;
+
+		.show-error-msg+&,
+		input[type="checkbox"]:not(:checked)+& {
+			display: block !important;
+		}
+	}
+}
+
+[data-condition] {
+	&:not(.condition-fulfilled) {
+		display: none !important;
+	}
+}
+
+/* ----------------------------------------------------------------
+	Contact Form
+-----------------------------------------------------------------*/
+
+.contact-form-overlay {
+	position: relative;
+	background-color: var(--#{$cnvs-prefix}form-background);
+	z-index: 10;
+	border-radius: 4px;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ----------------------------------------------------------------
+	Preloaders
+-----------------------------------------------------------------*/
+
+.preloader {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: center center no-repeat var(--#{$cnvs-prefix}input-btn-input-bg);
+}
+
+.preloader2 {
+	@extend .preloader;
+	background-color: transparent;
+}
+
+.form-process {
+	@extend .preloader;
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	background-color: transparent;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: var(--#{$cnvs-prefix}form-processor-bg);
+		opacity: var(--#{$cnvs-prefix}form-processor-bg-op);
+		z-index: -1;
+	}
+}

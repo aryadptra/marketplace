@@ -1,0 +1,158 @@
+
+/*-----------------------------------------------------------------------------------
+
+	Shortcodes: dividers.scss
+
+-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------
+	Divider
+-----------------------------------------------------------------*/
+$divider-prefix: divider;
+
+.#{$divider-prefix} {
+	--#{$cnvs-prefix}#{$divider-prefix}-margin: #{$divider-margins};
+	--#{$cnvs-prefix}#{$divider-prefix}-gap: #{$divider-icon-gutter};
+	--#{$cnvs-prefix}#{$divider-prefix}-color: var(--#{$cnvs-prefix}contrast-200);
+	--#{$cnvs-prefix}#{$divider-prefix}-hover-color: #{$divider-icon-hover-color};
+	--#{$cnvs-prefix}#{$divider-prefix}-size: #{$divider-icon-size};
+	--#{$cnvs-prefix}#{$divider-prefix}-width: #{$divider-width};
+	--#{$cnvs-prefix}#{$divider-prefix}-border-width: #{$divider-border-size};
+	--#{$cnvs-prefix}#{$divider-prefix}-border-style: solid;
+	--#{$cnvs-prefix}#{$divider-prefix}-border-color: var(--#{$cnvs-prefix}#{$divider-prefix}-color);
+	--#{$cnvs-prefix}#{$divider-prefix}-bg-color: #{$divider-rounded-background};
+	--#{$cnvs-prefix}#{$divider-prefix}-rounded-color: #{$divider-rounded-color};
+	--#{$cnvs-prefix}#{$divider-prefix}-icon-border-width: var(--#{$cnvs-prefix}#{$divider-prefix}-border-width);
+	position: relative;
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	margin: var(--#{$cnvs-prefix}#{$divider-prefix}-margin) auto;
+	width: var(--#{$cnvs-prefix}#{$divider-prefix}-width);
+
+	/* Divider - Rounded & Border
+    -----------------------------------------------------------------*/
+	&#{&}-rounded,
+	&#{&}-border {
+		--#{$cnvs-prefix}#{$divider-prefix}-icon-border-width: 0px;
+		--#{$cnvs-prefix}#{$divider-prefix}-rounded-size: calc(var(--#{$cnvs-prefix}#{$divider-prefix}-size)*1.6666666667);
+		--#{$cnvs-prefix}#{$divider-prefix}-line-height: calc(var(--#{$cnvs-prefix}#{$divider-prefix}-rounded-size) - calc(var(--#{$cnvs-prefix}#{$divider-prefix}-icon-border-width) * 2));
+		--#{$cnvs-prefix}#{$divider-prefix}-color: var(--#{$cnvs-prefix}contrast-400);
+		--#{$cnvs-prefix}#{$divider-prefix}-border-color: var(--#{$cnvs-prefix}contrast-200);
+		--#{$cnvs-prefix}#{$divider-prefix}-gap: 0;
+	}
+
+	&#{&}-border {
+		--#{$cnvs-prefix}#{$divider-prefix}-icon-border-width: 1px;
+		--#{$cnvs-prefix}#{$divider-prefix}-bg-color: transparent;
+	}
+
+	&#{&}-margin-lg {
+		--#{$cnvs-prefix}#{$divider-prefix}-margin: 5rem;
+	}
+
+	&::after,
+	&::before {
+		content: '';
+		flex-basis: 0;
+		flex-grow: 1;
+		max-width: 100%;
+		border-bottom: var(--#{$cnvs-prefix}#{$divider-prefix}-border-width) var(--#{$cnvs-prefix}#{$divider-prefix}-border-style) var(--#{$cnvs-prefix}#{$divider-prefix}-border-color);
+	}
+
+	&::before {
+		display: none;
+		margin-right: var(--#{$cnvs-prefix}#{$divider-prefix}-gap);
+	}
+
+	&::after {
+		margin-left: var(--#{$cnvs-prefix}#{$divider-prefix}-gap);
+	}
+
+	i,
+	a,
+	&-text {
+		position: relative;
+		flex: 0 0 auto;
+		width: var(--#{$cnvs-prefix}#{$divider-prefix}-size);
+		max-width: 100%;
+		line-height: 1;
+		font-size: calc(var(--#{$cnvs-prefix}#{$divider-prefix}-size) * .75) !important;
+		text-align: center;
+		color: var(--#{$cnvs-prefix}#{$divider-prefix}-color);
+	}
+
+	a,
+	&-text {
+		width: auto;
+		color: inherit;
+		transition: all .3s ease;
+	}
+
+	&-text {
+		--#{$cnvs-prefix}#{$divider-prefix}-size: calc(var(--#{$cnvs-prefix}#{$divider-prefix}-size) * 0.6);
+	}
+
+	a:hover {
+		color: var(--#{$cnvs-prefix}#{$divider-prefix}-hover-color);
+	}
+
+
+	/* Divider - Icon Align Right
+    -----------------------------------------------------------------*/
+
+	&#{&}-right::before {
+		display: block;
+	}
+
+	&#{&}-right::after {
+		display: none;
+	}
+
+
+	/* Divider - Icon Align Center
+    -----------------------------------------------------------------*/
+
+	&#{&}-center::before {
+		display: block;
+	}
+
+
+	/* Divider - Rounded Icon
+    -----------------------------------------------------------------*/
+
+	&#{&}-rounded i,
+	&#{&}-border i {
+		width: var(--#{$cnvs-prefix}#{$divider-prefix}-rounded-size);
+		height: var(--#{$cnvs-prefix}#{$divider-prefix}-rounded-size);
+		line-height: var(--#{$cnvs-prefix}#{$divider-prefix}-line-height);
+		background-color: var(--#{$cnvs-prefix}#{$divider-prefix}-bg-color);
+		border-radius: 50%;
+		border: var(--#{$cnvs-prefix}#{$divider-prefix}-icon-border-width) var(--#{$cnvs-prefix}#{$divider-prefix}-border-style) var(--#{$cnvs-prefix}#{$divider-prefix}-border-color);
+	}
+
+	&#{&}-rounded i {
+		color: var(--#{$cnvs-prefix}#{$divider-prefix}-rounded-color);
+	}
+
+
+	/* Divider - Line Only
+    -----------------------------------------------------------------*/
+
+	&#{&}-line {
+		--#{$cnvs-prefix}#{$divider-prefix}-gap: 0;
+	}
+
+
+	&#{&}-thick {
+		--#{$cnvs-prefix}#{$divider-prefix}-border-width: 3px;
+		--#{$cnvs-prefix}#{$divider-prefix}-icon-border-width: 3px;
+	}
+
+	&#{&}-sm {
+		--#{$cnvs-prefix}#{$divider-prefix}-width: 55%;
+	}
+
+	&#{&}-xs {
+		--#{$cnvs-prefix}#{$divider-prefix}-width: 35%;
+	}
+}
