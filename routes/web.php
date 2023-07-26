@@ -20,6 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('product/{slug}', [App\Http\Controllers\ProductController::class, 'show'])->name('product.detail');
+
+Route::get('/prototype/login', function () {
+    return view('pages.app.login');
+})->name('login');
+
 Auth::routes();
 
 Route::get('category/search', [CategoryController::class, 'search'])->name('category.search');

@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.app.index');
+        $product = \App\Models\Product::all();
+        return view('pages.app.index', [
+            'product' => $product
+        ]);
     }
 }
