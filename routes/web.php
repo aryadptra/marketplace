@@ -24,7 +24,7 @@ Route::get('product/{slug}', [App\Http\Controllers\ProductController::class, 'sh
 
 Route::get('/prototype/login', function () {
     return view('pages.app.login');
-})->name('login');
+})->name('prototype.login');
 
 Auth::routes();
 

@@ -4,3 +4,13 @@
 	Add all your Custom Styled CSS here for New Styles or
 	Overwriting Default Theme Styles for Better Handling Updates
 -----------------------------------------------------------------*/
+
+/* ----------------------------------------------------------------
+	Primary Color
+-----------------------------------------------------------------*/
+:root {
+    --cnvs-themecolor: #83b341;
+    --cnvs-themecolor-rgb: 131, 179, 65;
+    --bs-link-color: #83b341 !important;
+    --bs-link-hover-color: #83b341 !important;
+}
