@@ -43,9 +43,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $detail = \App\Models\Product::where('slug', $slug)->firstOrFail();
+        $galleries = \App\Models\ProductGallery::with('product')->where('product_id', $detail->id)->get();
+
+        return view('pages.app.product-detail', [
+            'detail' => $detail,
+            'galleries' => $galleries
+        ]);
     }
 
     /**
@@ -89,9 +95,11 @@ class ProductController extends Controller
     public function detail($slug)
     {
         $product = \App\Models\Product::with(['galleries', 'user'])->where('slug', $slug)->firstOrFail();
+        $categories = \App\Models\Category::all();
 
         return view('pages.app.product-detail', [
-            'product' => $product
+            'product' => $product,
+            'categories' => $categories
         ]);
     }
 }

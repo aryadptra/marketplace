@@ -30,6 +30,16 @@ Auth::routes();
 
 Route::get('category/search', [CategoryController::class, 'search'])->name('category.search');
 
+Route::prefix('cart')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('/', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
+        Route::post('/{id}', [App\Http\Controllers\CartController::class, 'add'])->name('cart-add');
+        Route::delete('/{id}', [App\Http\Controllers\CartController::class, 'remove'])->name('cart-remove');
+    });
+
+Route::get('/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
+
 Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth', 'admin'])

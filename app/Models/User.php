@@ -25,12 +25,6 @@ class User extends Authenticatable
         'phone_number',
         'verification_code',
         'new_verification_code',
-        'avatar',
-        'address',
-        'province_id',
-        'city_id',
-        'postal_code',
-        'country',
     ];
 
     /**
@@ -51,4 +45,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function detail()
+    {
+        return $this->hasOne(UserDetail::class, 'user_id', 'id');
+    }
 }

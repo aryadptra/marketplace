@@ -1,47 +1,40 @@
+@php
+    $categories = App\Models\Category::all();
+@endphp
+
 <header id="header" class="full-header header-size-md">
 
     <div id="header-wrap">
-
         <div class="container">
-
             <div class="header-row justify-content-lg-between">
-
-
-
-
                 <div id="logo" class="me-lg-4">
-
-                    <a href="demo-shop.html">
-
+                    <a href="#">
                         <img class="logo-default"
                             srcset="/app/assets/demos/shop/images/logo.png, /app/assets/demos/shop/images/logo@2x.png 2x"
                             src="/app/assets/demos/shop/images/logo@2x.png" alt="Canvas Logo">
-
                     </a>
-
                 </div><!-- #logo end -->
 
 
 
                 <div class="header-misc">
-
-
-
-
                     <div id="top-account">
-                        <a href="#modal-register" data-lightbox="inline"><i class="bi-person me-1 position-relative"
-                                style="top: 1px;"></i><span
-                                class="d-none d-sm-inline-block font-primary fw-medium">Login</span></a>
-                    </div><!-- #top-search end -->
+                        @php
+                            $user = Auth::user();
+                        @endphp
 
-
-
-
+                        @if ($user)
+                            <a href="#"><i class="bi-person me-1 position-relative" style="top: 1px;"></i><span
+                                    class="d-none d-sm-inline-block font-primary fw-medium">{{ $user->name }}</span></a>
+                        @else
+                            <a href="#modal-register" data-lightbox="inline"><i class="bi-person me-1 position-relative"
+                                    style="top: 1px;"></i><span
+                                    class="d-none d-sm-inline-block font-primary fw-medium">Login</span></a>
+                        @endif
+                    </div>
                     <div id="top-cart" class="header-misc-icon d-none d-sm-block">
-
                         <a href="#" id="top-cart-trigger"><i class="uil uil-shopping-bag"></i><span
                                 class="top-cart-number">5</span></a>
-
                         <div class="top-cart-content">
 
                             <div class="top-cart-title">
@@ -149,362 +142,48 @@
                     <ul class="menu-container">
 
                         <li class="menu-item current"><a class="menu-link" href="#">
-                                <div>Home</div>
+                                <div>Beranda</div>
                             </a></li>
-
-                        <li class="menu-item mega-menu"><a class="menu-link" href="#">
-                                <div>Men</div>
-                            </a>
-
-                            <div class="mega-menu-content mega-menu-style-2">
-
-                                <div class="container">
-
-                                    <div class="row">
-
-                                        <ul class="sub-menu-container mega-menu-column border-start-0 col-lg-3">
-
-                                            <li class="menu-item mega-menu-title"><a class="menu-link" href="#">
-                                                    <div>Footwear</div>
-                                                </a>
-
-                                                <ul class="sub-menu-container">
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Casual Shoes</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Formal Shoes</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Sports shoes</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Flip Flops</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Slippers</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Sandals</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Show all <i class="uil 1uil-angle-right-b"></i></div>
-                                                        </a></li>
-
-                                                </ul>
-
-                                            </li>
-
-                                            <li class="menu-item mega-menu-title"><a class="menu-link"
-                                                    href="#">
-                                                    <div>Clothing</div>
-                                                </a>
-
-                                                <ul class="sub-menu-container">
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Casual Shirts</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>T-Shirts</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Collared Tees</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Pants / Trousers</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Show all <i class="uil uil-angle-right-b"></i>
-                                                            </div>
-                                                        </a></li>
-
-                                                </ul>
-
-                                            </li>
-
-                                        </ul>
-
-                                        <ul class="sub-menu-container mega-menu-column border-start-0 col-lg-3">
-
-                                            <li class="menu-item mega-menu-title"><a class="menu-link"
-                                                    href="#">
-                                                    <div>Sportswear</div>
-                                                </a>
-
-                                                <ul class="sub-menu-container">
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Sports Casual Shirts</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Sports T-Shirts</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Sports Collared Tees</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Sports Shoes</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Jackets</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Swimwears</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Show all <i class="uil uil-angle-right-b"></i>
-                                                            </div>
-                                                        </a></li>
-
-                                                </ul>
-
-                                            </li>
-
-                                            <li class="menu-item mega-menu-title"><a class="menu-link"
-                                                    href="#">
-                                                    <div>Innerwears</div>
-                                                </a>
-
-                                                <ul class="sub-menu-container">
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Boxers</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Vests</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Sleepwears</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Show all <i class="uil uil-angle-right-b"></i>
-                                                            </div>
-                                                        </a></li>
-
-                                                </ul>
-
-                                            </li>
-
-                                        </ul>
-
-                                        <ul class="sub-menu-container mega-menu-column border-start-0 col-lg-3">
-
-                                            <li class="menu-item mega-menu-title"><a class="menu-link"
-                                                    href="#">
-                                                    <div>Innerwears</div>
-                                                </a>
-
-                                                <ul class="sub-menu-container">
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Boxers</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Vests</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Sleepwears</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Show all <i class="uil uil-angle-right-b"></i>
-                                                            </div>
-                                                        </a></li>
-
-                                                </ul>
-
-                                            </li>
-
-                                            <li class="menu-item mega-menu-title"><a class="menu-link"
-                                                    href="#">
-                                                    <div>Sunglasses</div>
-                                                </a>
-
-                                            <li class="menu-item mega-menu-title"><a class="menu-link"
-                                                    href="#">
-                                                    <div>Watches</div>
-                                                </a>
-
-                                            <li class="menu-item mega-menu-title"><a class="menu-link"
-                                                    href="#">
-                                                    <div>Bags</div>
-                                                </a>
-
-                                            <li class="menu-item mega-menu-title"><a class="menu-link"
-                                                    href="#">
-                                                    <div>Headphones</div>
-                                                </a>
-
-                                            <li class="menu-item mega-menu-title"><a class="menu-link"
-                                                    href="#">
-                                                    <div>Accessories</div>
-                                                </a>
-
-                                        </ul>
-
-                                        <ul class="sub-menu-container mega-menu-column col-lg-3 border-start-0">
-
-                                            <li class="card p-0 bg-transparent border-0">
-
-                                                <img class="card-img-top"
-                                                    src="/app/assets/demos/shop/images/menu-image.jpg"
-                                                    alt="image cap">
-
-                                                <a href="#"
-                                                    class="btn btn-link text-start fw-medium ps-0 bg-transparent"><u>Editor's
-                                                        Pick</u></a>
-
-                                            </li>
-
-                                        </ul>
-
-                                    </div>
-
+                        <li class="menu-item"><a class="menu-link" href="#">
+                                <div>
+                                    Flash Sale
                                 </div>
-
-                            </div>
-
-                        </li>
-
+                            </a></li>
                         <li class="menu-item mega-menu mega-menu-small"><a class="menu-link" href="#">
-                                <div>Women</div>
+                                <div>Kategori</div>
                             </a>
-
                             <div class="mega-menu-content mega-menu-style-2">
-
                                 <div class="container">
-
                                     <div class="row">
-
                                         <ul class="sub-menu-container mega-menu-column col-lg-6">
-
-                                            <li class="menu-item mega-menu-title"><a class="menu-link"
-                                                    href="#">
-                                                    <div>Footwear</div>
-                                                </a>
-
-                                                <ul class="sub-menu-container">
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Casual Shoes</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Formal Shoes</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Sports shoes</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Flip Flops</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Slippers</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Sandals</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Party Shoes</div>
-                                                        </a></li>
-
-                                                </ul>
-
-                                            </li>
-
+                                            @foreach ($categories as $category)
+                                                @if ($category->parent_id === 0)
+                                                    <li class="menu-item mega-menu-title">
+                                                        <a class="menu-link" href="#">
+                                                            <div>{{ $category->name }}</div>
+                                                        </a>
+                                                        <ul class="sub-menu-container">
+                                                            @foreach ($categories as $childCategory)
+                                                                @if ($childCategory->parent_id === $category->id)
+                                                                    <li class="menu-item">
+                                                                        <a class="menu-link" href="#">
+                                                                            <div>{{ $childCategory->name }}</div>
+                                                                        </a>
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
-
-                                        <ul class="sub-menu-container mega-menu-column col-lg-6">
-
-                                            <li class="menu-item mega-menu-title"><a class="menu-link"
-                                                    href="#">
-                                                    <div>Clothing</div>
-                                                </a>
-
-                                                <ul class="sub-menu-container">
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Casual Shirts</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>T-Shirts</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Collared Tees</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Pants / Trousers</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Ethnic Wear</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Jeans</div>
-                                                        </a></li>
-
-                                                    <li class="menu-item"><a class="menu-link" href="#">
-                                                            <div>Swimwear</div>
-                                                        </a></li>
-
-                                                </ul>
-
-                                            </li>
-
-                                        </ul>
-
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </li>
-
                         <li class="menu-item"><a class="menu-link" href="#">
-                                <div>Accessories</div>
+                                <div>Vendor</div>
                             </a></li>
-
-                        <li class="menu-item"><a class="menu-link" href="#">
-                                <div>Blog</div>
-                            </a></li>
-
-                        <li class="menu-item"><a class="menu-link" href="#">
-                                <div>Sales</div>
-                            </a></li>
-
                     </ul>
 
 

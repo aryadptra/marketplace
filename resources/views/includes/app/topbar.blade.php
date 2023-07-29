@@ -11,7 +11,7 @@
             <div class="col-12 col-lg-auto">
 
                 <p class="mb-0 d-flex justify-content-center justify-content-lg-start py-3 py-lg-0">
-                    <strong>Free U.S. Shipping on Order above $99. Easy Returns.</strong>
+                    <strong>Tempat belanja kebutuhan dan peralatan internet fiber optic terlengkap!</strong>
                 </p>
 
             </div>
@@ -23,7 +23,7 @@
 
                 <div class="top-links">
 
-                    <ul class="top-links-container">
+                    {{-- <ul class="top-links-container">
 
                         <li class="top-links-item"><a href="#">About</a></li>
 
@@ -51,7 +51,7 @@
 
                         </li>
 
-                    </ul>
+                    </ul> --}}
 
                 </div><!-- .top-links end -->
 
