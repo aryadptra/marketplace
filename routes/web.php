@@ -38,7 +38,11 @@ Route::prefix('cart')
         Route::delete('/{id}', [App\Http\Controllers\CartController::class, 'remove'])->name('cart-remove');
     });
 
-Route::get('/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
+// Route::get('/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
+Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout');
+Route::post('/handleCheckout', [App\Http\Controllers\CheckoutController::class, 'handleCheckout'])->name('handleCheckout');
+Route::post('/handleNotification', [App\Http\Controllers\CheckoutController::class, 'handleNotification'])->name('handleNotification');
+
 
 Route::prefix('admin')
     ->name('admin.')

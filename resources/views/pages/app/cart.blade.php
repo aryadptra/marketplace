@@ -39,10 +39,14 @@
                             @foreach ($cart as $item)
                                 <tr class="cart_item">
                                     <td class="cart-product-remove">
+                                        {{-- <form action="{{ route('cart-remove', $item->id) }}" method="post"> --}}
+                                        {{-- @csrf --}}
+                                        {{-- @method('delete') --}}
                                         <a href="{{ route('cart-remove', $item->id) }}" class="remove"
                                             data-confirm-delete="true" title="Remove this item">
                                             <i class="fa-solid fa-trash"></i>
                                         </a>
+                                        {{-- </form> --}}
                                     </td>
                                     <td class="cart-product-thumbnail">
                                         <a href="#"><img width="64" height="64"

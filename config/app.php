@@ -186,6 +186,7 @@ return [
          * Package Service Providers...
          */
         Laravolt\Indonesia\ServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
          * Application Service Providers...

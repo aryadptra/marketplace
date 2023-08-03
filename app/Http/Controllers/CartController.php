@@ -36,8 +36,12 @@ class CartController extends Controller
 
     public function remove($id)
     {
-        $item = Cart::findOrFail($id);
-        $item->delete();
+        if($request->isMethod('get'))
+        {
+            $item = Cart::findOrFail($id);
+            $item->delete();
+            Alert::success('Success', 'Product berhasil dihapus!');
+        }
         return redirect()->route('cart');
     }
 

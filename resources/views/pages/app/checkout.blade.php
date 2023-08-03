@@ -93,7 +93,15 @@
                                         <strong>Cart Subtotal</strong>
                                     </td>
                                     <td class="border-top-0 cart-product-name">
-                                        <span class="amount">$106.94</span>
+                                        <span class="amount">
+                                            @php
+                                                $total = 0;
+                                                foreach ($cart as $item) {
+                                                    $total += $item->product->price * $item->quantity;
+                                                }
+                                                echo 'Rp. ' . number_format($total, 0, ',', '.');
+                                            @endphp
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr class="cart_item">
@@ -109,7 +117,17 @@
                                         <strong>Total</strong>
                                     </td>
                                     <td class="cart-product-name">
-                                        <span class="amount color lead"><strong>$106.94</strong></span>
+                                        <span class="amount color lead">
+                                            <strong>
+                                                @php
+                                                    $total = 0;
+                                                    foreach ($cart as $item) {
+                                                        $total += $item->product->price * $item->quantity;
+                                                    }
+                                                    echo 'Rp. ' . number_format($total, 0, ',', '.');
+                                                @endphp
+                                            </strong>
+                                        </span>
                                     </td>
                                 </tr>
                             </tbody>

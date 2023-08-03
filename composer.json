@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
         "laravolt/indonesia": "^0.32.0",
+        "midtrans/midtrans-php": "^2.5",
         "realrashid/sweet-alert": "^7.0",
         "yajra/laravel-datatables": "9.0"
     },
