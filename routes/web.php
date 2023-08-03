@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +46,15 @@ Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'index'
 Route::post('/handleCheckout', [App\Http\Controllers\CheckoutController::class, 'handleCheckout'])->name('handleCheckout');
 Route::post('/handleNotification', [App\Http\Controllers\CheckoutController::class, 'handleNotification'])->name('handleNotification');
 
+
+// User Profile
+Route::prefix('profile')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('profile');
+        Route::post('/update', [App\Http\Controllers\UserController::class, 'update'])->name('profile-update');
+        Route::post('/update-password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name('profile-update-password');
+    });
 
 Route::prefix('admin')
     ->name('admin.')

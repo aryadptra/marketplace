@@ -19,7 +19,8 @@
                             $user = Auth::user();
                         @endphp
                         @if ($user)
-                            <a href="#"><i class="bi-person me-1 position-relative" style="top: 1px;"></i><span
+                            <a href="{{ route('profile') }}"><i class="bi-person me-1 position-relative"
+                                    style="top: 1px;"></i><span
                                     class="d-none d-sm-inline-block font-primary fw-medium">{{ $user->name }}</span></a>
                         @else
                             <a href="#modal-register" data-lightbox="inline"><i class="bi-person me-1 position-relative"
