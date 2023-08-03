@@ -78,7 +78,8 @@
                                             title="Qty" class="qty">
                                         <input type="button" value="+" class="plus">
                                     </div>
-                                    <button type="submit" class="add-to-cart button m-0">Add to cart</button>
+                                    <button type="submit" id="btn-submit" class="add-to-cart button m-0">Add to
+                                        cart</button>
                                 </form>
                                 <div class="line"></div>
                                 <ul class="list-group list-group-flush">
@@ -333,3 +334,17 @@
         </div>
     </div>
 @endsection
+
+@push('custom-script')
+    <script>
+        // Ajax disable submit button
+        $(document).ready(function() {
+            $('#btn-submit').click(function() {
+                $(this).attr('disabled', true);
+                $(this).parents('form').submit();
+                // ubah text button saat tombol diklik
+                $(this).text('Loading...');
+            });
+        });
+    </script>
+@endpush

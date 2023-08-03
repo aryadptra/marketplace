@@ -12,9 +12,8 @@ class CartController extends Controller
 {
     public function index()
     {
-
         // Delete alert
-        $title = 'Delete User!';
+        $title = 'Delete Cart!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
 
@@ -26,22 +25,34 @@ class CartController extends Controller
 
     public function add(Request $request, $id)
     {
-        Cart::create([
-            'user_id' => Auth::user()->id,
-            'product_id' => $id,
-            'quantity' => $request->quantity
-        ]);
+        // Pengecekan apakah ada id yang dikirim
+        // Jika ada id yang sama, maka update quantity dari cart
+        // Jika tidak ada id yang sama, maka tambahkan cart baru
+        $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $id)->first();
+
+        if($cart){
+            $cart->quantity = $cart->quantity + $request->quantity;
+            $cart->save();
+            Alert::success('Success', 'Berhasil menambahkan kuantitas!');
+        }
+        else{
+            $cart = new Cart();
+            $cart->user_id = Auth::user()->id;
+            $cart->product_id = $id;
+            $cart->quantity = $request->quantity;
+            $cart->save();
+            Alert::success('Success', 'Product berhasil ditambahkan!');
+        }
+
         return redirect()->route('cart');
     }
 
     public function remove($id)
     {
-        if($request->isMethod('get'))
-        {
-            $item = Cart::findOrFail($id);
-            $item->delete();
-            Alert::success('Success', 'Product berhasil dihapus!');
-        }
+        $item = Cart::findOrFail($id);
+        $item->delete();
+        Alert::success('Success', 'Product berhasil dihapus!');
+        
         return redirect()->route('cart');
     }
 

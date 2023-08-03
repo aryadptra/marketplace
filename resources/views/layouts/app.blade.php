@@ -8,7 +8,7 @@
     @stack('custom-style')
 </head>
 
-<body class="stretched">
+<body class="stretched" style="background-color: white !important;">
     @include('sweetalert::alert')
     <div id="wrapper">
         {{-- @include('includes.app.onloader') --}}
@@ -19,7 +19,7 @@
         @yield('content')
         <div class="content">
             <div class="content-wrap">
-                <div class="container">
+                <div class="container-fluid">
                 </div>
             </div>
         </div>

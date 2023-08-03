@@ -269,8 +269,8 @@
 
 
             <!-- New Arrival Section
-                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                    ============================================= -->
+                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                ============================================= -->
 
             <div class="section my-4">
 
@@ -343,8 +343,8 @@
 
 
             <!-- New Arrivals Men
-                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                    ============================================= -->
+                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                ============================================= -->
 
             <div class="container">
 
@@ -410,8 +410,8 @@
                 </div>
 
                 <!-- Sign Up
-                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                    ============================================= -->
+                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                ============================================= -->
 
                 <div class="section my-4 py-5">
                     <div class="container">
@@ -467,8 +467,8 @@
 
 
                     <!-- Features
-                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                    ============================================= -->
+                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                ============================================= -->
 
                     <div class="row col-mb-50 mb-0 mt-5">
 
@@ -709,8 +709,8 @@
 
 
                     <!-- Brands
-                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                    ============================================= -->
+                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                ============================================= -->
 
                     <div class="row mt-5">
 
@@ -778,51 +778,27 @@
                                 <li class="grid-item"><a href="#"><img src="/app/assets/images/clients/logo/13.png"
                                             alt="Clients"></a>
                                 </li>
-
                                 <li class="grid-item"><a href="#"><img src="/app/assets/images/clients/logo/14.png"
                                             alt="Clients"></a>
                                 </li>
-
                                 <li class="grid-item"><a href="#"><img src="/app/assets/images/clients/logo/15.png"
                                             alt="Clients"></a>
                                 </li>
-
                                 <li class="grid-item"><a href="#"><img src="/app/assets/images/clients/logo/16.png"
                                             alt="Clients"></a>
                                 </li>
-
                             </ul>
-
                         </div>
-
                     </div>
-
-
-
                 </div>
-
-
-
                 <div class="clear"></div>
-
-
-
-                <!-- App Buttons
-                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                    ============================================= -->
-
                 <div class="section pb-0 mb-0" style="background-color: #f8f5f0">
-
-                    <div class="container">
-
+                    <div class="">
                         <div class="row">
-
                             <div class="col-md-6 offset-1 mb-6 d-flex flex-column align-self-center">
-
                                 <h3 class="card-title fw-normal ls-0">Follow. Find. Favorite.<br>Discover
                                     Fashion on
                                     the Go.</h3>
-
                                 <span>Proactively enable Corporate Benefits.</span>
 
                                 <div class="mt-3">
@@ -844,28 +820,13 @@
                             </div>
 
                             <div class="col-md-4 d-none d-md-flex align-items-end">
-
                                 <img src="/app/assets/demos/shop/images/sections/app.png" alt="Image" class="mb-0">
-
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
-
-
-                <!-- Last Section
-                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                    ============================================= -->
-
                 <div class="section footer-stick bg-white m-0 py-3 border-bottom">
-
                     <div class="container">
-
-
 
                         <div class="row">
 

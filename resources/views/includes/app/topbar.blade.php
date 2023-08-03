@@ -1,32 +1,16 @@
 <div id="top-bar" class="dark" style="background-color: #a3a5a7;">
 
-    <div class="container">
-
-
-
+    <div class="container-fluid">
         <div class="row justify-content-between align-items-center">
-
-
-
             <div class="col-12 col-lg-auto">
-
                 <p class="mb-0 d-flex justify-content-center justify-content-lg-start py-3 py-lg-0">
                     <strong>Tempat belanja kebutuhan dan peralatan internet fiber optic terlengkap!</strong>
                 </p>
-
             </div>
-
-
-
             <div class="col-12 col-lg-auto d-none d-lg-flex">
-
-
                 <div class="top-links">
-
                     {{-- <ul class="top-links-container">
-
                         <li class="top-links-item"><a href="#">About</a></li>
-
                         <li class="top-links-item"><a href="#">FAQS</a></li>
 
                         <li class="top-links-item"><a href="#">Blogs</a></li>
