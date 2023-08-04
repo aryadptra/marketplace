@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController as ControllersOrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,8 @@ Route::prefix('cart')
 Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout');
 Route::post('/handleCheckout', [App\Http\Controllers\CheckoutController::class, 'handleCheckout'])->name('handleCheckout');
 Route::post('/handleNotification', [App\Http\Controllers\CheckoutController::class, 'handleNotification'])->name('handleNotification');
+
+Route::resource('order', ControllersOrderController::class);
 
 
 // User Profile

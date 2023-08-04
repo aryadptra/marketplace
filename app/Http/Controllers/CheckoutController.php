@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Midtrans\Config as ConfigMidtrans;
 use Midtrans\Snap;
 use Midtrans\Notification;
+use App\Models\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -21,14 +23,21 @@ class CheckoutController extends Controller
         ConfigMidtrans::$isSanitized = env('MIDTRANS_IS_SANITIZED');
         // Set 3DS transaction for credit card to true
         ConfigMidtrans::$is3ds = env('MIDTRANS_IS_3DS');
-
     }
 
     public function index()
     {
         $clientKey = env('MIDTRANS_CLIENT_KEY');
-        return view('checkout',[
-            'clientKey' => $clientKey,  
+        $cart = Cart::with(['product', 'user'])->where('user_id', Auth::user()->id)->get();
+
+        // Hitung apakah ada produk di cart
+        if ($cart->isEmpty()) {
+            return redirect()->route('home');
+        }
+
+        return view('pages.app.checkout', [
+            'cart' => $cart,
+            'clientKey' => $clientKey
         ]);
     }
 
@@ -39,11 +48,36 @@ class CheckoutController extends Controller
         ConfigMidtrans::$clientKey = env('MIDTRANS_CLIENT_KEY');
         ConfigMidtrans::$isProduction = env('MIDTRANS_IS_PRODUCTION');
 
+        $user_id = Auth::user()->id;
+        $cart = Cart::with(['product', 'user'])->where('user_id', $user_id)->get();
+
+        $total = 0;
+        foreach ($cart as $c) {
+            $total += $c->product->price * $c->quantity;
+        }
+
+        // Buat array untuk dikirim ke midtrans
+
+        // Optional
+        // Item Details
+        $item = [];
+        foreach ($cart as $c) {
+            $item[] = [
+                'id' => $c->product->id,
+                'price' => $c->product->price,
+                'quantity' => $c->quantity,
+                'name' => $c->product->name
+            ];
+        }
+
+        $item_details = $item;
+
         $params = array(
             'transaction_details' => array(
                 'order_id' => rand(),
-                'gross_amount' => 10000,
-            )
+                'gross_amount' => $total,
+            ),
+            'item_details' => $item_details
         );
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
