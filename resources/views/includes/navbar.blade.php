@@ -87,7 +87,12 @@
                     <li class="nav-item">
                         <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
                             @php
-                                $carts = \App\Cart::where('users_id', Auth::user()->id)->count();
+                                // Cek apakah user sudah login
+                                if (Auth::check()) {
+                                    $carts = \App\Cart::where('users_id', Auth::user()->id)->count();
+                                } else {
+                                    $carts = 0; // Jika user belum login, jumlah cart dianggap 0
+                                }
                             @endphp
                             @if ($carts > 0)
                                 <img src="/images/icon-cart-filled.svg" alt="" />

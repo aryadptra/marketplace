@@ -48,6 +48,10 @@ Route::post('/handleCheckout', [App\Http\Controllers\CheckoutController::class, 
 Route::post('/handleNotification', [App\Http\Controllers\CheckoutController::class, 'handleNotification'])->name('handleNotification');
 
 Route::resource('order', ControllersOrderController::class);
+Route::get('/order/success', [ControllersOrderController::class, 'success'])->name('order.success');
+Route::get('/invoice/{id}', [ControllersOrderController::class, 'invoice'])->name('order.invoice');
+Route::post('/order/{id}/cancel', [ControllersOrderController::class, 'cancel'])->name('order.cancel');
+Route::post('/order/notification', [ControllersOrderController::class, 'notification'])->name('order.notification');
 
 
 // User Profile
@@ -57,6 +61,14 @@ Route::prefix('profile')
         Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('profile');
         Route::post('/update', [App\Http\Controllers\UserController::class, 'update'])->name('profile-update');
         Route::post('/update-password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name('profile-update-password');
+    });
+
+Route::prefix('ongkir')
+    ->name('ongkir.')
+    ->group(function () {
+        Route::get('/province', [App\Http\Controllers\OngkirController::class, 'province'])->name('province');
+        Route::get('/city/{id}', [App\Http\Controllers\OngkirController::class, 'city'])->name('city');
+        Route::post('/cost', [App\Http\Controllers\OngkirController::class, 'cost'])->name('cost');
     });
 
 Route::prefix('admin')

@@ -13,7 +13,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('pages.app.profile');
+        $order = \App\Models\Order::with(['order_detail', 'user'])->where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->get();
+        return view('pages.app.profile', [
+            'order' => $order
+        ]);
     }
 
     /**

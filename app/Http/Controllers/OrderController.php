@@ -50,12 +50,15 @@ class OrderController extends Controller
         $user_id = Auth::user()->id;
         $cart = Cart::with(['product', 'user'])->where('user_id', $user_id)->get();
 
+        $invoice_number = date('Ymd') . $user_id . rand(100, 999);
+
         $total = 0;
+
         foreach ($cart as $c) {
             $total += $c->product->price * $c->quantity;
         }
 
-
+        $total += $request->total_ongkir; // Tambahkan ongkos kirim ke total
         /**
          * Array Untuk Request Payment Midtrans
          */
@@ -70,6 +73,14 @@ class OrderController extends Controller
                 'name' => $c->product->name
             ];
         }
+
+        $item[] = [
+            'id' => 'shipping',
+            'price' => $request->total_ongkir,
+            'quantity' => 1,
+            'name' => 'Biaya Pengiriman'
+        ];
+
         $item_details = $item;
 
         // Ambil nama lengkap dari user
@@ -93,7 +104,7 @@ class OrderController extends Controller
             'first_name'    => $firstName,
             'last_name'     => $lastName,
             'address'       => $request->address,
-            'city'          => "Jakarta",
+            'city'          => $request->city,
             'postal_code'   => $user->detail->postal_code,
             'phone'         => $user->detail->phone_number,
             'country_code'  => 'IDN'
@@ -113,9 +124,9 @@ class OrderController extends Controller
         $enable_payments = array('gopay', 'bank_transfer');
 
         $params = array(
-            'enabled_payments' => $enable_payments,
+            // 'enabled_payments' => $enable_payments,
             'transaction_details' => array(
-                'order_id' => rand(),
+                'order_id' => $invoice_number,
                 'gross_amount' => $total,
             ),
             'customer_details' => $customer_details,
@@ -129,13 +140,17 @@ class OrderController extends Controller
          */
         $order_data = [
             'user_id' => $user_id,
-            'invoice_number' =>  date('Ymd') . $user_id . rand(1, 9999),
+            'invoice_number' =>  $invoice_number,
+            'province' => $request->province,
+            'city' => $request->city,
             'shipping_address' => $request->address,
-            'payment_method' => "Online Payment",
-            'payment_detail' => "Online Payment",
+            'payment_method' => "-",
+            'payment_detail' => "-",
             'payment_status' => 'Pending',
-            'courier' => "Courier",
-            'shipping_code' => "Shipping Code",
+            'courier' => $request->courier,
+            'courier_service' => $request->courier_service,
+            'shipping_code' => "-",
+            'shipping_fee' => $request->total_ongkir,
             'snap_token' => $snapToken
         ];
 
@@ -181,7 +196,7 @@ class OrderController extends Controller
         /**
          * Redirect ke halaman cart
          */
-        return redirect()->route('cart.index')->with('success', 'Order Success! Please Complete Your Payment');
+        return redirect()->route('profile')->with('success', 'Order Success! Please Complete Your Payment');
     }
 
     /**
@@ -192,7 +207,20 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        // Detail Order
+        $order = Order::with(['order_detail', 'user'])->where('id', $id)->first();
+
+        // Order Details
+        $order_details = $order->order_detail;
+
+        // Cek apakah user yang mengakses adalah pemilik order
+        if (Auth::user()->id != $order->user_id) {
+            return redirect()->back();
+        }
+
+        return view('pages.app.order-detail', [
+            'order' => $order,
+        ]);
     }
 
     /**
@@ -227,5 +255,87 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Callback Midtrans
+     */
+    public function notification(Request $request)
+    {
+        ConfigMidtrans::$isProduction = env('MIDTRANS_IS_PRODUCTION');
+        ConfigMidtrans::$serverKey = env('MIDTRANS_SERVER_KEY');
+        ConfigMidtrans::$clientKey = env('MIDTRANS_CLIENT_KEY');
+
+
+        try {
+            $notif = new Notification();
+        } catch (\Exception $e) {
+            exit($e->getMessage());
+        }
+
+        $notif = $notif->getResponse();
+        $transaction = $notif->transaction_status;
+        $type = $notif->payment_type;
+        $order_id = $notif->order_id;
+        $fraud = $notif->fraud_status;
+        $signature_key = $notif->signature_key;
+
+        // $order where invoice_number = $order_id
+        $order = Order::where('invoice_number', $order_id)->first();
+
+        if ($transaction == 'capture') {
+            // For credit card transaction, we need to check whether transaction is challenge by FDS or not
+            if ($type == 'credit_card') {
+                if ($fraud == 'challenge') {
+                    $order->update([
+                        'payment_status' => 'Pending'
+                    ]);
+                } else {
+                    $order->update([
+                        'payment_status' => 'Success'
+                    ]);
+                }
+            }
+        } elseif ($transaction == 'settlement') {
+            $order->update([
+                'payment_status' => 'Success',
+                'payment_method' => $type,
+                'payment_detail' => $signature_key
+            ]);
+        } elseif ($transaction == 'pending') {
+            $order->update([
+                'payment_status' => 'Pending'
+            ]);
+        } elseif ($transaction == 'deny') {
+            $order->update([
+                'payment_status' => 'Failed'
+            ]);
+        } elseif ($transaction == 'expire') {
+            $order->update([
+                'payment_status' => 'Expired'
+            ]);
+        } elseif ($transaction == 'cancel') {
+            $order->update([
+                'payment_status' => 'Failed'
+            ]);
+        }
+    }
+
+    public function invoice($id)
+    {
+        $order = Order::with(['order_detail', 'user'])->where('id', $id)->first();
+        $order_details = $order->order_detail;
+        $clientKey = env('MIDTRANS_CLIENT_KEY');
+
+        // Cek apakah user yang mengakses adalah pemilik order
+        if (Auth::user()->id != $order->user_id) {
+            return redirect()->back();
+        }
+
+        return view('pages.app.invoice', [
+            'order' => $order,
+            'order_details' => $order_details,
+            'clientKey' => $clientKey
+        ]);
     }
 }

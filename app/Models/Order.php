@@ -13,12 +13,16 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'invoice_number',
+        'province',
+        'city',
         'shipping_address',
         'payment_method',
         'payment_detail',
         'payment_status',
         'courier',
+        'courier_service',
         'shipping_code',
+        'shipping_fee',
         'snap_token',
     ];
 

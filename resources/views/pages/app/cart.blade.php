@@ -114,14 +114,6 @@
                                             </tr>
                                             <tr class="cart_item">
                                                 <td class="cart-product-name">
-                                                    <h5 class="mb-0">Pengiriman</h5>
-                                                </td>
-                                                <td class="cart-product-name text-end">
-                                                    <span class="amount">Gratis</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="cart_item">
-                                                <td class="cart-product-name">
                                                     <h5 class="mb-0">Total</h5>
                                                 </td>
                                                 <td class="cart-product-name text-end">

@@ -30,4 +30,8 @@ class HomeController extends Controller
             'categories' => $categories
         ]);
     }
+
+    public function raja()
+    {
+    }
 }
