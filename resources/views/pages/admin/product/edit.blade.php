@@ -210,50 +210,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 mt-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="h4 py-2">
-                                                Galleries
-                                            </h4>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label for="">Photos</label>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            @if ($galleries->count() > 0)
-                                                                @foreach ($galleries as $items)
-                                                                    <div class="col-md-4 mb-3">
-                                                                        <div id="thumbnail-preview{{ $loop->iteration }}">
-                                                                            <img id="preview-image{{ $loop->iteration }}"
-                                                                                src="{{ asset('storage/' . $items->image) }}"
-                                                                                class="img-fluid" alt="Preview Image" />
-                                                                        </div>
-                                                                    </div>
-                                                                @endforeach
-                                                            @else
-                                                                <div class="col-md-4 mb-3">
-                                                                    <div id="thumbnail-preview">
-                                                                        <img id="preview-image"
-                                                                            src="{{ asset('images/thumbnail-upload.png') }}"
-                                                                            class="img-fluid" alt="Preview Image" />
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-                                                            <input type="file" style="display: none;"
-                                                                id="photo-thumbnail" name="photo"
-                                                                class="form-control" />
-                                                            {{-- Button Add Photo --}}
-                                                            <div data-id="{{ $item->id }}" id="add-photo-btn"
-                                                                class="btn btn-primary btn-block">Add
-                                                                Photo</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-md-12">
                                     <div class="card mt-3">
                                         <div class="card-body">
@@ -348,6 +304,58 @@ if ($item->details->discount_value != 0 || $item->details->discount_value != nul
                                                                 aria-describedby="basic-addon1">
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="h4 py-2">
+                                        Galleries
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="">Photos</label>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        @if ($galleries->count() > 0)
+                                                            @foreach ($galleries as $items)
+                                                                <div class="col-md-3 mb-3">
+                                                                    <div id="thumbnail-preview{{ $loop->iteration }}">
+                                                                        <div class="gallery-container">
+                                                                            <img id="preview-image{{ $loop->iteration }}"
+                                                                                src="{{ asset('storage/' . $items->image) }}"
+                                                                                class="w-100" alt="Preview Image" />
+
+                                                                            <a class="delete-gallery">
+                                                                                <img src="/images/icon-delete.svg"
+                                                                                    alt="" />
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        @else
+                                                            <div class="col-md-4 mb-3">
+                                                                <div id="thumbnail-preview">
+                                                                    <img id="preview-image"
+                                                                        src="{{ asset('images/thumbnail-upload.png') }}"
+                                                                        class="img-fluid" alt="Preview Image" />
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                    <input type="file" style="display: none;" id="photo-thumbnail"
+                                                        name="photo" class="form-control" />
+                                                    {{-- Button Add Photo --}}
+                                                    <div data-id="{{ $item->id }}" id="add-photo-btn"
+                                                        class="btn btn-primary btn-block">Add
+                                                        Photo</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -511,8 +519,6 @@ if ($item->details->discount_value != 0 || $item->details->discount_value != nul
             // ...
         });
 
-
-
         // If discount value is empty, set discount_price to 0
         $('input[name="discount_value"]').on('change', function() {
             if ($(this).val() == '') {
@@ -554,45 +560,6 @@ if ($item->details->discount_value != 0 || $item->details->discount_value != nul
         });
     </script>
 
-    {{-- Input Image On Click --}}
-    {{-- <script>
-        // Fungsi inputImage On Click
-        $(document).ready(function() {
-            // Fungsi untuk memicu klik pada input file tersembunyi
-            function inputImage(imageNumber) {
-                $('#photo-file' + imageNumber).click();
-            }
-
-            // Mengganti gambar pratinjau saat gambar dipilih
-            function changePreview(imageNumber) {
-                var input = $('#photo-file' + imageNumber)[0];
-                var preview = $('#preview-image' + imageNumber)[0];
-
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        preview.src = e.target.result;
-                    };
-
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-
-            // Menangani peristiwa saat input file berubah
-            $('[id^=photo-file]').on('change', function() {
-                var imageNumber = $(this).attr('id').match(/\d+/)[0];
-                changePreview(imageNumber);
-            });
-
-            // Menangani peristiwa saat thumbnail pratinjau diklik
-            $('[id^=thumbnail-preview]').on('click', function() {
-                var imageNumber = $(this).attr('id').match(/\d+/)[0];
-                inputImage(imageNumber);
-            });
-        });
-    </script> --}}
-
     <script>
         $(document).ready(function() {
             // Menambahkan event listener pada tombol "Add Photo"
@@ -623,24 +590,7 @@ if ($item->details->discount_value != 0 || $item->details->discount_value != nul
                     // Jika pengunggahan berhasil
                     success: function(response) {
                         // Jika pengunggahan berhasil, tambahkan gambar baru ke tampilan
-                        var newImageElement = $(
-                            '<img class="img-fluid" alt="Preview Image" />');
-                        newImageElement.attr('src', '{{ asset('storage/') }}' + '/' + response
-                            .data
-                            .photo);
-
-
-                        var newThumbnailElement = $('<div></div>');
-                        newThumbnailElement.attr('id', 'thumbnail-preview' + response.id);
-                        newThumbnailElement.append(newImageElement);
-
-                        $('.col-12').append($('<div class="col-md-4 mb-3"></div>').append(
-                            newThumbnailElement));
-
-                        // Reset input file untuk memungkinkan unggahan gambar lainnya
-                        $('#photo-thumbnail').val('');
-
-                        // console.log(response);
+                        location.reload();
                     },
                     error: function(xhr) {
                         // Menampilkan pesan kesalahan jika ada masalah dengan pengunggahan gambar

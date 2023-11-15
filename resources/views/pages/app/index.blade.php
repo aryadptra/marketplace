@@ -35,7 +35,6 @@
                         style="background-image: url('/app/assets/demos/shop/images/slider/1.jpg');">
                     </div>
                 </div>
-
                 <div class="swiper-slide dark">
                     <div class="container">
                         <div class="slider-caption slider-caption-center">
@@ -51,7 +50,6 @@
                         style="background-image: url('/app/assets/demos/shop/images/slider/3.jpg'); background-position: center 20%;">
                     </div>
                 </div>
-
                 <div class="swiper-slide dark">
                     <div class="container">
                         <div class="slider-caption slider-caption-center">
@@ -79,9 +77,6 @@
                 <div class="fancy-title title-border title-center mb-4">
                     <h4>Kategori Populer</h4>
                 </div>
-
-
-
                 <div class="row shop-categories">
                     <div class="row">
                         @foreach ($categories as $item)
@@ -100,61 +95,34 @@
                         @endforeach
                     </div>
                 </div>
-
-
                 <div class="fancy-title title-border title-center mb-4">
                     <h4>Produk Pilihan</h4>
                 </div>
-
                 <div class="row shop-categories">
-
                     <div class="col-lg-7">
-
                         <a href="#"
                             style="background: url('/app/assets/demos/shop/images/categories/2-1.jpg') no-repeat right center; background-size: cover;">
-
                             <div class="vertical-middle dark text-center">
-
                                 <div class="heading-block m-0 border-0">
-
                                     <h3 class="text-transform-none fw-semibold ls-0">For Him</h3>
-
                                 </div>
-
                             </div>
-
                         </a>
-
                     </div>
-
                     <div class="col-lg-5">
-
                         <a href="#"
                             style="background: url('/app/assets/demos/shop/images/categories/1.jpg') no-repeat center right; background-size: cover;">
-
                             <div class="vertical-middle dark text-center">
-
                                 <div class="heading-block m-0 border-0">
-
                                     <h3 class="text-transform-none fw-semibold ls-0">For Her</h3>
-
                                 </div>
-
                             </div>
-
                         </a>
-
                     </div>
-
-
-
                     <div class="col-lg-4">
-
                         <a href="#"
                             style="background: url('/app/assets/demos/shop/images/categories/4.jpg') no-repeat center center; background-size: cover;">
-
                             <div class="vertical-middle dark text-center">
-
                                 <div class="heading-block m-0 border-0">
 
                                     <h3 class="text-transform-none fw-semibold ls-0">Popular Products</h3>
@@ -269,8 +237,8 @@
 
 
             <!-- New Arrival Section
-                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                            ============================================= -->
 
             <div class="section my-4">
 
@@ -343,8 +311,8 @@
 
 
             <!-- New Arrivals Men
-                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                            ============================================= -->
 
             <div class="container">
 
@@ -410,8 +378,8 @@
                 </div>
 
                 <!-- Sign Up
-                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                            ============================================= -->
 
                 <div class="section my-4 py-5">
                     <div class="container">
@@ -467,8 +435,8 @@
 
 
                     <!-- Features
-                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                            ============================================= -->
 
                     <div class="row col-mb-50 mb-0 mt-5">
 
@@ -709,8 +677,8 @@
 
 
                     <!-- Brands
-                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                            ============================================= -->
 
                     <div class="row mt-5">
 
