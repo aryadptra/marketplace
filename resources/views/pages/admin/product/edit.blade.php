@@ -331,8 +331,8 @@ if ($item->details->discount_value != 0 || $item->details->discount_value != nul
                                                                             <img id="preview-image{{ $loop->iteration }}"
                                                                                 src="{{ asset('storage/' . $items->image) }}"
                                                                                 class="w-100" alt="Preview Image" />
-
-                                                                            <a class="delete-gallery">
+                                                                            <a href="{{ route('admin.product.gallery.delete', $items->id) }}"
+                                                                                class="delete-gallery">
                                                                                 <img src="/images/icon-delete.svg"
                                                                                     alt="" />
                                                                             </a>

@@ -81,6 +81,7 @@ Route::prefix('admin')
         Route::resource('product', ProductController::class);
 
         Route::post('/product/{id}/gallery/upload', [ProductGalleryController::class, 'upload'])->name('product.gallery.upload');
+        Route::get('/product/{id}/gallery/delete', [ProductGalleryController::class, 'delete'])->name('product.gallery.delete');
 
         Route::resource('order', OrderController::class);
     });
