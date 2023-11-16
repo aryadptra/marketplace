@@ -76,7 +76,12 @@
                                         Hi, {{ strtok(Auth::user()->name, ' ') }}
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a href="/" class="dropdown-item">Logout</a>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button class="dropdown-item" type="submit">
+                                                {{ __('Logout') }}
+                                            </button>
+                                        </form>
                                     </div>
                                 </li>
                             </ul>
