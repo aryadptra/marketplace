@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-12 form-group">
                                     <label for="shipping-form-address">Alamat:</label>
-                                    <textarea class="form-control" id="shipping-form-message" name="address" rows="6" cols="30">{{ Auth::user()->detail->address }}</textarea>
+                                    <textarea class="form-control" id="shipping-form-message" name="address" rows="6" cols="30">{{ optional(Auth::user()->detail)->address }}</textarea>
                                 </div>
                                 <div class="col-12 form-group">
                                     <label for="shipping-form-message">Catatan <small>*</small></label>
@@ -196,7 +196,8 @@
                         </div>
                         <div class="d-flex justify-content-end">
                             {{-- <button id="pay-button" class="button button-3d">Pesan Sekarang</button> --}}
-                            <button type="submit" class="button button-3d">Pesan Sekarang</button>
+                            <button type="submit" id="button-submit" disabled class="button button-3d">Pesan
+                                Sekarang</button>
                         </div>
                     </div>
                     <div class="w-100"></div>
@@ -314,7 +315,7 @@
                         $.each(result.rajaongkir.results, function(index, value) {
                             $('#cost').empty();
                             $('#cost').append(
-                                '<option value="">-- Pilih Ongkos Kirim --</option>'
+                                '<option value="">-- Pilih Layanan Pengiriman --</option>'
                             );
                             $.each(value.costs, function(index2, value2) {
                                 $('#cost').append(
@@ -329,6 +330,7 @@
             });
             // Script saat #cost diubah, maka ubah juga #total-pengiriman dan #total-harga
             $('#cost').on('change', function() { // Ubah #total-pengiriman berdasarkan #cost value
+                $('#button-submit').attr('disabled', false);
                 $('#total-pengiriman').html('Rp. ' + $(this).val());
 
                 // Ubah #total-harga berdasarkan #cost value menjadi total harga + ongkir dengan format mata uang
@@ -356,9 +358,16 @@
                 // total ongkos kirim
                 $('#total-ongkir').val(formattedOngkir);
                 $('#total_ongkir').val(ongkir);
+
                 // courier service
                 $('#courier_service').val($('#cost option:selected').text());
             });
+        });
+
+        $('#button-submit').on('submit', function() {
+            $('#button-submit').attr('disabled', true);
+            // Change text to loading
+            $('#button-submit').text('Loading...');
         });
     </script>
 @endpush

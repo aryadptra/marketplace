@@ -60,12 +60,13 @@
                                     </tr>
                                     <tr>
                                         <td>Alamat</td>
-                                        <td>{{ Auth::user()->detail->address }}</td>
+                                        <td>{{ optional(Auth::user()->detail)->address }}</td>
                                     </tr>
                                     <tr>
                                         <td>Nomor Telepon</td>
-                                        <td>{{ Auth::user()->detail->phone_number }}</td>
+                                        <td>{{ optional(Auth::user()->detail)->phone_number }}</td>
                                     </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -144,14 +145,18 @@
                     <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">
                         <div>Settings</div><i class="bi-gear-fill"></i>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">
-                        <div>Logout</div><i class="bi-box-arrow-left"></i>
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="list-group-item list-group-item-action d-flex justify-content-between"
+                            type="submit">
+                            {{ __('Logout') }}
+                            <i class="bi-box-arrow-left"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 @endsection
 @push('custom-script')
-    
 @endpush

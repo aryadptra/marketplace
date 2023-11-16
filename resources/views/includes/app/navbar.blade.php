@@ -23,7 +23,7 @@
                                     style="top: 1px;"></i><span
                                     class="d-none d-sm-inline-block font-primary fw-medium">{{ $user->name }}</span></a>
                         @else
-                            <a href="#modal-register" data-lightbox="inline"><i class="bi-person me-1 position-relative"
+                            <a href="{{ route('login') }}"><i class="bi-person me-1 position-relative"
                                     style="top: 1px;"></i><span
                                     class="d-none d-sm-inline-block font-primary fw-medium">Login</span></a>
                         @endif
@@ -38,7 +38,7 @@
                     @endphp
                     <div id="top-cart" class="header-misc-icon d-none d-sm-block">
                         <a href="#" id="top-cart-trigger"><i class="uil uil-shopping-bag"></i><span
-                                class="top-cart-number">5</span></a>
+                                class="top-cart-number">{{ $carts }}</span></a>
                         <div class="top-cart-content">
                             <div class="top-cart-title">
                                 <h4>Keranjang</h4>

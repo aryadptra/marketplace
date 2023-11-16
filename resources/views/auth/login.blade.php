@@ -86,7 +86,8 @@
                     </div>
                 </div>
                 <div class="accordion-content" style="display: none;">
-                    <form id="register-form" name="register-form" class="row mb-0" action="#" method="post">
+                    <form id="register-form" name="register-form" class="row mb-0" method="POST"
+                        action="{{ route('register') }}">
                         <div class="col-12 form-group">
                             <label for="register-form-name">Name:</label>
                             <input type="text" id="register-form-name" name="register-form-name" value=""

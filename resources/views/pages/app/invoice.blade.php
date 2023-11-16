@@ -55,7 +55,7 @@
                                                 <li class="text-muted">{{ $order->city }}</li>
                                                 <li class="text-muted">{{ $order->province }}</li>
                                                 <li class="text-muted"><i class="fas fa-phone"></i>
-                                                    {{ $order->user->detail->phone_number }}</li>
+                                                    {{ optional($order->user->detail)->phone_number }}</li>
                                             </ul>
                                         </div>
                                         <div class="col-xl-4">
@@ -125,7 +125,7 @@
                                                     Amount</span><span style="font-size: 25px;">
                                                     @php
                                                         $total_amount = $total + $order->shipping_fee;
-                                                        
+
                                                         echo 'Rp. ' . number_format($total_amount, 0, ',', '.');
                                                     @endphp
                                                 </span></p>

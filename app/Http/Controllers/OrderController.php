@@ -105,8 +105,8 @@ class OrderController extends Controller
             'last_name'     => $lastName,
             'address'       => $request->address,
             'city'          => $request->city,
-            'postal_code'   => $user->detail->postal_code,
-            'phone'         => $user->detail->phone_number,
+            'postal_code'   => optional($user->detail)->postal_code,
+            'phone'         => optional($user->detail)->phone_number,
             'country_code'  => 'IDN'
         );
 
@@ -115,7 +115,7 @@ class OrderController extends Controller
             'first_name'    => $firstName,
             'last_name'     => $lastName,
             'email'         => Auth::user()->email,
-            'phone'         => $user->detail->phone_number,
+            'phone'         => optional($user->detail)->phone_number,
             'billing_address'  => $shipping_address,
             'shipping_address' => $shipping_address
         ];
