@@ -86,41 +86,80 @@
                     </div>
                 </div>
                 <div class="accordion-content" style="display: none;">
-                    <form id="register-form" name="register-form" class="row mb-0" method="POST"
-                        action="{{ route('register') }}">
+                    <form class="row mb-0" method="POST" action="{{ route('register') }}">
+                        @csrf
                         <div class="col-12 form-group">
                             <label for="register-form-name">Name:</label>
-                            <input type="text" id="register-form-name" name="register-form-name" value=""
-                                class="form-control">
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="col-12 form-group">
-                            <label for="register-form-email">Email Address:</label>
-                            <input type="text" id="register-form-email" name="register-form-email" value=""
-                                class="form-control">
+                            <label for="register-form-email">Email:</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                name="email" value="{{ old('email') }}" required autocomplete="email">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="col-12 form-group">
-                            <label for="register-form-username">Choose a Username:</label>
-                            <input type="text" id="register-form-username" name="register-form-username" value=""
-                                class="form-control">
+                            <label for="register-form-phone">Phone Number:</label>
+                            <input type="number" name="phone_number" class="form-control">
+                            @error('phone_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="col-12 form-group">
-                            <label for="register-form-phone">Phone:</label>
-                            <input type="text" id="register-form-phone" name="register-form-phone" value=""
-                                class="form-control">
+                            <label for="register-form-address">Address:</label>
+                            <textarea name="address" class="form-control" cols="10" rows="3"></textarea>
+                        </div>
+                        <div class="col-12 form-group">
+                            <label for="register-form-phone">Postal Code:</label>
+                            <input type="number" name="postal_code" class="form-control">
+                            @error('postal_code')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="col-12 form-group">
+                            <label for="register-form-name">Country:</label>
+                            <input id="country" type="text"
+                                class="form-control @error('country') is-invalid @enderror" name="country"
+                                value="{{ old('country') }}" required autocomplete="country" autofocus>
+                            @error('country')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="col-12 form-group">
                             <label for="register-form-password">Choose Password:</label>
-                            <input type="password" id="register-form-password" name="register-form-password"
-                                value="" class="form-control">
+                            <input id="password" type="password"
+                                class="form-control @error('password') is-invalid @enderror" name="password" required
+                                autocomplete="new-password">
+
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="col-12 form-group">
                             <label for="register-form-repassword">Re-enter Password:</label>
-                            <input type="password" id="register-form-repassword" name="register-form-repassword"
-                                value="" class="form-control">
+                            <input id="password-confirm" type="password" class="form-control"
+                                name="password_confirmation" required autocomplete="new-password">
                         </div>
                         <div class="col-12 form-group">
-                            <button class="button button-3d button-black m-0" id="register-form-submit"
-                                name="register-form-submit" value="register">Register Now</button>
+                            <button class="button button-3d button-black m-0" type="submit">Register Now</button>
                         </div>
                     </form>
                 </div>
